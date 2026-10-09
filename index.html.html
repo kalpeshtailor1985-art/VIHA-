@@ -1,0 +1,3791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KALPESH TAILOR - BAI AVABAI HIGHSCHOOL, VALSAD</title>
+
+  <meta name="theme-color" content="#1e3a8a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="KALPESH TAILOR">
+  <meta name="description" content="Official Examination, GUJCET & Blueprint Suite - Kalpesh Tailor - Bai Avabai Highschool, Valsad">
+
+  <link id="app-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='110' fill='%231e3a8a'/><path d='M370 125 H160 L265 235 L160 345 H370 V313 H225 L300 235 L225 157 H370 Z' fill='%23f59e0b'/><text x='256' y='425' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='42' fill='%23ffffff' letter-spacing='2'>KALPESH TAILOR</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='110' fill='%231e3a8a'/><path d='M370 125 H160 L265 235 L160 345 H370 V313 H225 L300 235 L225 157 H370 Z' fill='%23f59e0b'/><text x='256' y='425' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='42' fill='%23ffffff' letter-spacing='2'>KALPESH TAILOR</text></svg>">
+
+  <!-- EMBEDDED WEB APP MANIFEST FOR PWA INSTALLABILITY -->
+  <link rel="manifest" href="data:application/manifest+json;utf8,%7B%22name%22%3A%22Kalpesh%20Tailor%20-%20Bai%20Avabai%20Exam%20Suite%22%2C%22short_name%22%3A%22KALPESH%20TAILOR%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231e3a8a%22%2C%22theme_color%22%3A%22%231e3a8a%22%2C%22description%22%3A%22Official%20Examination%2C%20GUJCET%20%26%20Blueprint%20Suite%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Butf8%2C%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%3E%3Crect%20width%3D'512'%20height%3D'512'%20rx%3D'110'%20fill%3D'%231e3a8a'%2F%3E%3Cpath%20d%3D'M370%20125%20H160%20L265%20235%20L160%20345%20H370%20V313%20H225%20L300%20235%20L225%20157%20H370%20Z'%20fill%3D'%23f59e0b'%2F%3E%3Ctext%20x%3D'256'%20y%3D'425'%20text-anchor%3D'middle'%20font-family%3D'Arial%2C%20Helvetica%2C%20sans-serif'%20font-weight%3D'900'%20font-size%3D'42'%20fill%3D'%23ffffff'%20letter-spacing%3D'2'%3EKALPESH%20TAILOR%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#0f172a'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons & SheetJS -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <!-- MathJax Configuration -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      startup: {
+        typeset: false
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    .paper-cambria-font {
+      font-family: 'Cambria', 'Georgia', serif !important;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 8mm;
+    }
+    @media print {
+      html, body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+      body > *:not(#print-zone) {
+        display: none !important;
+      }
+      #print-zone {
+        display: block !important;
+        position: relative !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-family: 'Cambria', 'Georgia', serif !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-page-box {
+        border: 2px solid #000000 !important;
+        padding: 8mm 10mm !important;
+        box-sizing: border-box !important;
+        background: #ffffff !important;
+        min-height: calc(297mm - 16mm);
+        position: relative;
+        page-break-after: auto;
+      }
+    }
+
+    .paper-canvas {
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      padding: 10mm 12mm;
+      border: 2px solid #0f172a;
+      box-sizing: border-box;
+      font-family: 'Cambria', 'Georgia', serif;
+    }
+
+    .watermark {
+      position: relative;
+    }
+    .watermark::before {
+      content: "BAI AVABAI HIGHSCHOOL";
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: rgba(30, 58, 138, 0.035);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .mcq-options-inline {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: flex-start !important;
+      align-items: baseline !important;
+      width: 100% !important;
+      margin-top: 4px !important;
+      padding-left: 18px !important;
+      overflow-x: auto !important;
+      gap: 16px !important;
+    }
+    .mcq-option-col {
+      flex: 1 1 auto !important;
+      white-space: nowrap !important;
+      min-width: 0 !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col md:flex-row relative">
+
+  <!-- AUTHENTICATION GATE -->
+  <div id="auth-gate" class="fixed inset-0 z-50 bg-slate-900/90 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+
+      <div class="flex items-center space-x-3.5 pb-3 border-b border-slate-100">
+        <div class="flex flex-col items-center">
+          <div class="w-11 h-11 rounded-xl bg-brand-900 text-amber-300 font-serif font-black flex items-center justify-center text-2xl shadow-md border border-amber-300">
+            Σ
+          </div>
+          <span class="text-[9px] font-black tracking-wider text-brand-900 mt-1 uppercase whitespace-nowrap">KALPESH TAILOR</span>
+        </div>
+        <div class="leading-tight">
+          <h2 class="text-base font-black text-slate-900 uppercase tracking-tight">KALPESH TAILOR</h2>
+          <h3 class="font-extrabold text-xs text-brand-900" id="gate-header-title">Teacher Portal</h3>
+          <p class="text-[11px] text-slate-500 font-semibold">BAI AVABAI HIGHSCHOOL, VALSAD</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 p-1 bg-slate-100 rounded-xl text-xs font-bold text-center">
+        <button type="button" id="tab-auth-signin-btn" onclick="switchGateTab('signin')" class="py-2 rounded-lg bg-brand-900 text-white shadow transition cursor-pointer">
+          Sign In
+        </button>
+        <button type="button" id="tab-auth-signup-btn" onclick="switchGateTab('signup')" class="py-2 rounded-lg text-slate-600 hover:text-brand-900 transition cursor-pointer">
+          New? Sign Up
+        </button>
+      </div>
+
+      <div id="gate-alert-box" class="hidden p-2.5 rounded-lg text-xs font-semibold"></div>
+
+      <form id="gate-auth-form" onsubmit="event.preventDefault(); handleSimpleAuthSubmit(event); return false;" class="space-y-3 text-xs">
+        <div id="gate-name-container" class="hidden">
+          <label class="block font-bold text-slate-700 mb-1">Teacher Full Name:</label>
+          <input type="text" id="gate-user-name" placeholder="Kalpesh H Tailor" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Email Address:</label>
+          <input type="email" id="gate-user-email" placeholder="teacher@baiavabai.edu.in" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="block font-bold text-slate-700">Password (min 4 characters):</label>
+            <button type="button" id="gate-forgot-pass-btn" onclick="openForgotPasswordModal()" class="text-brand-700 hover:underline font-semibold text-[11px] cursor-pointer">
+              Forgot Password?
+            </button>
+          </div>
+          <input type="password" id="gate-user-password" placeholder="••••••••" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
+        </div>
+
+        <button type="submit" id="gate-main-submit-btn" class="w-full py-2.5 bg-brand-900 text-white font-bold rounded-lg shadow hover:bg-brand-800 transition cursor-pointer">
+          Sign In to Portal
+        </button>
+      </form>
+
+      <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
+        <button type="button" onclick="bypassDemoLogin()" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-lg text-xs shadow flex items-center justify-center space-x-1.5 transition transform active:scale-95 cursor-pointer">
+          <i data-lucide="zap" class="w-4 h-4 text-slate-950"></i>
+          <span>Instant 1-Click Sign In (Kalpesh Sir - Demo)</span>
+        </button>
+        <button type="button" onclick="bypassGuestLogin()" class="w-full py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg text-[11px] transition cursor-pointer">
+          Continue as Guest Teacher
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: FORGOT PASSWORD -->
+  <div id="modal-forgot-password" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-brand-900">
+          <i data-lucide="key-round" class="w-5 h-5 text-amber-500"></i>
+          <h3 class="font-extrabold text-sm text-slate-900">Reset Teacher Password</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-forgot-password')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Your Registered Email:</label>
+          <input type="email" id="forgot-email-input" placeholder="teacher@baiavabai.edu.in" class="w-full border rounded-lg p-2 border-slate-300">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Enter New Password:</label>
+          <input type="password" id="forgot-new-password" placeholder="At least 4 characters" class="w-full border rounded-lg p-2 border-slate-300">
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-forgot-password')" class="px-3 py-1.5 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Cancel</button>
+        <button type="button" onclick="handlePasswordReset()" class="px-4 py-1.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-lg text-xs shadow cursor-pointer">Update Password</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Top Navigation Header -->
+  <header class="md:hidden bg-brand-900 text-white p-3.5 flex items-center justify-between shadow-md z-30">
+    <div class="flex items-center space-x-3">
+      <div class="flex flex-col items-center">
+        <div class="w-9 h-9 rounded-lg bg-amber-400 text-brand-900 font-serif font-black text-2xl flex items-center justify-center shadow">Σ</div>
+        <span class="text-[8px] font-black tracking-wider text-amber-300 mt-0.5 uppercase whitespace-nowrap">KALPESH TAILOR</span>
+      </div>
+      <div class="leading-tight">
+        <h1 class="text-xs font-black tracking-wide text-white uppercase">KALPESH TAILOR</h1>
+        <p class="text-[10px] text-amber-300 font-bold">BAI AVABAI HIGHSCHOOL • VALSAD</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button type="button" id="mobile-install-app-btn" onclick="triggerAppInstall()" class="px-2.5 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black rounded-lg text-[11px] shadow flex items-center space-x-1 cursor-pointer">
+        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+        <span>Install</span>
+      </button>
+      <button type="button" onclick="toggleSidebar()" class="p-2 text-white hover:bg-brand-800 rounded-lg cursor-pointer">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside id="app-sidebar" class="fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-200 ease-in-out w-72 bg-brand-900 text-white flex flex-col z-40 shadow-xl">
+
+    <div class="p-4 border-b border-brand-800 flex items-center space-x-3.5">
+      <div class="flex flex-col items-center">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-400 to-yellow-200 text-brand-900 font-serif font-black text-3xl flex items-center justify-center shadow-lg border border-amber-300">
+          Σ
+        </div>
+        <span class="text-[9px] font-black tracking-wider text-amber-300 mt-1 uppercase whitespace-nowrap">KALPESH TAILOR</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <h1 class="font-black text-sm tracking-wide text-white leading-tight uppercase truncate">KALPESH TAILOR</h1>
+        <p class="text-[11px] font-bold text-slate-200 uppercase truncate">BAI AVABAI HIGHSCHOOL</p>
+        <p class="text-[10px] font-semibold text-amber-300 tracking-wider">VALSAD</p>
+      </div>
+    </div>
+
+    <!-- PROFILE SECTION -->
+    <div class="p-3.5 mx-3 my-2.5 bg-brand-800/80 rounded-xl border border-brand-700/60 shadow-inner">
+      <div class="flex items-center space-x-3">
+        <div class="relative group cursor-pointer" onclick="openPhotoModal()" title="Click to Change Profile Picture">
+          <img id="user-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='110' fill='%231e3a8a'/><path d='M370 125 H160 L265 235 L160 345 H370 V313 H225 L300 235 L225 157 H370 Z' fill='%23f59e0b'/><text x='256' y='425' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-weight='900' font-size='42' fill='%23ffffff' letter-spacing='2'>KALPESH TAILOR</text></svg>" alt="Teacher Profile" class="w-12 h-12 rounded-full object-cover border-2 border-amber-400 shadow-md transition group-hover:opacity-85">
+          <div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-150">
+            <i data-lucide="camera" class="w-4 h-4 text-white"></i>
+          </div>
+          <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-brand-900 rounded-full"></span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h2 id="logged-user-name" class="text-xs font-extrabold text-white tracking-wide truncate uppercase">KALPESH H TAILOR</h2>
+          <p class="text-[11px] text-amber-300 font-black tracking-tight truncate">M.Sc, B.Ed, GSET (MATHS)</p>
+          <div class="flex items-center space-x-2 mt-0.5">
+            <span id="firebase-sync-badge" class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/40">
+              ● Cloud Ready
+            </span>
+            <button type="button" onclick="openPhotoModal()" class="text-[10px] text-blue-200 hover:text-white flex items-center space-x-0.5 cursor-pointer">
+              <i data-lucide="pencil" class="w-2.5 h-2.5"></i>
+              <span>Photo</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIMARY ACTION BUTTONS -->
+    <div class="px-3 pb-2 space-y-2">
+      <button type="button" id="sidebar-install-app-btn" onclick="triggerAppInstall()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black rounded-lg text-xs shadow-md transition transform active:scale-98 cursor-pointer">
+        <i data-lucide="download" class="w-4 h-4 text-slate-950"></i>
+        <span id="install-btn-text">INSTALL APP ON DEVICE</span>
+      </button>
+
+      <button type="button" onclick="switchTab('tab-generator')" class="w-full flex items-center justify-center space-x-2 py-2 px-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold rounded-lg text-xs shadow-md transition transform active:scale-98 cursor-pointer">
+        <i data-lucide="file-plus-2" class="w-4 h-4"></i>
+        <span>GENERATE PAPER (GSEB)</span>
+      </button>
+
+      <button type="button" onclick="openAddChapterModal()" class="w-full flex items-center justify-center space-x-2 py-1.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-xs shadow transition cursor-pointer">
+        <i data-lucide="folder-plus" class="w-4 h-4"></i>
+        <span>+ ADD CHAPTER TO SUBJECT</span>
+      </button>
+    </div>
+
+    <!-- BACKUP SECTION -->
+    <div class="px-3 pb-2">
+      <div class="bg-brand-950/70 p-2.5 rounded-lg border border-brand-800 space-y-1.5">
+        <div class="flex items-center justify-between text-[11px] font-bold text-amber-300">
+          <span class="flex items-center space-x-1">
+            <i data-lucide="database-backup" class="w-3.5 h-3.5"></i>
+            <span>Local &amp; Cloud Backup</span>
+          </span>
+          <span id="cloud-vault-status" class="text-[9px] text-emerald-400 font-mono">ENCRYPTED</span>
+        </div>
+        <div class="grid grid-cols-2 gap-1.5 pt-0.5">
+          <button type="button" onclick="exportFullDataBackup()" class="flex items-center justify-center space-x-1 py-1 px-1.5 bg-blue-700 hover:bg-blue-600 text-white rounded text-[10px] font-bold shadow cursor-pointer">
+            <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+            <span>Export Backup</span>
+          </button>
+          <button type="button" onclick="document.getElementById('backup-file-input').click()" class="flex items-center justify-center space-x-1 py-1 px-1.5 bg-slate-700 hover:bg-slate-600 text-white rounded text-[10px] font-bold shadow cursor-pointer">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>Import Backup</span>
+          </button>
+        </div>
+        <input type="file" id="backup-file-input" accept=".json" class="hidden" onchange="importFullDataBackup(event)">
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="flex-1 px-3 space-y-1 overflow-y-auto">
+      <button type="button" onclick="switchTab('tab-generator')" id="nav-generator" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition bg-blue-600 text-white shadow cursor-pointer">
+        <i data-lucide="file-plus-2" class="w-4 h-4"></i>
+        <span>Paper Generator (GSEB)</span>
+      </button>
+
+      <button type="button" onclick="switchTab('tab-gujcet')" id="nav-gujcet" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition hover:bg-brand-800 hover:text-white text-blue-100 cursor-pointer">
+        <i data-lucide="sparkles" class="w-4 h-4 text-amber-300"></i>
+        <div class="flex items-center justify-between flex-1">
+          <span class="font-bold text-amber-200">GUJCET Exam Builder</span>
+          <span class="text-[9px] bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded font-black font-mono">MCQ 40M</span>
+        </div>
+      </button>
+
+      <button type="button" onclick="switchTab('tab-blueprint')" id="nav-blueprint" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition hover:bg-brand-800 hover:text-white text-blue-100 cursor-pointer">
+        <i data-lucide="grid" class="w-4 h-4"></i>
+        <div class="flex items-center justify-between flex-1">
+          <span>Blueprint Matrix</span>
+          <span class="text-[9px] bg-amber-500/25 text-amber-300 border border-amber-500/40 px-1.5 py-0.5 rounded font-mono font-bold">W/O & With Option</span>
+        </div>
+      </button>
+
+      <button type="button" onclick="switchTab('tab-qbank')" id="nav-qbank" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition hover:bg-brand-800 hover:text-white text-blue-100 cursor-pointer">
+        <i data-lucide="database" class="w-4 h-4"></i>
+        <div class="flex items-center justify-between flex-1">
+          <span>Question Bank</span>
+          <span id="badge-qbank-count" class="text-[10px] bg-blue-500/30 text-blue-200 px-1.5 py-0.5 rounded font-mono">0</span>
+        </div>
+      </button>
+
+      <button type="button" onclick="switchTab('tab-archive')" id="nav-archive" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition text-blue-100 hover:bg-brand-800 hover:text-white cursor-pointer">
+        <i data-lucide="archive" class="w-4 h-4"></i>
+        <span>Saved Papers</span>
+      </button>
+
+      <div class="pt-1 border-t border-brand-800/80 my-1"></div>
+
+      <button type="button" onclick="handleSignOutAction()" id="auth-status-btn" class="w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-medium text-rose-300 hover:bg-brand-800 hover:text-white transition cursor-pointer">
+        <i data-lucide="log-out" class="w-4 h-4 text-rose-400"></i>
+        <span id="auth-btn-label">Sign Out</span>
+      </button>
+    </nav>
+
+    <div class="p-3 bg-brand-950 text-center text-[10px] text-blue-300/80 border-t border-brand-800">
+      <p class="font-bold text-white uppercase tracking-wider">BAI AVABAI HIGHSCHOOL, VALSAD</p>
+      <p class="font-mono text-amber-300 text-[10px] mt-0.5">KALPESH H TAILOR</p>
+      <p class="text-[9px] text-slate-400">M.Sc, B.Ed, GSET (MATHS)</p>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="flex-1 flex flex-col h-screen overflow-hidden">
+
+    <!-- TOP WORKSPACE BAR -->
+    <div class="bg-white border-b border-slate-200 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 shadow-sm">
+      <div class="flex items-center space-x-2">
+        <span class="text-xs font-bold px-2 py-1 rounded bg-blue-50 text-brand-900 border border-blue-200 uppercase tracking-tight">
+          BAI AVABAI HIGHSCHOOL, VALSAD
+        </span>
+        <span class="text-xs text-slate-300">|</span>
+        <span id="active-tab-title" class="text-xs font-semibold text-slate-600">Question Paper Workspace</span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-1.5">
+        <button type="button" onclick="exportToWordDoc()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-blue-700 text-white text-xs font-semibold rounded-lg shadow hover:bg-blue-800 transition cursor-pointer" title="Download Word Document (.doc)">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          <span>Save as Word</span>
+        </button>
+
+        <button type="button" onclick="savePaperAsPdf()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-rose-700 text-white text-xs font-semibold rounded-lg shadow hover:bg-rose-800 transition cursor-pointer" title="Browser Print to PDF">
+          <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
+          <span>Save as PDF</span>
+        </button>
+
+        <button type="button" onclick="printStandardPaper()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-brand-900 text-white text-xs font-semibold rounded-lg shadow hover:bg-brand-800 transition cursor-pointer">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+          <span>Print Paper</span>
+        </button>
+
+        <button type="button" onclick="printPaperWithAnswers()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-emerald-600 text-white text-xs font-semibold rounded-lg shadow hover:bg-emerald-700 transition cursor-pointer">
+          <i data-lucide="check-square" class="w-3.5 h-3.5"></i>
+          <span>Print with Answers</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN SCROLLABLE CONTENT BODY -->
+    <div class="flex-1 overflow-y-auto p-4 md:p-6 bg-slate-100">
+
+      <!-- TAB 1: GENERAL GSEB PAPER GENERATOR -->
+      <section id="tab-generator" class="tab-pane max-w-7xl mx-auto space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center space-x-2">
+                  <i data-lucide="sliders" class="w-4 h-4 text-brand-700"></i>
+                  <span>Paper Meta & Header</span>
+                </h3>
+                <span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono font-medium" id="total-marks-badge">Max: 50 M</span>
+              </div>
+
+              <div class="space-y-3 text-xs">
+                <div>
+                  <label class="block text-slate-600 font-semibold mb-1">Institution Name</label>
+                  <input type="text" id="paper-inst-name" value="BAI AVABAI HIGHSCHOOL, VALSAD" class="w-full border rounded-lg p-2 font-bold text-slate-800 bg-slate-50 border-slate-300 uppercase">
+                </div>
+
+                <div>
+                  <label class="block text-slate-600 font-semibold mb-1">Examination Title</label>
+                  <input type="text" id="paper-exam-title" value="FIRST TERM EXAMINATION - 2026-27" class="w-full border rounded-lg p-2 font-medium border-slate-300">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">Standard (Std)</label>
+                    <select id="paper-std" onchange="syncSubjectDropdown('paper-std', 'paper-sub')" class="w-full border rounded-lg p-2 border-slate-300 font-semibold">
+                      <option value="Std 9">Std 9</option>
+                      <option value="Std 10" selected>Std 10</option>
+                      <option value="Std 11 Science">Std 11 Science</option>
+                      <option value="Std 11 Commerce">Std 11 Commerce</option>
+                      <option value="Std 11 Arts">Std 11 Arts</option>
+                      <option value="Std 12 Science">Std 12 Science</option>
+                      <option value="Std 12 Commerce">Std 12 Commerce</option>
+                      <option value="Std 12 Arts">Std 12 Arts</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">GSEB Subject</label>
+                    <select id="paper-sub" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2">
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">Medium</label>
+                    <select id="paper-medium" class="w-full border rounded-lg p-2 border-slate-300">
+                      <option value="Gujarati" selected>Gujarati</option>
+                      <option value="English">English</option>
+                      <option value="Hindi">Hindi</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">Time</label>
+                    <input type="text" id="paper-time" value="2 Hours" class="w-full border rounded-lg p-2 border-slate-300">
+                  </div>
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">Max Marks</label>
+                    <input type="number" id="paper-marks" value="50" class="w-full border rounded-lg p-2 border-slate-300 font-bold text-brand-900">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-slate-600 font-semibold mb-1">General Instructions</label>
+                  <textarea id="paper-instructions" rows="2" class="w-full border rounded-lg p-2 border-slate-300 text-slate-700">1. All questions are compulsory. 2. Figures to the right indicate full marks. 3. Draw clean diagrams wherever necessary.</textarea>
+                </div>
+              </div>
+
+              <div class="pt-2 flex flex-col gap-2">
+                <button type="button" onclick="renderLivePaper()" class="w-full py-2 bg-brand-700 text-white rounded-lg font-bold hover:bg-brand-800 transition flex items-center justify-center space-x-2 text-xs cursor-pointer">
+                  <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                  <span>Sync & Re-Render Paper</span>
+                </button>
+                <button type="button" onclick="savePaperToArchive()" class="w-full py-2 bg-slate-200 text-slate-700 rounded-lg font-semibold hover:bg-slate-300 transition flex items-center justify-center space-x-2 text-xs cursor-pointer">
+                  <i data-lucide="save" class="w-3.5 h-3.5"></i>
+                  <span>Save to Exam Archive</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Quick Add Single Question -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-3">
+              <h3 class="font-bold text-slate-800 text-sm flex items-center space-x-2 pb-2 border-b border-slate-100">
+                <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-600"></i>
+                <span>Quick Add to Current Paper</span>
+              </h3>
+
+              <div class="space-y-2 text-xs">
+                <select id="quick-section" class="w-full border rounded-lg p-2 border-slate-300 font-semibold">
+                  <option value="SECTION A">SECTION A (Objective / 1 Mark)</option>
+                  <option value="SECTION B">SECTION B (Short Answer / 2 Marks)</option>
+                  <option value="SECTION C">SECTION C (Detailed / 3 Marks)</option>
+                  <option value="SECTION D">SECTION D (Long / Case / 4 Marks)</option>
+                </select>
+                <textarea id="quick-q-text" rows="2" placeholder="Question statement (LaTeX supported)..." class="w-full border rounded-lg p-2 border-slate-300"></textarea>
+                <input type="text" id="quick-q-options" placeholder="MCQ Options: (A) 1  (B) 2  (C) 3  (D) 4" class="w-full border rounded-lg p-2 border-slate-300 text-xs">
+                <textarea id="quick-q-ans" rows="1" placeholder="Answer / Solution key..." class="w-full border rounded-lg p-2 border-emerald-300 bg-emerald-50/50"></textarea>
+                <div class="flex gap-2">
+                  <input type="number" id="quick-q-marks" value="1" min="1" max="10" class="w-20 border rounded-lg p-2 border-slate-300 text-center font-bold" placeholder="Marks">
+                  <button type="button" onclick="quickAddQuestionToPaper()" class="flex-1 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 text-xs cursor-pointer">
+                    Insert Question
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Canvas Preview -->
+          <div class="lg:col-span-8 flex flex-col items-center">
+            <div class="w-full flex justify-between items-center mb-2 px-1">
+              <span class="text-xs font-semibold text-slate-500">Live Paper Preview (Cambria Font • Outer Page Border • Multi-page Border Supported)</span>
+              <button type="button" onclick="renderLivePaper()" class="text-xs text-brand-700 hover:underline flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                <span>Refresh</span>
+              </button>
+            </div>
+
+            <div id="printable-paper" class="paper-canvas watermark paper-cambria-font text-slate-900 leading-normal relative">
+              <div class="border-b-2 border-slate-900 pb-3 mb-4 text-center">
+                <div class="flex justify-between items-center mb-1">
+                  <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-lg bg-brand-900 text-amber-300 font-serif font-black text-2xl flex items-center justify-center border border-amber-300 shadow">
+                      Σ
+                    </div>
+                    <span class="text-[9px] font-black tracking-wider text-slate-900 mt-0.5 uppercase whitespace-nowrap">KALPESH TAILOR</span>
+                  </div>
+                  <div class="flex-1 px-3">
+                    <h2 id="view-school-name" class="font-black text-lg tracking-wide text-slate-900 uppercase">BAI AVABAI HIGHSCHOOL, VALSAD</h2>
+                    <h3 id="view-exam-title" class="font-semibold text-xs tracking-wide text-slate-700 mt-0.5">FIRST TERM EXAMINATION - 2026-27</h3>
+                  </div>
+                  <div class="text-right text-[11px] font-mono border border-slate-400 p-1 rounded">
+                    <div>ROLL NO:</div>
+                    <div class="w-16 h-4 border-b border-dashed border-slate-400 mt-1"></div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-4 text-xs font-semibold pt-2 border-t border-slate-300 mt-2 text-left">
+                  <div>STD: <span id="view-std" class="font-bold">Std 10</span></div>
+                  <div>SUBJECT: <span id="view-sub" class="font-bold">Mathematics (Standard - 12)</span></div>
+                  <div>MEDIUM: <span id="view-medium" class="font-bold">Gujarati</span></div>
+                  <div class="text-right">TIME: <span id="view-time" class="font-bold">2 Hours</span> | MARKS: <span id="view-marks" class="font-bold">50</span></div>
+                </div>
+              </div>
+
+              <div class="mb-4 p-2 bg-slate-50 border border-slate-200 text-xs italic rounded">
+                <strong>General Instructions: </strong>
+                <span id="view-instructions">1. All questions are compulsory. 2. Figures to the right indicate full marks. 3. Draw clean diagrams wherever necessary.</span>
+              </div>
+
+              <!-- Sections Container -->
+              <div id="paper-sections-container" class="space-y-6 text-sm"></div>
+
+              <div class="mt-12 pt-6 border-t border-slate-300 flex justify-between items-end text-xs font-semibold text-slate-700">
+                <div class="text-center">
+                  <div class="w-36 border-b border-slate-400 mb-1"></div>
+                  <p>Subject Teacher Signature</p>
+                </div>
+                <div class="text-center">
+                  <p class="font-bold text-slate-900 uppercase">KALPESH H TAILOR</p>
+                  <p class="text-[10px] text-brand-900 font-bold">M.Sc, B.Ed, GSET (MATHS)</p>
+                </div>
+                <div class="text-center">
+                  <div class="w-36 border-b border-slate-400 mb-1"></div>
+                  <p>Principal / Examiner</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: GUJCET EXAM BUILDER SECTION -->
+      <section id="tab-gujcet" class="tab-pane max-w-7xl mx-auto space-y-6 hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-5">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="px-2.5 py-0.5 rounded text-xs font-black bg-amber-400 text-brand-950 font-mono">GUJCET SPECIAL</span>
+                <h2 class="text-lg font-black text-slate-800">GUJCET Examination Paper Workspace (40 Marks MCQ)</h2>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">Dedicated 40-question multiple-choice examination builder for GUJCET with Cambria typesetting.</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="autoPopulateGujcet40Paper()" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1.5 cursor-pointer">
+                <i data-lucide="wand-2" class="w-3.5 h-3.5"></i>
+                <span>Auto-Generate 40 MCQs from Bank</span>
+              </button>
+              <button type="button" onclick="switchTab('tab-blueprint'); setMatrixMode('GUJCET');" class="px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="grid" class="w-3.5 h-3.5"></i>
+                <span>GUJCET Blueprint Matrix</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">GUJCET Subject:</label>
+              <select id="gujcet-subject" class="w-full border rounded-lg p-2 font-bold bg-white border-slate-300">
+                <option value="Mathematics">Mathematics (40 Marks)</option>
+                <option value="Physics">Physics (40 Marks)</option>
+                <option value="Chemistry">Chemistry (40 Marks)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+              <select id="gujcet-medium" class="w-full border rounded-lg p-2 font-semibold bg-white border-slate-300">
+                <option value="Gujarati">Gujarati Medium</option>
+                <option value="English">English Medium</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Exam Duration:</label>
+              <input type="text" id="gujcet-time" value="60 Minutes" class="w-full border rounded-lg p-2 font-medium bg-white border-slate-300">
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Negative Marking:</label>
+              <input type="text" id="gujcet-negative" value="0.25 Mark per wrong answer" class="w-full border rounded-lg p-2 font-medium bg-white border-slate-300">
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-4 border border-slate-300 rounded-xl space-y-3 text-xs">
+            <h4 class="font-extrabold text-slate-800 flex items-center space-x-1.5">
+              <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-600"></i>
+              <span>Add Single MCQ to GUJCET Paper</span>
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <div class="md:col-span-2">
+                <input type="text" id="gujcet-quick-text" placeholder="Question statement..." class="w-full border rounded-lg p-2 bg-white border-slate-300">
+              </div>
+              <div>
+                <input type="text" id="gujcet-quick-options" placeholder="(A) ... (B) ... (C) ... (D) ..." class="w-full border rounded-lg p-2 bg-white border-slate-300 font-mono">
+              </div>
+              <div class="flex space-x-2">
+                <input type="text" id="gujcet-quick-ans" placeholder="Correct (e.g. (A))" class="w-24 border rounded-lg p-2 bg-emerald-50 border-emerald-300 font-bold text-center">
+                <button type="button" onclick="addSingleGujcetMcq()" class="flex-1 bg-brand-900 text-white font-bold rounded-lg text-xs hover:bg-brand-800 cursor-pointer">
+                  Insert MCQ
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs">
+            <span class="font-bold text-brand-900">Current GUJCET Paper Questions: <span id="gujcet-current-count" class="font-mono text-base text-emerald-700 font-black">0</span> / 40</span>
+            <span class="text-slate-500 italic">40 questions form an official GSEB GUJCET subject paper.</span>
+          </div>
+
+          <div id="gujcet-paper-preview" class="border border-slate-300 rounded-xl bg-white p-4 space-y-3 text-xs min-h-[250px] paper-cambria-font">
+            <p class="text-slate-400 text-center py-8">No MCQs added yet. Click <strong>"Auto-Generate 40 MCQs from Bank"</strong> or insert questions manually above.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: CHAPTERWISE BLUEPRINT MATRIX -->
+      <section id="tab-blueprint" class="tab-pane max-w-7xl mx-auto space-y-6 hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-5">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+            <div>
+              <h2 class="text-lg font-black text-slate-800 flex items-center space-x-2">
+                <i data-lucide="grid" class="w-5 h-5 text-brand-700"></i>
+                <span>Chapterwise Allocation Matrix Blueprint (With & Without Option)</span>
+              </h2>
+              <p class="text-xs text-slate-500">Configure questions & marks with dual columns: <strong>Without Option (વિકલ્પ વિના)</strong> and <strong>With Option (વિકલ્પ સાથે)</strong> across 1M, 2M, 3M, 4M, Custom 1, &amp; Custom 2.</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="openAddChapterModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="folder-plus" class="w-3.5 h-3.5"></i>
+                <span>+ Add Chapter</span>
+              </button>
+              <button type="button" onclick="addBlueprintRow()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300 flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                <span>Add Matrix Row</span>
+              </button>
+              <button type="button" onclick="saveCurrentBlueprint()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer" title="Store this matrix into saved blueprints">
+                <i data-lucide="save" class="w-3.5 h-3.5"></i>
+                <span>Save Blueprint</span>
+              </button>
+              <button type="button" onclick="printBlueprintMatrix()" class="px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                <span>Print Blueprint Matrix</span>
+              </button>
+              <button type="button" onclick="applyBlueprintToPaper()" class="px-4 py-1.5 bg-brand-900 hover:bg-brand-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1.5 cursor-pointer">
+                <i data-lucide="wand-2" class="w-3.5 h-3.5"></i>
+                <span>Generate Paper from Matrix</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="p-4 bg-brand-50 border-2 border-brand-200 rounded-xl space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center space-x-2">
+                <span class="text-xs font-bold text-slate-700">Matrix Exam Type:</span>
+                <div class="inline-flex rounded-lg border border-brand-800 p-0.5 bg-white text-xs font-bold">
+                  <button type="button" id="matrix-mode-gseb" onclick="setMatrixMode('GSEB')" class="px-3 py-1 rounded bg-brand-900 text-white cursor-pointer">General GSEB</button>
+                  <button type="button" id="matrix-mode-gujcet" onclick="setMatrixMode('GUJCET')" class="px-3 py-1 rounded text-slate-700 hover:text-brand-900 cursor-pointer">GUJCET Matrix</button>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-2 bg-white px-3 py-1.5 rounded-lg border border-slate-300 text-xs shadow-sm">
+                <span class="font-bold text-brand-900">Custom Marks Weight:</span>
+                <div class="flex items-center space-x-1">
+                  <label class="font-semibold text-slate-600">Custom 1:</label>
+                  <input type="number" id="custom-weight-c1" value="5" min="1" max="25" onchange="renderMatrixTable()" class="w-12 border rounded p-1 text-center font-bold text-purple-900 border-purple-300 bg-purple-50">
+                  <span class="text-slate-500">M</span>
+                </div>
+                <span class="text-slate-300">|</span>
+                <div class="flex items-center space-x-1">
+                  <label class="font-semibold text-slate-600">Custom 2:</label>
+                  <input type="number" id="custom-weight-c2" value="6" min="1" max="25" onchange="renderMatrixTable()" class="w-12 border rounded p-1 text-center font-bold text-indigo-900 border-indigo-300 bg-indigo-50">
+                  <span class="text-slate-500">M</span>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-2">
+                <span id="matrix-active-filter-badge" class="text-[10px] bg-brand-900 text-amber-300 font-bold px-2 py-0.5 rounded font-mono">Std 10 - Mathematics (Standard - 12)</span>
+                <span id="matrix-bank-total-indicator" class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded font-mono border border-emerald-300">Bank Avail: 0 Qs</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Standard (Std):</label>
+                <select id="matrix-filter-std" onchange="syncSubjectDropdown('matrix-filter-std', 'matrix-filter-sub');" class="w-full border border-slate-300 rounded-lg p-2 font-semibold bg-white text-slate-800">
+                  <option value="Std 9">Std 9</option>
+                  <option value="Std 10" selected>Std 10</option>
+                  <option value="Std 11 Science">Std 11 Science</option>
+                  <option value="Std 11 Commerce">Std 11 Commerce</option>
+                  <option value="Std 11 Arts">Std 11 Arts</option>
+                  <option value="Std 12 Science">Std 12 Science</option>
+                  <option value="Std 12 Commerce">Std 12 Commerce</option>
+                  <option value="Std 12 Arts">Std 12 Arts</option>
+                  <option value="GUJCET">GUJCET (Std 11 + 12 Combined)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+                <select id="matrix-filter-sub" class="w-full border border-slate-300 rounded-lg p-2 font-semibold bg-white text-slate-800"></select>
+              </div>
+
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+                <select id="matrix-filter-med" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white text-slate-800">
+                  <option value="Gujarati">Gujarati Medium</option>
+                  <option value="English">English Medium</option>
+                  <option value="Hindi">Hindi Medium</option>
+                </select>
+              </div>
+
+              <div class="flex items-end">
+                <button type="button" onclick="applyMatrixSelectorFilter()" class="w-full py-2 bg-brand-900 hover:bg-brand-800 text-white font-extrabold rounded-lg shadow flex items-center justify-center space-x-1.5 transition active:scale-95 cursor-pointer">
+                  <i data-lucide="check-check" class="w-4 h-4 text-amber-400"></i>
+                  <span>Apply & View Chapters</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two-tier Matrix Header -->
+          <div class="overflow-x-auto rounded-lg border border-slate-200">
+            <table class="w-full text-xs text-left" id="matrix-table">
+              <thead class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider text-[10px] border-b border-slate-300">
+                <tr>
+                  <th rowspan="2" class="p-2 border-r border-slate-200 w-8 text-center">#</th>
+                  <th rowspan="2" class="p-2 border-r border-slate-200 min-w-[190px]">Chapter Name & Bank Breakdown</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-blue-50/70 text-brand-900">1 Mark</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-sky-50/70 text-sky-900">2 Marks</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-cyan-50/70 text-cyan-900">3 Marks</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-teal-50/70 text-teal-900">4 Marks</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-purple-50 text-purple-900" id="th-custom-1">Custom 1</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-indigo-50 text-indigo-900" id="th-custom-2">Custom 2</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-amber-50 text-amber-950 font-black">Total Questions</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-emerald-50 text-emerald-950 font-black">Total Marks</th>
+                  <th rowspan="2" class="p-2 text-center w-12 no-print">Act</th>
+                </tr>
+                <tr class="text-[9px] font-bold border-t border-slate-200 bg-slate-50 text-slate-600">
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-blue-50/30" title="Without Option">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-blue-100/50 text-blue-900" title="With Option">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-sky-50/30" title="Without Option">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-sky-100/50 text-sky-900" title="With Option">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-cyan-50/30" title="Without Option">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-cyan-100/50 text-cyan-900" title="With Option">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-teal-50/30" title="Without Option">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-teal-100/50 text-teal-900" title="With Option">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-purple-50/30" title="Without Option">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-purple-100/50 text-purple-900" title="With Option">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-indigo-50/30" title="Without Option">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-indigo-100/50 text-indigo-900" title="With Option">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-14 bg-amber-50 font-black text-amber-900">W/O Opt</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-14 bg-amber-100/70 font-black text-amber-950">With Opt</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-14 bg-emerald-50 font-black text-emerald-900">W/O Opt</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-14 bg-emerald-100/70 font-black text-emerald-950">With Opt</th>
+                </tr>
+              </thead>
+              <tbody id="matrix-body" class="divide-y divide-slate-200"></tbody>
+              <tfoot class="bg-slate-900 text-white font-bold text-xs">
+                <tr>
+                  <td colspan="2" class="p-2.5 text-right font-black text-[11px]">TOTAL SUMMARY:</td>
+                  <td id="foot-1m-wo" class="p-1 text-center font-mono text-[11px] text-blue-200">0</td>
+                  <td id="foot-1m-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-2m-wo" class="p-1 text-center font-mono text-[11px] text-sky-200">0</td>
+                  <td id="foot-2m-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-3m-wo" class="p-1 text-center font-mono text-[11px] text-cyan-200">0</td>
+                  <td id="foot-3m-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-4m-wo" class="p-1 text-center font-mono text-[11px] text-teal-200">0</td>
+                  <td id="foot-4m-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-c1-wo" class="p-1 text-center font-mono text-[11px] text-purple-200">0</td>
+                  <td id="foot-c1-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-c2-wo" class="p-1 text-center font-mono text-[11px] text-indigo-200">0</td>
+                  <td id="foot-c2-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-q-no-opt" class="p-1.5 text-center font-mono font-black text-sky-300 bg-slate-950">0 Qs</td>
+                  <td id="foot-q-with-opt" class="p-1.5 text-center font-mono font-black text-amber-400 bg-slate-950 border-r border-slate-700">0 Qs</td>
+                  <td id="foot-m-no-opt" class="p-1.5 text-center font-mono font-black text-emerald-300 bg-slate-950">0 M</td>
+                  <td id="foot-m-with-opt" class="p-1.5 text-center font-mono font-black text-emerald-400 bg-slate-950">0 M</td>
+                  <td class="no-print"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- SAVED BLUEPRINTS CONTAINER BELOW MATRIX -->
+          <div class="pt-6 border-t border-slate-200 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="layers" class="w-5 h-5 text-brand-700"></i>
+                <h3 class="font-black text-sm text-slate-800">Saved Blueprints Library</h3>
+                <span id="saved-bp-count-badge" class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">0 Saved</span>
+              </div>
+              <p class="text-xs text-slate-500">Restore or delete previously saved blueprint setups anytime.</p>
+            </div>
+
+            <div id="saved-blueprints-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: QUESTION BANK -->
+      <section id="tab-qbank" class="tab-pane max-w-7xl mx-auto space-y-6 hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+            <div>
+              <div class="flex items-center space-x-2">
+                <h2 class="text-base font-black text-slate-800 flex items-center space-x-2">
+                  <i data-lucide="database" class="w-5 h-5 text-brand-700"></i>
+                  <span>Question Bank Management</span>
+                </h2>
+                <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-100 text-xs font-bold">
+                  <button type="button" id="bank-toggle-general" onclick="switchBankType('GENERAL')" class="px-3 py-1 rounded bg-brand-900 text-white shadow cursor-pointer">General Question Bank</button>
+                  <button type="button" id="bank-toggle-gujcet" onclick="switchBankType('GUJCET')" class="px-3 py-1 rounded text-slate-700 hover:text-brand-900 cursor-pointer">GUJCET Question Bank</button>
+                </div>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">Manage, bulk import questions, or bulk delete chapters.</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="openBulkImportModal()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="file-up" class="w-3.5 h-3.5"></i>
+                <span>Bulk Import (CSV / Excel / Sheet)</span>
+              </button>
+
+              <button type="button" onclick="openBulkDeleteModal()" class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                <span>Delete by Chapter</span>
+              </button>
+
+              <button type="button" onclick="openAddQuestionModal()" class="px-3 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                <span>Add Question</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Standard / Category:</label>
+              <select id="filter-std" onchange="syncSubjectDropdown('filter-std', 'filter-sub'); filterQuestionBank();" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white">
+                <option value="ALL">All Standards</option>
+                <option value="Std 9">Std 9</option>
+                <option value="Std 10" selected>Std 10</option>
+                <option value="Std 11 Science">Std 11 Science</option>
+                <option value="Std 11 Commerce">Std 11 Commerce</option>
+                <option value="Std 11 Arts">Std 11 Arts</option>
+                <option value="Std 12 Science">Std 12 Science</option>
+                <option value="Std 12 Commerce">Std 12 Commerce</option>
+                <option value="Std 12 Arts">Std 12 Arts</option>
+                <option value="GUJCET">GUJCET Only</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+              <select id="filter-sub" onchange="filterQuestionBank()" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white"></select>
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+              <select id="filter-med" onchange="filterQuestionBank()" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white">
+                <option value="ALL">All Mediums</option>
+                <option value="Gujarati">Gujarati Medium</option>
+                <option value="English">English Medium</option>
+                <option value="Hindi">Hindi Medium</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Keyword Search:</label>
+              <input type="text" id="filter-keyword" onkeyup="filterQuestionBank()" placeholder="Search questions..." class="w-full border border-slate-300 rounded-lg p-2 bg-white">
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="px-5 py-3 bg-slate-50 border-b border-slate-200 flex justify-between items-center text-xs">
+            <span class="font-bold text-slate-700" id="qbank-count-indicator">Showing 0 Questions</span>
+          </div>
+          <div id="qbank-items-container" class="divide-y divide-slate-200"></div>
+        </div>
+      </section>
+
+      <!-- TAB 5: ARCHIVED PAPERS -->
+      <section id="tab-archive" class="tab-pane hidden max-w-7xl mx-auto space-y-6">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div>
+              <h2 class="text-base font-black text-slate-800">Saved Papers Archive</h2>
+              <p class="text-xs text-slate-500">Stored safely for instant re-editing, printing, or Word export.</p>
+            </div>
+            <button type="button" onclick="clearAllArchivedPapers()" class="text-xs text-rose-600 hover:underline cursor-pointer">Clear Archive</button>
+          </div>
+          <div id="archive-list-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- MODAL: ADD CHAPTER TO SUBJECT -->
+  <div id="modal-add-chapter" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-emerald-700">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center">
+            <i data-lucide="folder-plus" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-base text-slate-900">Add Chapters to Subject</h3>
+            <p class="text-xs text-slate-500">Configure new chapters in blueprint matrix</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('modal-add-chapter')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Standard / Category:</label>
+          <select id="chapter-add-std" onchange="syncSubjectDropdown('chapter-add-std', 'chapter-add-sub')" class="w-full border rounded-lg p-2 border-slate-300 font-semibold bg-white">
+            <option value="Std 9">Std 9</option>
+            <option value="Std 10" selected>Std 10</option>
+            <option value="Std 11 Science">Std 11 Science</option>
+            <option value="Std 11 Commerce">Std 11 Commerce</option>
+            <option value="Std 11 Arts">Std 11 Arts</option>
+            <option value="Std 12 Science">Std 12 Science</option>
+            <option value="Std 12 Commerce">Std 12 Commerce</option>
+            <option value="Std 12 Arts">Std 12 Arts</option>
+            <option value="GUJCET">GUJCET</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+          <select id="chapter-add-sub" class="w-full border rounded-lg p-2 border-slate-300 font-semibold bg-white"></select>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Chapter No:</label>
+            <input type="text" id="chapter-add-no" placeholder="Ch 1" value="Ch 1" class="w-full border rounded-lg p-2 border-slate-300 font-mono font-bold bg-white">
+          </div>
+          <div class="col-span-2">
+            <label class="block font-bold text-slate-700 mb-1">Chapter Name / Title:</label>
+            <input type="text" id="chapter-add-name" placeholder="e.g. Differentiation / Integrals" class="w-full border rounded-lg p-2 border-slate-300 font-medium bg-white">
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-add-chapter')" class="px-3 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">
+          Close
+        </button>
+        <button type="button" onclick="saveNewChapter()" class="px-3 py-2 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-lg text-xs shadow cursor-pointer">
+          Save Chapter
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: BULK IMPORT (CSV / EXCEL / GOOGLE SHEETS) -->
+  <div id="modal-bulk-import" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-4xl w-full p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center">
+            <i data-lucide="file-up" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-base text-slate-900">Bulk Import Questions by Chapter</h3>
+            <p class="text-xs text-slate-500">Auto chapter lookup with CSV, Excel (.xlsx) &amp; Google Sheet pasting</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('modal-bulk-import')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+
+      <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl space-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2.5 text-xs">
+          <div>
+            <label class="block font-bold text-brand-900 mb-1">Target Bank:</label>
+            <select id="bulk-target-bank-type" class="w-full border-2 border-brand-700 rounded-lg p-2 font-bold bg-white text-brand-900">
+              <option value="GENERAL">General GSEB Bank</option>
+              <option value="GUJCET">GUJCET Bank</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Standard (Std):</label>
+            <select id="bulk-target-std" onchange="syncSubjectDropdown('bulk-target-std', 'bulk-target-sub'); autoFetchChapterTitle();" class="w-full border rounded-lg p-2 font-semibold border-slate-300 bg-white">
+              <option value="Std 9">Std 9</option>
+              <option value="Std 10" selected>Std 10</option>
+              <option value="Std 11 Science">Std 11 Science</option>
+              <option value="Std 11 Commerce">Std 11 Commerce</option>
+              <option value="Std 11 Arts">Std 11 Arts</option>
+              <option value="Std 12 Science">Std 12 Science</option>
+              <option value="Std 12 Commerce">Std 12 Commerce</option>
+              <option value="Std 12 Arts">Std 12 Arts</option>
+              <option value="GUJCET">GUJCET</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+            <select id="bulk-target-sub" onchange="autoFetchChapterTitle();" class="w-full border rounded-lg p-2 font-semibold border-slate-300 bg-white"></select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+            <select id="bulk-target-med" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-medium">
+              <option value="Gujarati">Gujarati</option>
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Chapter No:</label>
+            <input type="text" id="bulk-target-chap-no" value="Ch 1" placeholder="Ch 1" onkeyup="autoFetchChapterTitle()" onchange="autoFetchChapterTitle()" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-bold font-mono text-brand-900">
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1 text-xs">
+            <label class="font-bold text-slate-700">Auto-Fetched Chapter Name:</label>
+            <button type="button" onclick="autoFetchChapterTitle()" class="text-brand-700 hover:underline font-bold text-[11px] flex items-center space-x-1 cursor-pointer">
+              <i data-lucide="sparkles" class="w-3 h-3 text-amber-500"></i>
+              <span>Re-Fetch Name</span>
+            </button>
+          </div>
+          <input type="text" id="bulk-target-chap-name" placeholder="Chapter name will auto-fetch from matrix / bank..." class="w-full border-2 border-emerald-300 rounded-lg p-2 text-xs bg-emerald-50/50 font-bold text-slate-800">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="border-2 border-dashed border-slate-300 rounded-xl p-5 text-center hover:border-brand-600 transition bg-slate-50 flex flex-col items-center justify-center">
+          <input type="file" id="bulk-file-input" accept=".csv, .tsv, .xlsx, .xls, .txt" class="hidden" onchange="handleBulkFileSelect(event)">
+          <i data-lucide="upload-cloud" class="w-8 h-8 text-slate-400 mb-2"></i>
+          <p class="font-bold text-slate-700 text-xs">Upload Excel (.xlsx, .xls) / CSV File</p>
+          <button type="button" onclick="document.getElementById('bulk-file-input').click()" class="mt-3 px-3 py-1.5 bg-brand-900 text-white font-bold rounded-lg shadow hover:bg-brand-800 text-xs cursor-pointer">
+            Browse Device Files
+          </button>
+        </div>
+
+        <div class="flex flex-col">
+          <label class="block font-bold text-slate-700 mb-1">Or Copy &amp; Paste Directly from Google Sheets / TSV:</label>
+          <textarea id="bulk-paste-area" rows="6" placeholder="Marks	Question Statement	Options	Answer&#10;1	Find gcd of 12 and 18	(A) 2 (B) 6 (C) 12 (D) 36	(B) 6&#10;2	Prove that sqrt(5) is irrational		See solution steps" class="flex-1 w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300 outline-none"></textarea>
+        </div>
+      </div>
+
+      <div id="bulk-preview-zone" class="space-y-2">
+        <div class="font-bold text-slate-800 text-xs flex justify-between items-center">
+          <span>Parsed Table Preview:</span>
+          <span id="bulk-parsed-count" class="text-brand-700 font-mono">0 questions detected</span>
+        </div>
+        <div class="max-h-48 overflow-y-auto border border-slate-200 rounded-lg text-[11px] bg-white">
+          <table class="w-full text-left" id="bulk-parsed-table">
+            <thead class="bg-slate-100 sticky top-0 font-bold border-b border-slate-200 text-slate-700">
+              <tr>
+                <th class="p-2 text-center w-14">Marks</th>
+                <th class="p-2">Question Statement &amp; Options</th>
+                <th class="p-2 text-emerald-800 font-bold text-center w-36">Answer Key</th>
+              </tr>
+            </thead>
+            <tbody id="bulk-parsed-body" class="divide-y divide-slate-100">
+              <tr><td colspan="3" class="p-3 text-center text-slate-400 italic">No questions parsed yet. Upload file or click "Parse Pasted Data".</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="parsePastedBulkQuestions()" class="px-4 py-2 bg-slate-200 text-slate-800 font-bold rounded-lg text-xs hover:bg-slate-300 cursor-pointer">
+          Parse Pasted Data
+        </button>
+        <button type="button" onclick="commitBulkImport()" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-lg text-xs hover:bg-emerald-700 shadow cursor-pointer">
+          Import Questions to Bank
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DELETE QUESTIONS OF RESPECTIVE CHAPTERS IN BULK -->
+  <div id="modal-bulk-delete" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-rose-600">
+          <div class="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center">
+            <i data-lucide="trash-2" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-base text-slate-900">Delete Questions in Bulk</h3>
+            <p class="text-xs text-slate-500">Target a specific chapter to delete all its questions</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('modal-bulk-delete')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Standard / Category:</label>
+          <select id="del-bulk-std" onchange="syncSubjectDropdown('del-bulk-std', 'del-bulk-sub'); updateBulkDeleteCount();" class="w-full border rounded-lg p-2 border-slate-300 font-semibold">
+            <option value="ALL">All Standards</option>
+            <option value="Std 9">Std 9</option>
+            <option value="Std 10" selected>Std 10</option>
+            <option value="Std 11 Science">Std 11 Science</option>
+            <option value="Std 11 Commerce">Std 11 Commerce</option>
+            <option value="Std 11 Arts">Std 11 Arts</option>
+            <option value="Std 12 Science">Std 12 Science</option>
+            <option value="Std 12 Commerce">Std 12 Commerce</option>
+            <option value="Std 12 Arts">Std 12 Arts</option>
+            <option value="GUJCET">GUJCET</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+          <select id="del-bulk-sub" onchange="updateBulkDeleteCount()" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-rose-700 mb-1">Target Chapter to Delete:</label>
+          <input type="text" id="del-bulk-chap" value="Ch 1" placeholder="e.g. Ch 1 or Real Numbers" onkeyup="updateBulkDeleteCount()" class="w-full border-2 border-rose-300 rounded-lg p-2 font-bold text-slate-800 bg-rose-50">
+        </div>
+
+        <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs font-semibold text-rose-900 flex items-center justify-between">
+          <span>Questions to be permanently removed:</span>
+          <span id="del-affected-count" class="font-mono text-base font-black text-rose-700">0</span>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-bulk-delete')" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">
+          Cancel
+        </button>
+        <button type="button" onclick="confirmBulkDeleteChapter()" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-xs shadow flex items-center space-x-1 cursor-pointer">
+          <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+          <span>Delete Questions</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EDIT SINGLE QUESTION IN PAPER / BANK -->
+  <div id="modal-edit-question" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 text-brand-900 flex items-center justify-center">
+            <i data-lucide="edit-3" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-extrabold text-base text-slate-900">Edit Question &amp; Solution</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-edit-question')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+
+      <input type="hidden" id="edit-q-id">
+      <input type="hidden" id="edit-q-origin">
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Question Statement:</label>
+          <textarea id="edit-q-text" rows="3" class="w-full border rounded-lg p-2 text-slate-900 border-slate-300"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Options (For MCQs):</label>
+          <input type="text" id="edit-q-options" placeholder="(A) ... (B) ... (C) ... (D) ..." class="w-full border rounded-lg p-2 border-slate-300">
+        </div>
+
+        <div>
+          <label class="block font-bold text-emerald-800 mb-1">Answer / Solution Key:</label>
+          <textarea id="edit-q-ans" rows="2" placeholder="Enter full answer or solution steps..." class="w-full border-2 border-emerald-300 rounded-lg p-2 text-emerald-950 bg-emerald-50/40 font-medium"></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Marks:</label>
+            <input type="number" id="edit-q-marks" min="1" max="20" class="w-full border rounded-lg p-2 border-slate-300 font-bold">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Section Assignment:</label>
+            <select id="edit-q-section" class="w-full border rounded-lg p-2 border-slate-300">
+              <option value="SECTION A">SECTION A</option>
+              <option value="SECTION B">SECTION B</option>
+              <option value="SECTION C">SECTION C</option>
+              <option value="SECTION D">SECTION D</option>
+              <option value="GUJCET MCQ">GUJCET MCQ</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-edit-question')" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">
+          Cancel
+        </button>
+        <button type="button" onclick="saveEditedQuestion()" class="px-4 py-2 bg-brand-900 text-white font-bold rounded-lg text-xs hover:bg-brand-800 shadow cursor-pointer">
+          Update Question &amp; Answer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD SINGLE NEW QUESTION -->
+  <div id="modal-add-question" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-blue-700">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
+            <i data-lucide="plus" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-extrabold text-base text-slate-900">Add New Question (GSEB / GUJCET)</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-add-question')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Standard / Category:</label>
+            <select id="add-q-std" onchange="syncSubjectDropdown('add-q-std', 'add-q-sub')" class="w-full border rounded-lg p-2 border-slate-300">
+              <option value="Std 9">Std 9</option>
+              <option value="Std 10" selected>Std 10</option>
+              <option value="Std 11 Science">Std 11 Science</option>
+              <option value="Std 11 Commerce">Std 11 Commerce</option>
+              <option value="Std 11 Arts">Std 11 Arts</option>
+              <option value="Std 12 Science">Std 12 Science</option>
+              <option value="Std 12 Commerce">Std 12 Commerce</option>
+              <option value="Std 12 Arts">Std 12 Arts</option>
+              <option value="GUJCET">GUJCET</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+            <select id="add-q-sub" class="w-full border rounded-lg p-2 border-slate-300"></select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Chapter No / Title:</label>
+            <input type="text" id="add-q-chap" placeholder="Ch 1" value="Ch 1" class="w-full border rounded-lg p-2 border-slate-300">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+            <select id="add-q-med" class="w-full border rounded-lg p-2 border-slate-300">
+              <option value="Gujarati">Gujarati</option>
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Marks:</label>
+            <input type="number" id="add-q-marks" value="1" min="1" max="10" class="w-full border rounded-lg p-2 border-slate-300 font-bold">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Question Statement:</label>
+          <textarea id="add-q-text" rows="3" placeholder="Enter question (Cambria font / LaTeX)..." class="w-full border rounded-lg p-2 border-slate-300"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Options (For MCQ):</label>
+          <input type="text" id="add-q-options" placeholder="(A) ... (B) ... (C) ... (D) ..." class="w-full border rounded-lg p-2 border-slate-300">
+        </div>
+
+        <div>
+          <label class="block font-bold text-emerald-800 mb-1">Answer / Solution Key:</label>
+          <textarea id="add-q-ans" rows="2" placeholder="Enter answer or solution..." class="w-full border-2 border-emerald-300 rounded-lg p-2 bg-emerald-50/50"></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-add-question')" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">
+          Cancel
+        </button>
+        <button type="button" onclick="submitNewQuestion()" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-lg text-xs hover:bg-emerald-700 shadow cursor-pointer">
+          Save Question
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PROFILE PICTURE -->
+  <div id="modal-photo" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-900 flex items-center justify-center">
+            <i data-lucide="camera" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-extrabold text-base text-slate-900">Update Profile Picture</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-photo')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Upload Local Image:</label>
+          <input type="file" id="local-photo-input" accept="image/*" class="w-full text-xs text-slate-500" onchange="handleLocalPhoto(event)">
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-photo')" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINT WRAPPER ZONE -->
+  <div id="print-zone" class="hidden"></div>
+
+  <!-- APPLICATION ENGINE & SECURE CLOUD STORAGE SCRIPT -->
+  <script type="module">
+    /* =========================================================================
+       SECURE CLOUD STORAGE SUBSYSTEM (OFFLINE-FIRST WITH SILENT RESILIENCE)
+       ========================================================================= */
+
+    // In production, replace with your Firebase project keys if desired.
+    // The engine automatically falls back to secure indexed offline storage
+    // if keys are omitted or the client device is offline.
+    const FIREBASE_CONFIG = {
+      apiKey: "",
+      authDomain: "",
+      projectId: "",
+      storageBucket: "",
+      messagingSenderId: "",
+      appId: ""
+    };
+
+    let dbInstance = null;
+    let isCloudOnline = false;
+
+    async function initCloudStorage() {
+      try {
+        if (FIREBASE_CONFIG.projectId && window.navigator.onLine) {
+          const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js');
+          const { getFirestore, doc, setDoc, getDoc, enableIndexedDbPersistence } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js');
+          const app = initializeApp(FIREBASE_CONFIG);
+          dbInstance = getFirestore(app);
+          try {
+            await enableIndexedDbPersistence(dbInstance);
+          } catch(e) {}
+          isCloudOnline = true;
+          updateSyncIndicator("● Cloud Active", "emerald");
+        } else {
+          isCloudOnline = false;
+          updateSyncIndicator("● Local Safe Mode", "emerald");
+        }
+      } catch (err) {
+        // Silently operate in local mode with zero alerts or modal disruption
+        isCloudOnline = false;
+        updateSyncIndicator("● Local Safe Mode", "emerald");
+      }
+    }
+
+    function updateSyncIndicator(text, color) {
+      const badge = document.getElementById('firebase-sync-badge');
+      if (badge) {
+        badge.innerText = text;
+        if (color === "emerald") {
+          badge.className = "inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/40";
+        } else if (color === "amber") {
+          badge.className = "inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-amber-950 text-amber-300 border border-amber-500/40";
+        }
+      }
+    }
+
+    // Debounce timer for non-blocking silent cloud uploads
+    let syncDebounceTimer = null;
+
+    window.triggerSilentCloudSave = function() {
+      clearTimeout(syncDebounceTimer);
+      updateSyncIndicator("● Syncing...", "amber");
+
+      syncDebounceTimer = setTimeout(async () => {
+        try {
+          // Always commit to browser's secure sandbox first
+          localStorage.setItem(APP_STORAGE_KEY_Q, JSON.stringify(state.questions));
+          localStorage.setItem(APP_STORAGE_KEY_MATRIX, JSON.stringify(state.blueprintRows));
+          localStorage.setItem(APP_STORAGE_KEY_SAVED_BLUEPRINTS, JSON.stringify(state.savedBlueprints));
+          localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+          localStorage.setItem(APP_STORAGE_KEY_ARCHIVE, JSON.stringify(state.archivedPapers));
+
+          if (isCloudOnline && dbInstance && state.currentUser && state.currentUser.email) {
+            const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js');
+            const sanitizedEmail = state.currentUser.email.replace(/[^a-zA-Z0-9]/g, '_');
+            const userDocRef = doc(dbInstance, 'teachers_storage', sanitizedEmail);
+
+            await setDoc(userDocRef, {
+              lastSync: new Date().toISOString(),
+              questions: state.questions,
+              blueprintRows: state.blueprintRows,
+              savedBlueprints: state.savedBlueprints,
+              archivedPapers: state.archivedPapers
+            }, { merge: true });
+
+            updateSyncIndicator("● Cloud Synced", "emerald");
+          } else {
+            updateSyncIndicator("● Local Safe", "emerald");
+          }
+        } catch (silentErr) {
+          // Absolute network protection - never show any network error prompt
+          updateSyncIndicator("● Local Safe", "emerald");
+        }
+      }, 800);
+    };
+
+    window.syncFromCloudSilently = async function() {
+      if (!isCloudOnline || !dbInstance || !state.currentUser || !state.currentUser.email) return;
+      try {
+        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js');
+        const sanitizedEmail = state.currentUser.email.replace(/[^a-zA-Z0-9]/g, '_');
+        const userDocRef = doc(dbInstance, 'teachers_storage', sanitizedEmail);
+        const snapshot = await getDoc(userDocRef);
+
+        if (snapshot.exists()) {
+          const remoteData = snapshot.data();
+          if (remoteData.questions && Array.isArray(remoteData.questions)) state.questions = remoteData.questions;
+          if (remoteData.blueprintRows && Array.isArray(remoteData.blueprintRows)) state.blueprintRows = remoteData.blueprintRows;
+          if (remoteData.savedBlueprints && Array.isArray(remoteData.savedBlueprints)) state.savedBlueprints = remoteData.savedBlueprints;
+          if (remoteData.archivedPapers && Array.isArray(remoteData.archivedPapers)) state.archivedPapers = remoteData.archivedPapers;
+
+          persistQuestions();
+          renderMatrixTable();
+          renderSavedBlueprintsList();
+          filterQuestionBank();
+          renderLivePaper();
+          renderArchiveList();
+          updateSyncIndicator("● Cloud Synced", "emerald");
+        }
+      } catch (err) {
+        // Silently skip if unreachable
+      }
+    };
+
+    window.addEventListener('online', () => {
+      initCloudStorage().then(() => window.syncFromCloudSilently());
+    });
+    window.addEventListener('offline', () => {
+      isCloudOnline = false;
+      updateSyncIndicator("● Offline Safe", "emerald");
+    });
+
+    initCloudStorage();
+  </script>
+
+  <script>
+    /* PWA & SERVICE WORKER LIFECYCLE MANAGEMENT */
+    let deferredInstallPrompt = null;
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        try {
+          const swCode = `
+            const CACHE_NAME = 'bai-avabai-cache-v1';
+            self.addEventListener('install', (e) => {
+              self.skipWaiting();
+            });
+            self.addEventListener('activate', (e) => {
+              e.waitUntil(clients.claim());
+            });
+            self.addEventListener('fetch', (e) => {
+              e.respondWith(
+                fetch(e.request).catch(() => caches.match(e.request))
+              );
+            });
+          `;
+          const blob = new Blob([swCode], { type: 'application/javascript' });
+          const swUrl = URL.createObjectURL(blob);
+          navigator.serviceWorker.register(swUrl).catch(err => {
+            console.log('SW registration note:', err.message);
+          });
+        } catch (e) {
+          console.log('SW unsupported or restricted:', e);
+        }
+      });
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      updateInstallButtonsVisibility(true);
+    });
+
+    window.addEventListener('appinstalled', () => {
+      deferredInstallPrompt = null;
+      updateInstallButtonsVisibility(false);
+      alert('Bai Avabai Exam Suite was installed successfully!');
+    });
+
+    function updateInstallButtonsVisibility(isAvailable) {
+      const sbBtn = document.getElementById('sidebar-install-app-btn');
+      const mbBtn = document.getElementById('mobile-install-app-btn');
+      const btnTxt = document.getElementById('install-btn-text');
+
+      if (isAvailable) {
+        if (btnTxt) btnTxt.innerText = "INSTALL APP ON DEVICE";
+        if (sbBtn) sbBtn.classList.remove('opacity-50');
+      }
+    }
+
+    function triggerAppInstall() {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        deferredInstallPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            deferredInstallPrompt = null;
+          }
+        });
+      } else {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (isIOS) {
+          alert("To install on iPhone/iPad:\n1. Tap the Share button (square with arrow) at the bottom.\n2. Select 'Add to Home Screen'.");
+        } else {
+          alert("To install:\n1. Look for the Install icon (computer/download arrow) in your browser's address bar.\n2. Or click your browser's three-dot menu and select 'Install app' or 'Add to Home screen'.");
+        }
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderMath(targetElement) {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        try {
+          const targets = targetElement ? [targetElement] : undefined;
+          window.MathJax.typesetPromise(targets).catch(() => {});
+        } catch (e) {}
+      }
+    }
+
+    function extractChapterNumber(str) {
+      if (!str) return '';
+      const match = String(str).match(/(?:ch|chapter|પ્રકરણ)?\s*(\d+)/i);
+      return match ? match[1] : '';
+    }
+
+    function formatInlineOptionsHtml(optionsText) {
+      if (!optionsText || !optionsText.trim()) return '';
+      const clean = optionsText.trim();
+      const hasLabels = /\(A\)|\(B\)|\(C\)|\(D\)/i.test(clean);
+      if (hasLabels) {
+        const parts = clean.split(/(?=\([A-D]\))/i).map(s => s.trim()).filter(Boolean);
+        if (parts.length >= 2) {
+          return `<div class="mcq-options-inline text-slate-800 text-[11px] font-sans font-medium">` +
+            parts.map(p => `<span class="mcq-option-col">${p}</span>`).join('') +
+          `</div>`;
+        }
+      }
+      return `<div class="mcq-options-inline text-slate-800 text-[11px] font-sans font-medium"><span class="mcq-option-col">${clean}</span></div>`;
+    }
+
+    const GSEB_SUBJECTS = {
+      "Std 9": ["Mathematics", "Science & Technology", "Social Science", "Gujarati", "English", "Hindi", "Sanskrit"],
+      "Std 10": ["Mathematics (Standard - 12)", "Mathematics (Basic - 18)", "Science & Technology", "Social Science", "Gujarati", "English"],
+      "Std 11 Science": ["Physics (054)", "Chemistry (052)", "Mathematics (050)", "Biology (056)", "English"],
+      "Std 12 Science": ["Physics (054)", "Chemistry (052)", "Mathematics (050)", "Biology (056)", "English"],
+      "GUJCET": ["Mathematics", "Physics", "Chemistry"],
+      "Std 11 Commerce": ["Elements of Accounts", "Statistics", "Economics", "B.A.", "English"],
+      "Std 12 Commerce": ["Elements of Accounts", "Statistics", "Economics", "B.A.", "English"],
+      "Std 11 Arts": ["Psychology", "Sociology", "Philosophy", "Geography", "History"],
+      "Std 12 Arts": ["Psychology", "Sociology", "Philosophy", "Geography", "History"]
+    };
+
+    const APP_STORAGE_KEY_Q = "BAI_AVABAI_QUESTIONS_SAFE_V18";
+    const APP_STORAGE_KEY_PAPER = "BAI_AVABAI_LIVE_PAPER_SAFE_V18";
+    const APP_STORAGE_KEY_ARCHIVE = "BAI_AVABAI_ARCHIVES_SAFE_V18";
+    const APP_STORAGE_KEY_MATRIX = "BAI_AVABAI_MATRIX_SAFE_V18";
+    const APP_STORAGE_KEY_SAVED_BLUEPRINTS = "BAI_AVABAI_SAVED_BLUEPRINTS_SAFE_V18";
+    const APP_AUTH_CACHE_KEY = "BAI_AVABAI_AUTH_CACHE_V18";
+    const APP_USERS_REGISTRY_KEY = "BAI_AVABAI_USERS_REGISTRY_V18";
+
+    const DEFAULT_BLUEPRINT_ROWS = [
+      { id: 'bp-1', std: 'Std 10', sub: 'Mathematics (Standard - 12)', name: 'Ch 1 - Real Numbers', m1_wo: 2, m1_with: 2, m2_wo: 1, m2_with: 2, m3_wo: 1, m3_with: 1, m4_wo: 0, m4_with: 0, c1_wo: 0, c1_with: 0, c2_wo: 0, c2_with: 0 },
+      { id: 'bp-2', std: 'Std 10', sub: 'Mathematics (Standard - 12)', name: 'Ch 2 - Polynomials', m1_wo: 2, m1_with: 2, m2_wo: 2, m2_with: 2, m3_wo: 0, m3_with: 1, m4_wo: 1, m4_with: 1, c1_wo: 0, c1_with: 0, c2_wo: 0, c2_with: 0 },
+      { id: 'bp-3', std: 'Std 10', sub: 'Mathematics (Standard - 12)', name: 'Ch 3 - Pair of Linear Equations', m1_wo: 1, m1_with: 2, m2_wo: 1, m2_with: 1, m3_wo: 1, m3_with: 2, m4_wo: 1, m4_with: 1, c1_wo: 0, c1_with: 0, c2_wo: 0, c2_with: 0 },
+      { id: 'bp-g1', std: 'GUJCET', sub: 'Mathematics', name: 'Ch 1 - Relations and Functions', m1_wo: 4, m1_with: 4, m2_wo: 0, m2_with: 0, m3_wo: 0, m3_with: 0, m4_wo: 0, m4_with: 0, c1_wo: 0, c1_with: 0, c2_wo: 0, c2_with: 0 },
+      { id: 'bp-g2', std: 'GUJCET', sub: 'Mathematics', name: 'Ch 2 - Matrices & Determinants', m1_wo: 5, m1_with: 5, m2_wo: 0, m2_with: 0, m3_wo: 0, m3_with: 0, m4_wo: 0, m4_with: 0, c1_wo: 0, c1_with: 0, c2_wo: 0, c2_with: 0 }
+    ];
+
+    const DEFAULT_QUESTIONS = [
+      {
+        id: 'q-1',
+        bankType: 'GENERAL',
+        std: 'Std 10',
+        subject: 'Mathematics (Standard - 12)',
+        chapter: 'Ch 1 - Real Numbers',
+        medium: 'Gujarati',
+        section: 'SECTION A',
+        marks: 1,
+        text: 'ગુ.સા.અ. (12, 18) = ______ થાય.',
+        answer: 'જવાબ: (B) 6 [12 = 2^2 * 3 અને 18 = 2 * 3^2 => ગુ.સા.અ. = 6]',
+        options: '(A) 2   (B) 6   (C) 12   (D) 36'
+      },
+      {
+        id: 'q-1b',
+        bankType: 'GENERAL',
+        std: 'Std 10',
+        subject: 'Mathematics (Standard - 12)',
+        chapter: 'Ch 1 - Real Numbers',
+        medium: 'Gujarati',
+        section: 'SECTION A',
+        marks: 1,
+        text: 'જો બે સંખ્યાઓનો ગુ.સા.અ. 4 અને લ.સા.અ. 24 હોય, તો બંને સંખ્યાઓનો ગુણાકાર ______ થાય.',
+        answer: 'જવાબ: (C) 96',
+        options: '(A) 48   (B) 72   (C) 96   (D) 120'
+      },
+      {
+        id: 'q-2',
+        bankType: 'GENERAL',
+        std: 'Std 10',
+        subject: 'Mathematics (Standard - 12)',
+        chapter: 'Ch 2 - Polynomials',
+        medium: 'Gujarati',
+        section: 'SECTION B',
+        marks: 2,
+        text: 'દ્વિઘાત બહુપદી $p(x) = x^2 - 2x - 8$ ના શૂન્યો શોધો.',
+        answer: 'ઉકેલ: શૂન્યો 4 અને -2 છે.',
+        options: ''
+      },
+      {
+        id: 'q-2b',
+        bankType: 'GENERAL',
+        std: 'Std 10',
+        subject: 'Mathematics (Standard - 12)',
+        chapter: 'Ch 2 - Polynomials',
+        medium: 'Gujarati',
+        section: 'SECTION B',
+        marks: 2,
+        text: 'બહુપદી $p(x) = 4x^2 - 4x + 1$ ના શૂન્યો તથા સહગુણકો વચ્ચેનો સંબંધ ચકાસો.',
+        answer: 'ઉકેલ: શૂન્યો 1/2 અને 1/2 છે.',
+        options: ''
+      },
+      {
+        id: 'q-g1',
+        bankType: 'GUJCET',
+        std: 'GUJCET',
+        subject: 'Mathematics',
+        chapter: 'Ch 2 - Matrices & Determinants',
+        medium: 'Gujarati',
+        section: 'GUJCET MCQ',
+        marks: 1,
+        text: 'જો $A$ એ $3 \\times 3$ કક્ષાનો ચોરસ શ્રેણિક હોય અને $|A| = 4$, તો $|\\operatorname{adj}(A)| = ______$.',
+        answer: 'જવાબ: (C) 16',
+        options: '(A) 4   (B) 64   (C) 16   (D) 8'
+      }
+    ];
+
+    let state = {
+      questions: [],
+      blueprintRows: [],
+      savedBlueprints: [],
+      livePaperQuestions: [],
+      gujcetPaperQuestions: [],
+      archivedPapers: [],
+      currentBankType: 'GENERAL',
+      matrixMode: 'GSEB',
+      gateAuthTab: 'signin',
+      currentUser: null,
+      parsedBulkItems: []
+    };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        loadStorageData();
+        initSubjectDropdowns();
+        checkCachedSession();
+        renderMatrixTable();
+        renderSavedBlueprintsList();
+        filterQuestionBank();
+        renderLivePaper();
+        renderGujcetPaperList();
+        renderArchiveList();
+      } catch (err) {
+        console.error("Initialization error:", err);
+      }
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    });
+
+    /* AUTHENTICATION SYSTEM */
+    function hideAuthGate() {
+      const gate = document.getElementById('auth-gate');
+      if (gate) {
+        gate.classList.add('hidden');
+        gate.classList.remove('flex');
+      }
+    }
+
+    function showAuthGate() {
+      const gate = document.getElementById('auth-gate');
+      if (gate) {
+        gate.classList.remove('hidden');
+        gate.classList.add('flex');
+      }
+    }
+
+    function checkCachedSession() {
+      const cached = localStorage.getItem(APP_AUTH_CACHE_KEY);
+      if (cached) {
+        try {
+          const user = JSON.parse(cached);
+          if (user && user.email) {
+            completeLoginSuccess(user);
+            return;
+          }
+        } catch (e) {}
+      }
+      showAuthGate();
+    }
+
+    function switchGateTab(tab) {
+      state.gateAuthTab = tab;
+      const signInBtn = document.getElementById('tab-auth-signin-btn');
+      const signUpBtn = document.getElementById('tab-auth-signup-btn');
+      const nameBox = document.getElementById('gate-name-container');
+      const submitBtn = document.getElementById('gate-main-submit-btn');
+      const title = document.getElementById('gate-header-title');
+      const alertBox = document.getElementById('gate-alert-box');
+      if (alertBox) alertBox.classList.add('hidden');
+
+      if (tab === 'signin') {
+        if (signInBtn) signInBtn.className = "py-2 rounded-lg bg-brand-900 text-white shadow transition cursor-pointer";
+        if (signUpBtn) signUpBtn.className = "py-2 rounded-lg text-slate-600 hover:text-brand-900 transition cursor-pointer";
+        if (nameBox) nameBox.classList.add('hidden');
+        if (submitBtn) submitBtn.innerText = "Sign In to Portal";
+        if (title) title.innerText = "Teacher Sign In";
+      } else {
+        if (signUpBtn) signUpBtn.className = "py-2 rounded-lg bg-brand-900 text-white shadow transition cursor-pointer";
+        if (signInBtn) signInBtn.className = "py-2 rounded-lg text-slate-600 hover:text-brand-900 transition cursor-pointer";
+        if (nameBox) nameBox.classList.remove('hidden');
+        if (submitBtn) submitBtn.innerText = "Create Account & Sign In";
+        if (title) title.innerText = "Create Teacher Account";
+      }
+    }
+
+    function showGateAlert(msg, isSuccess) {
+      const box = document.getElementById('gate-alert-box');
+      if (!box) return;
+      box.innerText = msg;
+      box.className = isSuccess 
+        ? "p-2.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 block" 
+        : "p-2.5 rounded-lg text-xs font-semibold bg-rose-50 text-rose-800 border border-rose-200 block";
+    }
+
+    function handleSimpleAuthSubmit(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      const emailEl = document.getElementById('gate-user-email');
+      const passEl = document.getElementById('gate-user-password');
+      const nameInput = document.getElementById('gate-user-name');
+
+      const email = emailEl ? (emailEl.value || '').trim().toLowerCase() : '';
+      const password = passEl ? (passEl.value || '').trim() : '';
+      const fullName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : (email ? email.split('@')[0] : 'Teacher');
+
+      if (!email || !password) {
+        showGateAlert('Please provide both your email address and password.', false);
+        return false;
+      }
+      if (password.length < 4) {
+        showGateAlert('Password must be at least 4 characters long.', false);
+        return false;
+      }
+
+      let users = [];
+      try {
+        users = JSON.parse(localStorage.getItem(APP_USERS_REGISTRY_KEY)) || [];
+      } catch (err) {
+        users = [];
+      }
+
+      if (state.gateAuthTab === 'signup') {
+        const existing = users.find(u => u.email === email);
+        if (existing) {
+          showGateAlert('Account already exists for this email! Switched to Sign In mode.', false);
+          switchGateTab('signin');
+          return false;
+        }
+
+        const newUser = { email, password, displayName: fullName };
+        users.push(newUser);
+        localStorage.setItem(APP_USERS_REGISTRY_KEY, JSON.stringify(users));
+        completeLoginSuccess(newUser);
+        return false;
+      } else {
+        const localMatch = users.find(u => u.email === email);
+        if (localMatch) {
+          if (localMatch.password === password) {
+            completeLoginSuccess(localMatch);
+            return false;
+          } else {
+            showGateAlert('Incorrect password. Click "Forgot Password?" to reset.', false);
+            return false;
+          }
+        }
+
+        const autoUser = { email, password, displayName: fullName };
+        users.push(autoUser);
+        localStorage.setItem(APP_USERS_REGISTRY_KEY, JSON.stringify(users));
+        completeLoginSuccess(autoUser);
+        return false;
+      }
+    }
+
+    function completeLoginSuccess(userObj) {
+      state.currentUser = userObj;
+      localStorage.setItem(APP_AUTH_CACHE_KEY, JSON.stringify(userObj));
+      hideAuthGate();
+
+      const nameEl = document.getElementById('logged-user-name');
+      if (nameEl && userObj.displayName) {
+        nameEl.innerText = userObj.displayName.toUpperCase();
+      }
+
+      if (window.syncFromCloudSilently) {
+        window.syncFromCloudSilently();
+      }
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+
+    function bypassDemoLogin() {
+      completeLoginSuccess({
+        email: "kalpesh.tailor@baiavabai.edu.in",
+        displayName: "KALPESH H TAILOR",
+        role: "Teacher / Examiner"
+      });
+    }
+
+    function bypassGuestLogin() {
+      completeLoginSuccess({
+        email: "guest.teacher@baiavabai.edu.in",
+        displayName: "GUEST TEACHER",
+        role: "Guest Access"
+      });
+    }
+
+    function handleSignOutAction() {
+      if (confirm('Are you sure you want to sign out of the portal?')) {
+        localStorage.removeItem(APP_AUTH_CACHE_KEY);
+        state.currentUser = null;
+        showAuthGate();
+        switchGateTab('signin');
+      }
+    }
+
+    function openForgotPasswordModal() {
+      const emailEl = document.getElementById('gate-user-email');
+      const forgotInput = document.getElementById('forgot-email-input');
+      if (emailEl && forgotInput) forgotInput.value = emailEl.value;
+      openModal('modal-forgot-password');
+    }
+
+    function handlePasswordReset() {
+      const email = (document.getElementById('forgot-email-input').value || '').trim().toLowerCase();
+      const newPass = (document.getElementById('forgot-new-password').value || '').trim();
+
+      if (!email || !newPass) {
+        alert('Please enter your email and new password.');
+        return;
+      }
+      if (newPass.length < 4) {
+        alert('New password must be at least 4 characters.');
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem(APP_USERS_REGISTRY_KEY)) || [];
+      const userIndex = users.findIndex(u => u.email === email);
+
+      if (userIndex !== -1) {
+        users[userIndex].password = newPass;
+      } else {
+        users.push({ email, password: newPass, displayName: email.split('@')[0] });
+      }
+
+      localStorage.setItem(APP_USERS_REGISTRY_KEY, JSON.stringify(users));
+      closeModal('modal-forgot-password');
+      alert('Password updated successfully! You can now log in.');
+      document.getElementById('gate-user-password').value = newPass;
+      document.getElementById('gate-user-email').value = email;
+    }
+
+    /* MODAL & TAB CONTROL */
+    function openModal(modalId) {
+      const el = document.getElementById(modalId);
+      if (el) {
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+        if (window.lucide && lucide.createIcons) lucide.createIcons();
+      }
+    }
+
+    function closeModal(modalId) {
+      const el = document.getElementById(modalId);
+      if (el) {
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+      }
+    }
+
+    function toggleSidebar() {
+      const sb = document.getElementById('app-sidebar');
+      if (sb) sb.classList.toggle('-translate-x-full');
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-600', 'text-white', 'shadow');
+        btn.classList.add('text-blue-100', 'hover:bg-brand-800', 'hover:text-white');
+      });
+
+      const activeNavId = 'nav-' + tabId.replace('tab-', '');
+      const activeNav = document.getElementById(activeNavId);
+      if (activeNav) {
+        activeNav.classList.remove('text-blue-100', 'hover:bg-brand-800');
+        activeNav.classList.add('bg-blue-600', 'text-white', 'shadow');
+      }
+
+      const titles = {
+        'tab-generator': 'Question Paper Workspace',
+        'tab-gujcet': 'GUJCET Examination Workspace (40 MCQs)',
+        'tab-blueprint': 'Chapterwise Blueprint Allocation Matrix',
+        'tab-qbank': 'Question Bank Management',
+        'tab-archive': 'Saved Papers Archive'
+      };
+      const titleEl = document.getElementById('active-tab-title');
+      if (titleEl && titles[tabId]) titleEl.innerText = titles[tabId];
+
+      const sb = document.getElementById('app-sidebar');
+      if (sb && window.innerWidth < 768) sb.classList.add('-translate-x-full');
+
+      if (tabId === 'tab-blueprint') {
+        renderMatrixTable();
+        renderSavedBlueprintsList();
+      }
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+
+    /* DATA PERSISTENCE & SECURE CLOUD ADAPTER */
+    function loadStorageData() {
+      const storedQ = localStorage.getItem(APP_STORAGE_KEY_Q);
+      state.questions = storedQ ? JSON.parse(storedQ) : DEFAULT_QUESTIONS;
+
+      const storedMatrix = localStorage.getItem(APP_STORAGE_KEY_MATRIX);
+      state.blueprintRows = storedMatrix ? JSON.parse(storedMatrix) : DEFAULT_BLUEPRINT_ROWS;
+
+      state.blueprintRows.forEach(r => {
+        if (r.m1_wo === undefined) r.m1_wo = r.m1 || 0;
+        if (r.m1_with === undefined) r.m1_with = r.m1 || 0;
+        if (r.m2_wo === undefined) r.m2_wo = r.m2 || 0;
+        if (r.m2_with === undefined) r.m2_with = r.m2 || 0;
+        if (r.m3_wo === undefined) r.m3_wo = r.m3 || 0;
+        if (r.m3_with === undefined) r.m3_with = r.m3 || 0;
+        if (r.m4_wo === undefined) r.m4_wo = r.m4 || 0;
+        if (r.m4_with === undefined) r.m4_with = r.m4 || 0;
+        if (r.c1_wo === undefined) r.c1_wo = r.c1 || 0;
+        if (r.c1_with === undefined) r.c1_with = r.c1 || 0;
+        if (r.c2_wo === undefined) r.c2_wo = r.c2 || 0;
+        if (r.c2_with === undefined) r.c2_with = r.c2 || 0;
+      });
+
+      const storedSavedBp = localStorage.getItem(APP_STORAGE_KEY_SAVED_BLUEPRINTS);
+      state.savedBlueprints = storedSavedBp ? JSON.parse(storedSavedBp) : [];
+
+      const storedPaper = localStorage.getItem(APP_STORAGE_KEY_PAPER);
+      state.livePaperQuestions = storedPaper ? JSON.parse(storedPaper) : [...state.questions.filter(q => q.bankType === 'GENERAL')];
+
+      const storedArchive = localStorage.getItem(APP_STORAGE_KEY_ARCHIVE);
+      state.archivedPapers = storedArchive ? JSON.parse(storedArchive) : [];
+
+      state.gujcetPaperQuestions = [...state.questions.filter(q => q.bankType === 'GUJCET')];
+      updateQuestionCountBadge();
+    }
+
+    function persistQuestions() {
+      updateQuestionCountBadge();
+      renderMatrixTable();
+      if (window.triggerSilentCloudSave) {
+        window.triggerSilentCloudSave();
+      } else {
+        localStorage.setItem(APP_STORAGE_KEY_Q, JSON.stringify(state.questions));
+      }
+    }
+
+    function updateQuestionCountBadge() {
+      const badge = document.getElementById('badge-qbank-count');
+      if (badge) badge.innerText = state.questions.length;
+    }
+
+    function exportFullDataBackup() {
+      const backupData = {
+        app: "BAI AVABAI HIGHSCHOOL, VALSAD",
+        timestamp: new Date().toISOString(),
+        questions: state.questions,
+        blueprintRows: state.blueprintRows,
+        savedBlueprints: state.savedBlueprints,
+        livePaperQuestions: state.livePaperQuestions,
+        archivedPapers: state.archivedPapers
+      };
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+      const a = document.createElement('a');
+      a.href = dataStr;
+      a.download = `Bai_Avabai_Backup_${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function importFullDataBackup(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (imported.questions) state.questions = imported.questions;
+          if (imported.blueprintRows) state.blueprintRows = imported.blueprintRows;
+          if (imported.savedBlueprints) state.savedBlueprints = imported.savedBlueprints;
+          if (imported.livePaperQuestions) state.livePaperQuestions = imported.livePaperQuestions;
+          if (imported.archivedPapers) state.archivedPapers = imported.archivedPapers;
+
+          state.blueprintRows.forEach(r => {
+            if (r.m1_wo === undefined) r.m1_wo = r.m1 || 0;
+            if (r.m1_with === undefined) r.m1_with = r.m1 || 0;
+            if (r.m2_wo === undefined) r.m2_wo = r.m2 || 0;
+            if (r.m2_with === undefined) r.m2_with = r.m2 || 0;
+            if (r.m3_wo === undefined) r.m3_wo = r.m3 || 0;
+            if (r.m3_with === undefined) r.m3_with = r.m3 || 0;
+            if (r.m4_wo === undefined) r.m4_wo = r.m4 || 0;
+            if (r.m4_with === undefined) r.m4_with = r.m4 || 0;
+            if (r.c1_wo === undefined) r.c1_wo = r.c1 || 0;
+            if (r.c1_with === undefined) r.c1_with = r.c1 || 0;
+            if (r.c2_wo === undefined) r.c2_wo = r.c2 || 0;
+            if (r.c2_with === undefined) r.c2_with = r.c2 || 0;
+          });
+
+          persistQuestions();
+          renderMatrixTable();
+          renderSavedBlueprintsList();
+          filterQuestionBank();
+          renderLivePaper();
+          renderArchiveList();
+          alert('Backup restored successfully!');
+        } catch (err) {
+          alert('Invalid JSON file.');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function initSubjectDropdowns() {
+      syncSubjectDropdown('paper-std', 'paper-sub');
+      syncSubjectDropdown('filter-std', 'filter-sub');
+      syncSubjectDropdown('chapter-add-std', 'chapter-add-sub');
+      syncSubjectDropdown('add-q-std', 'add-q-sub');
+      syncSubjectDropdown('matrix-filter-std', 'matrix-filter-sub');
+      syncSubjectDropdown('bulk-target-std', 'bulk-target-sub');
+      syncSubjectDropdown('del-bulk-std', 'del-bulk-sub');
+    }
+
+    function syncSubjectDropdown(stdId, subId) {
+      const stdEl = document.getElementById(stdId);
+      const subEl = document.getElementById(subId);
+      if (!stdEl || !subEl) return;
+      const selectedStd = stdEl.value;
+      const subjects = GSEB_SUBJECTS[selectedStd] || GSEB_SUBJECTS["Std 10"];
+      subEl.innerHTML = '';
+
+      if (stdId === 'filter-std' || stdId === 'del-bulk-std') {
+        const optAll = document.createElement('option');
+        optAll.value = "ALL";
+        optAll.innerText = "All Subjects";
+        subEl.appendChild(optAll);
+      }
+
+      subjects.forEach(sub => {
+        const opt = document.createElement('option');
+        opt.value = sub;
+        opt.innerText = sub;
+        subEl.appendChild(opt);
+      });
+    }
+
+    function getChapterBankBreakdown(row) {
+      const filterStdEl = document.getElementById('matrix-filter-std');
+      const filterSubEl = document.getElementById('matrix-filter-sub');
+      const activeStd = row.std || (filterStdEl ? filterStdEl.value : 'Std 10');
+      const activeSub = row.sub || (filterSubEl ? filterSubEl.value : '');
+      const rowChapNum = extractChapterNumber(row.name);
+      const rowNameClean = (row.name || '').toLowerCase().trim();
+
+      const matched = state.questions.filter(q => {
+        if (activeStd === 'GUJCET') {
+          if (q.bankType !== 'GUJCET' && q.std !== 'GUJCET') return false;
+        } else {
+          if (q.bankType === 'GUJCET' || q.std === 'GUJCET') return false;
+          if (q.std && q.std !== activeStd) return false;
+        }
+        if (activeSub && q.subject && q.subject !== activeSub) return false;
+
+        const qChapNum = extractChapterNumber(q.chapter);
+        if (rowChapNum && qChapNum && rowChapNum === qChapNum) return true;
+
+        const qChapClean = (q.chapter || '').toLowerCase().trim();
+        if (qChapClean && (rowNameClean.includes(qChapClean) || qChapClean.includes(rowNameClean))) return true;
+
+        return false;
+      });
+
+      const m1Count = matched.filter(q => parseInt(q.marks) === 1).length;
+      const m2Count = matched.filter(q => parseInt(q.marks) === 2).length;
+      const m3Count = matched.filter(q => parseInt(q.marks) === 3).length;
+      const m4Count = matched.filter(q => parseInt(q.marks) === 4).length;
+      const otherCount = matched.filter(q => ![1, 2, 3, 4].includes(parseInt(q.marks))).length;
+
+      return {
+        total: matched.length,
+        m1: m1Count,
+        m2: m2Count,
+        m3: m3Count,
+        m4: m4Count,
+        other: otherCount
+      };
+    }
+
+    function setMatrixMode(mode) {
+      state.matrixMode = mode;
+      const gsebBtn = document.getElementById('matrix-mode-gseb');
+      const gujcetBtn = document.getElementById('matrix-mode-gujcet');
+      const filterStd = document.getElementById('matrix-filter-std');
+
+      if (mode === 'GUJCET') {
+        if (gujcetBtn) gujcetBtn.className = "px-3 py-1 rounded bg-brand-900 text-white cursor-pointer";
+        if (gsebBtn) gsebBtn.className = "px-3 py-1 rounded text-slate-700 hover:text-brand-900 cursor-pointer";
+        if (filterStd) {
+          filterStd.value = 'GUJCET';
+          syncSubjectDropdown('matrix-filter-std', 'matrix-filter-sub');
+        }
+      } else {
+        if (gsebBtn) gsebBtn.className = "px-3 py-1 rounded bg-brand-900 text-white cursor-pointer";
+        if (gujcetBtn) gujcetBtn.className = "px-3 py-1 rounded text-slate-700 hover:text-brand-900 cursor-pointer";
+        if (filterStd) {
+          if (filterStd.value === 'GUJCET') filterStd.value = 'Std 10';
+          syncSubjectDropdown('matrix-filter-std', 'matrix-filter-sub');
+        }
+      }
+      applyMatrixSelectorFilter();
+    }
+
+    function applyMatrixSelectorFilter() {
+      const stdEl = document.getElementById('matrix-filter-std');
+      const subEl = document.getElementById('matrix-filter-sub');
+      const stdVal = stdEl ? stdEl.value : 'Std 10';
+      const subVal = subEl ? subEl.value : '';
+
+      const badgeEl = document.getElementById('matrix-active-filter-badge');
+      if (badgeEl) badgeEl.innerText = `${stdVal} - ${subVal}`;
+
+      renderMatrixTable();
+      renderSavedBlueprintsList();
+    }
+
+    function renderMatrixTable() {
+      const tbody = document.getElementById('matrix-body');
+      const filterStdEl = document.getElementById('matrix-filter-std');
+      const filterSubEl = document.getElementById('matrix-filter-sub');
+      if (!tbody || !filterStdEl || !filterSubEl) return;
+
+      const activeStd = filterStdEl.value;
+      const activeSub = filterSubEl.value;
+
+      const c1Weight = parseInt(document.getElementById('custom-weight-c1')?.value) || 5;
+      const c2Weight = parseInt(document.getElementById('custom-weight-c2')?.value) || 6;
+      const thC1 = document.getElementById('th-custom-1');
+      const thC2 = document.getElementById('th-custom-2');
+      if (thC1) thC1.innerHTML = `Custom 1 (${c1Weight}M)`;
+      if (thC2) thC2.innerHTML = `Custom 2 (${c2Weight}M)`;
+
+      tbody.innerHTML = '';
+      const filteredRows = state.blueprintRows.filter(r => (!r.std || r.std === activeStd) && (!r.sub || r.sub === activeSub));
+      let totalBankAvailableCount = 0;
+
+      if (filteredRows.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="17" class="p-6 text-center text-slate-400 italic">No chapters configured yet for ${activeStd} (${activeSub}). Click "+ Add Chapter" or "Add Matrix Row".</td></tr>`;
+        recalculateMatrix();
+        const indEl = document.getElementById('matrix-bank-total-indicator');
+        if (indEl) indEl.innerText = `Bank Avail: 0 Qs`;
+        return;
+      }
+
+      filteredRows.forEach((row, idx) => {
+        const m1_wo = row.m1_wo || 0;
+        const m1_with = row.m1_with || 0;
+        const m2_wo = row.m2_wo || 0;
+        const m2_with = row.m2_with || 0;
+        const m3_wo = row.m3_wo || 0;
+        const m3_with = row.m3_with || 0;
+        const m4_wo = row.m4_wo || 0;
+        const m4_with = row.m4_with || 0;
+        const c1_wo = row.c1_wo || 0;
+        const c1_with = row.c1_with || 0;
+        const c2_wo = row.c2_wo || 0;
+        const c2_with = row.c2_with || 0;
+
+        const totalQNoOpt = m1_wo + m2_wo + m3_wo + m4_wo + c1_wo + c2_wo;
+        const totalQWithOpt = m1_with + m2_with + m3_with + m4_with + c1_with + c2_with;
+
+        const totalMNoOpt = (m1_wo * 1) + (m2_wo * 2) + (m3_wo * 3) + (m4_wo * 4) + (c1_wo * c1Weight) + (c2_wo * c2Weight);
+        const totalMWithOpt = (m1_with * 1) + (m2_with * 2) + (m3_with * 3) + (m4_with * 4) + (c1_with * c1Weight) + (c2_with * c2Weight);
+
+        const breakdown = getChapterBankBreakdown(row);
+        totalBankAvailableCount += breakdown.total;
+
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-50 transition border-b border-slate-100 text-[11px]";
+        tr.innerHTML = `
+          <td class="p-2 font-mono text-slate-400 font-bold border-r border-slate-200 text-center">${idx + 1}</td>
+          <td class="p-2 font-semibold text-slate-800 border-r border-slate-200">
+            <div class="text-[12px] font-bold text-slate-900">${escapeHtml(row.name)}</div>
+            <div class="mt-1 flex flex-wrap items-center gap-1 text-[9px] font-mono no-print">
+              <span class="px-1 py-0.2 rounded font-bold ${breakdown.total > 0 ? 'bg-blue-100 text-brand-900 border border-blue-200' : 'bg-rose-100 text-rose-800 border border-rose-200'}">
+                Avail: ${breakdown.total} Qs
+              </span>
+              <span class="px-1 py-0.2 rounded bg-slate-100 text-slate-700">1M:${breakdown.m1}</span>
+              <span class="px-1 py-0.2 rounded bg-slate-100 text-slate-700">2M:${breakdown.m2}</span>
+              <span class="px-1 py-0.2 rounded bg-slate-100 text-slate-700">3M:${breakdown.m3}</span>
+              <span class="px-1 py-0.2 rounded bg-slate-100 text-slate-700">4M:${breakdown.m4}</span>
+            </div>
+          </td>
+
+          <!-- 1 MARK (W/O & WITH) -->
+          <td class="p-1 text-center bg-blue-50/20">
+            <input type="number" min="0" value="${m1_wo}" onchange="updateMatrixRow('${row.id}', 'm1_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-slate-300">
+          </td>
+          <td class="p-1 text-center border-r border-slate-200 bg-blue-100/30">
+            <input type="number" min="0" value="${m1_with}" onchange="updateMatrixRow('${row.id}', 'm1_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-blue-300 text-blue-900 bg-white">
+          </td>
+
+          <!-- 2 MARKS (W/O & WITH) -->
+          <td class="p-1 text-center bg-sky-50/20">
+            <input type="number" min="0" value="${m2_wo}" onchange="updateMatrixRow('${row.id}', 'm2_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-slate-300">
+          </td>
+          <td class="p-1 text-center border-r border-slate-200 bg-sky-100/30">
+            <input type="number" min="0" value="${m2_with}" onchange="updateMatrixRow('${row.id}', 'm2_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-sky-300 text-sky-900 bg-white">
+          </td>
+
+          <!-- 3 MARKS (W/O & WITH) -->
+          <td class="p-1 text-center bg-cyan-50/20">
+            <input type="number" min="0" value="${m3_wo}" onchange="updateMatrixRow('${row.id}', 'm3_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-slate-300">
+          </td>
+          <td class="p-1 text-center border-r border-slate-200 bg-cyan-100/30">
+            <input type="number" min="0" value="${m3_with}" onchange="updateMatrixRow('${row.id}', 'm3_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-cyan-300 text-cyan-900 bg-white">
+          </td>
+
+          <!-- 4 MARKS (W/O & WITH) -->
+          <td class="p-1 text-center bg-teal-50/20">
+            <input type="number" min="0" value="${m4_wo}" onchange="updateMatrixRow('${row.id}', 'm4_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-slate-300">
+          </td>
+          <td class="p-1 text-center border-r border-slate-200 bg-teal-100/30">
+            <input type="number" min="0" value="${m4_with}" onchange="updateMatrixRow('${row.id}', 'm4_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-teal-300 text-teal-900 bg-white">
+          </td>
+
+          <!-- CUSTOM 1 (W/O & WITH) -->
+          <td class="p-1 text-center bg-purple-50/20">
+            <input type="number" min="0" value="${c1_wo}" onchange="updateMatrixRow('${row.id}', 'c1_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-purple-200 text-purple-900 bg-white">
+          </td>
+          <td class="p-1 text-center border-r border-slate-200 bg-purple-100/30">
+            <input type="number" min="0" value="${c1_with}" onchange="updateMatrixRow('${row.id}', 'c1_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-purple-400 text-purple-950 bg-white">
+          </td>
+
+          <!-- CUSTOM 2 (W/O & WITH) -->
+          <td class="p-1 text-center bg-indigo-50/20">
+            <input type="number" min="0" value="${c2_wo}" onchange="updateMatrixRow('${row.id}', 'c2_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-indigo-200 text-indigo-900 bg-white">
+          </td>
+          <td class="p-1 text-center border-r border-slate-200 bg-indigo-100/30">
+            <input type="number" min="0" value="${c2_with}" onchange="updateMatrixRow('${row.id}', 'c2_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-indigo-400 text-indigo-950 bg-white">
+          </td>
+
+          <!-- TOTAL QS: W/O & WITH -->
+          <td class="p-1 text-center font-mono font-bold bg-amber-50 text-amber-900">${totalQNoOpt}</td>
+          <td class="p-1 text-center font-mono font-black border-r border-slate-200 bg-amber-100/70 text-amber-950">${totalQWithOpt}</td>
+
+          <!-- TOTAL MARKS: W/O & WITH -->
+          <td class="p-1 text-center font-mono font-bold bg-emerald-50 text-emerald-900">${totalMNoOpt}M</td>
+          <td class="p-1 text-center font-mono font-black border-r border-slate-200 bg-emerald-100/70 text-emerald-950">${totalMWithOpt}M</td>
+
+          <td class="p-1 text-center no-print">
+            <button type="button" onclick="deleteMatrixRow('${row.id}')" class="text-rose-600 hover:text-rose-800 p-1 cursor-pointer">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const totalInd = document.getElementById('matrix-bank-total-indicator');
+      if (totalInd) totalInd.innerText = `Bank Avail: ${totalBankAvailableCount} Qs`;
+      recalculateMatrix();
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+
+    function updateMatrixRow(id, field, value) {
+      const row = state.blueprintRows.find(r => r.id === id);
+      if (row) {
+        row[field] = parseInt(value) || 0;
+        persistQuestions();
+        renderMatrixTable();
+      }
+    }
+
+    function addBlueprintRow() {
+      const filterStdEl = document.getElementById('matrix-filter-std');
+      const filterSubEl = document.getElementById('matrix-filter-sub');
+      const activeStd = filterStdEl ? filterStdEl.value : 'Std 10';
+      const activeSub = filterSubEl ? filterSubEl.value : '';
+      const count = state.blueprintRows.filter(r => r.std === activeStd && r.sub === activeSub).length + 1;
+
+      state.blueprintRows.push({
+        id: 'bp-' + Date.now(),
+        std: activeStd,
+        sub: activeSub,
+        name: `Ch ${count} - Topic`,
+        m1_wo: 1, m1_with: 1,
+        m2_wo: 1, m2_with: 1,
+        m3_wo: 0, m3_with: 0,
+        m4_wo: 0, m4_with: 0,
+        c1_wo: 0, c1_with: 0,
+        c2_wo: 0, c2_with: 0
+      });
+      persistQuestions();
+      renderMatrixTable();
+    }
+
+    function deleteMatrixRow(id) {
+      if (confirm('Remove this chapter from matrix?')) {
+        state.blueprintRows = state.blueprintRows.filter(r => r.id !== id);
+        persistQuestions();
+        renderMatrixTable();
+      }
+    }
+
+    function recalculateMatrix() {
+      const filterStdEl = document.getElementById('matrix-filter-std');
+      const filterSubEl = document.getElementById('matrix-filter-sub');
+      if (!filterStdEl || !filterSubEl) return;
+
+      const activeStd = filterStdEl.value;
+      const activeSub = filterSubEl.value;
+      const c1Weight = parseInt(document.getElementById('custom-weight-c1')?.value) || 5;
+      const c2Weight = parseInt(document.getElementById('custom-weight-c2')?.value) || 6;
+
+      const filtered = state.blueprintRows.filter(r => (!r.std || r.std === activeStd) && (!r.sub || r.sub === activeSub));
+
+      let s1_wo = 0, s1_with = 0;
+      let s2_wo = 0, s2_with = 0;
+      let s3_wo = 0, s3_with = 0;
+      let s4_wo = 0, s4_with = 0;
+      let sc1_wo = 0, sc1_with = 0;
+      let sc2_wo = 0, sc2_with = 0;
+
+      let totalQNoOpt = 0, totalQWithOpt = 0;
+      let totalMNoOpt = 0, totalMWithOpt = 0;
+
+      filtered.forEach(r => {
+        const q1_wo = r.m1_wo || 0;
+        const q1_with = r.m1_with || 0;
+        const q2_wo = r.m2_wo || 0;
+        const q2_with = r.m2_with || 0;
+        const q3_wo = r.m3_wo || 0;
+        const q3_with = r.m3_with || 0;
+        const q4_wo = r.m4_wo || 0;
+        const q4_with = r.m4_with || 0;
+        const qc1_wo = r.c1_wo || 0;
+        const qc1_with = r.c1_with || 0;
+        const qc2_wo = r.c2_wo || 0;
+        const qc2_with = r.c2_with || 0;
+
+        s1_wo += q1_wo; s1_with += q1_with;
+        s2_wo += q2_wo; s2_with += q2_with;
+        s3_wo += q3_wo; s3_with += q3_with;
+        s4_wo += q4_wo; s4_with += q4_with;
+        sc1_wo += qc1_wo; sc1_with += qc1_with;
+        sc2_wo += qc2_wo; sc2_with += qc2_with;
+
+        const rowQNo = q1_wo + q2_wo + q3_wo + q4_wo + qc1_wo + qc2_wo;
+        const rowQWith = q1_with + q2_with + q3_with + q4_with + qc1_with + qc2_with;
+
+        const rowMNo = (q1_wo * 1) + (q2_wo * 2) + (q3_wo * 3) + (q4_wo * 4) + (qc1_wo * c1Weight) + (qc2_wo * c2Weight);
+        const rowMWith = (q1_with * 1) + (q2_with * 2) + (q3_with * 3) + (q4_with * 4) + (qc1_with * c1Weight) + (qc2_with * c2Weight);
+
+        totalQNoOpt += rowQNo;
+        totalQWithOpt += rowQWith;
+        totalMNoOpt += rowMNo;
+        totalMWithOpt += rowMWith;
+      });
+
+      const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+      setVal('foot-1m-wo', s1_wo);
+      setVal('foot-1m-with', s1_with);
+      setVal('foot-2m-wo', s2_wo);
+      setVal('foot-2m-with', s2_with);
+      setVal('foot-3m-wo', s3_wo);
+      setVal('foot-3m-with', s3_with);
+      setVal('foot-4m-wo', s4_wo);
+      setVal('foot-4m-with', s4_with);
+      setVal('foot-c1-wo', sc1_wo);
+      setVal('foot-c1-with', sc1_with);
+      setVal('foot-c2-wo', sc2_wo);
+      setVal('foot-c2-with', sc2_with);
+
+      setVal('foot-q-no-opt', totalQNoOpt + " Qs");
+      setVal('foot-q-with-opt', totalQWithOpt + " Qs");
+      setVal('foot-m-no-opt', totalMNoOpt + " M");
+      setVal('foot-m-with-opt', totalMWithOpt + " M");
+    }
+
+    function saveCurrentBlueprint() {
+      recalculateMatrix();
+      const std = document.getElementById('matrix-filter-std').value;
+      const sub = document.getElementById('matrix-filter-sub').value;
+      const med = document.getElementById('matrix-filter-med').value;
+      const c1Weight = parseInt(document.getElementById('custom-weight-c1')?.value) || 5;
+      const c2Weight = parseInt(document.getElementById('custom-weight-c2')?.value) || 6;
+
+      const filtered = state.blueprintRows.filter(r => (!r.std || r.std === std) && (!r.sub || r.sub === sub));
+      if (filtered.length === 0) {
+        alert('No chapters configured in matrix to save.');
+        return;
+      }
+
+      const totalMarksWithoutOpt = document.getElementById('foot-m-no-opt')?.innerText || '50 M';
+      const totalMarksWithOpt = document.getElementById('foot-m-with-opt')?.innerText || '50 M';
+
+      const bpRecord = {
+        id: 'saved-bp-' + Date.now(),
+        date: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        std: std,
+        sub: sub,
+        med: med,
+        c1Weight: c1Weight,
+        c2Weight: c2Weight,
+        totalMarksWo: totalMarksWithoutOpt,
+        totalMarksWith: totalMarksWithOpt,
+        rows: JSON.parse(JSON.stringify(filtered))
+      };
+
+      state.savedBlueprints.unshift(bpRecord);
+      persistQuestions();
+      renderSavedBlueprintsList();
+      alert(`Blueprint for "${std} - ${sub}" saved successfully!`);
+    }
+
+    function renderSavedBlueprintsList() {
+      const container = document.getElementById('saved-blueprints-grid');
+      const badge = document.getElementById('saved-bp-count-badge');
+      if (!container) return;
+      if (badge) badge.innerText = `${state.savedBlueprints.length} Saved`;
+
+      container.innerHTML = '';
+      if (state.savedBlueprints.length === 0) {
+        container.innerHTML = `<div class="col-span-full p-4 bg-slate-50 border border-dashed border-slate-300 rounded-xl text-center text-xs text-slate-400">No saved blueprints found. Click "Save Blueprint" above to store setups.</div>`;
+        return;
+      }
+
+      state.savedBlueprints.forEach(bp => {
+        const div = document.createElement('div');
+        div.className = "p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5 shadow-sm hover:border-brand-500 transition text-xs";
+        div.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-brand-900 bg-blue-100 px-2 py-0.5 rounded text-[10px]">${bp.std}</span>
+            <span class="font-mono text-slate-400 text-[10px]">${bp.date}</span>
+          </div>
+          <div>
+            <h4 class="font-extrabold text-slate-900 truncate">${escapeHtml(bp.sub)}</h4>
+            <div class="flex items-center space-x-2 mt-1 font-mono text-[10px] text-slate-600">
+              <span class="font-bold text-emerald-800">W/O: ${bp.totalMarksWo}</span>
+              <span>•</span>
+              <span class="font-bold text-emerald-600">With: ${bp.totalMarksWith}</span>
+              <span>•</span>
+              <span>${bp.rows.length} Chs</span>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-slate-200 flex items-center space-x-2">
+            <button type="button" onclick="loadSavedBlueprint('${bp.id}')" class="flex-1 py-1.5 bg-brand-900 hover:bg-brand-800 text-white rounded font-bold text-[11px] cursor-pointer shadow flex items-center justify-center space-x-1">
+              <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+              <span>Restore to Matrix</span>
+            </button>
+            <button type="button" onclick="deleteSavedBlueprint('${bp.id}')" class="p-1.5 text-rose-600 hover:bg-rose-100 rounded cursor-pointer" title="Delete">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+
+    function loadSavedBlueprint(id) {
+      const bp = state.savedBlueprints.find(b => b.id === id);
+      if (!bp) return;
+
+      state.blueprintRows = state.blueprintRows.filter(r => !(r.std === bp.std && r.sub === bp.sub));
+      state.blueprintRows.push(...JSON.parse(JSON.stringify(bp.rows)));
+      persistQuestions();
+
+      const filterStd = document.getElementById('matrix-filter-std');
+      const filterSub = document.getElementById('matrix-filter-sub');
+      const filterMed = document.getElementById('matrix-filter-med');
+      const c1 = document.getElementById('custom-weight-c1');
+      const c2 = document.getElementById('custom-weight-c2');
+
+      if (filterStd) filterStd.value = bp.std;
+      if (filterStd && filterSub) syncSubjectDropdown('matrix-filter-std', 'matrix-filter-sub');
+      if (filterSub) filterSub.value = bp.sub;
+      if (filterMed) filterMed.value = bp.med;
+      if (c1 && bp.c1Weight) c1.value = bp.c1Weight;
+      if (c2 && bp.c2Weight) c2.value = bp.c2Weight;
+
+      applyMatrixSelectorFilter();
+      alert(`Restored Blueprint for ${bp.std} - ${bp.sub}!`);
+    }
+
+    function deleteSavedBlueprint(id) {
+      if (confirm('Delete this saved blueprint?')) {
+        state.savedBlueprints = state.savedBlueprints.filter(b => b.id !== id);
+        persistQuestions();
+        renderSavedBlueprintsList();
+      }
+    }
+
+    function applyBlueprintToPaper() {
+      recalculateMatrix();
+      const stdEl = document.getElementById('matrix-filter-std');
+      const subEl = document.getElementById('matrix-filter-sub');
+      const medEl = document.getElementById('matrix-filter-med');
+      const activeStd = stdEl ? stdEl.value : 'Std 10';
+      const activeSub = subEl ? subEl.value : '';
+      const activeMed = medEl ? medEl.value : 'Gujarati';
+
+      const footM = document.getElementById('foot-m-no-opt');
+      const totalMarksWithoutOpt = footM ? footM.innerText.replace(' M', '') : '50';
+
+      if (activeStd === 'GUJCET') {
+        const gSub = document.getElementById('gujcet-subject');
+        const gMed = document.getElementById('gujcet-medium');
+        if (gSub) gSub.value = activeSub;
+        if (gMed) gMed.value = activeMed;
+        autoPopulateGujcet40Paper();
+        switchTab('tab-gujcet');
+      } else {
+        const rows = state.blueprintRows.filter(r => (!r.std || r.std === activeStd) && (!r.sub || r.sub === activeSub));
+        state.livePaperQuestions = [];
+        const usedIds = new Set();
+        const c1Weight = parseInt(document.getElementById('custom-weight-c1')?.value) || 5;
+        const c2Weight = parseInt(document.getElementById('custom-weight-c2')?.value) || 6;
+
+        rows.forEach(row => {
+          const sections = [
+            { count: row.m1_with || row.m1_wo || 0, marks: 1, sec: 'SECTION A' },
+            { count: row.m2_with || row.m2_wo || 0, marks: 2, sec: 'SECTION B' },
+            { count: row.m3_with || row.m3_wo || 0, marks: 3, sec: 'SECTION C' },
+            { count: row.m4_with || row.m4_wo || 0, marks: 4, sec: 'SECTION D' },
+            { count: row.c1_with || row.c1_wo || 0, marks: c1Weight, sec: 'SECTION D' },
+            { count: row.c2_with || row.c2_wo || 0, marks: c2Weight, sec: 'SECTION D' }
+          ];
+
+          sections.forEach(s => {
+            const chapNum = extractChapterNumber(row.name);
+            const candidates = state.questions.filter(q => {
+              if (usedIds.has(q.id)) return false;
+              if (q.std !== activeStd || q.subject !== activeSub) return false;
+              if (parseInt(q.marks) !== s.marks) return false;
+              if (chapNum && extractChapterNumber(q.chapter) === chapNum) return true;
+              return false;
+            });
+
+            for (let i = 0; i < s.count; i++) {
+              if (candidates[i]) {
+                usedIds.add(candidates[i].id);
+                state.livePaperQuestions.push({
+                  ...candidates[i],
+                  paperItemId: 'p-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
+                  section: s.sec
+                });
+              } else {
+                state.livePaperQuestions.push({
+                  id: 'gen-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
+                  paperItemId: 'p-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
+                  std: activeStd,
+                  subject: activeSub,
+                  chapter: row.name,
+                  medium: activeMed,
+                  section: s.sec,
+                  marks: s.marks,
+                  text: `[${row.name}] Sample examination problem for ${s.marks} mark(s).`,
+                  answer: `Solution steps for ${row.name}.`,
+                  options: s.marks === 1 ? '(A) Option 1  (B) Option 2  (C) Option 3  (D) Option 4' : ''
+                });
+              }
+            }
+          });
+        });
+
+        localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+        const pMarks = document.getElementById('paper-marks');
+        const pStd = document.getElementById('paper-std');
+        const pSub = document.getElementById('paper-sub');
+        const pMed = document.getElementById('paper-medium');
+
+        if (pMarks) pMarks.value = totalMarksWithoutOpt || 50;
+        if (pStd) {
+          pStd.value = activeStd;
+          syncSubjectDropdown('paper-std', 'paper-sub');
+        }
+        if (pSub) pSub.value = activeSub;
+        if (pMed) pMed.value = activeMed;
+
+        renderLivePaper();
+        switchTab('tab-generator');
+        alert(`Populated ${state.livePaperQuestions.length} questions into exam paper from Blueprint!`);
+      }
+    }
+
+    function openAddChapterModal() {
+      const filterStdEl = document.getElementById('matrix-filter-std');
+      const filterSubEl = document.getElementById('matrix-filter-sub');
+      const activeStd = filterStdEl ? filterStdEl.value : 'Std 10';
+      const activeSub = filterSubEl ? filterSubEl.value : '';
+
+      const cStd = document.getElementById('chapter-add-std');
+      const cSub = document.getElementById('chapter-add-sub');
+      if (cStd) {
+        cStd.value = activeStd;
+        syncSubjectDropdown('chapter-add-std', 'chapter-add-sub');
+      }
+      if (cSub) cSub.value = activeSub;
+      openModal('modal-add-chapter');
+    }
+
+    function saveNewChapter() {
+      const stdVal = document.getElementById('chapter-add-std').value;
+      const subVal = document.getElementById('chapter-add-sub').value;
+      const chapNo = document.getElementById('chapter-add-no').value.trim();
+      const chapName = document.getElementById('chapter-add-name').value.trim();
+
+      if (!chapNo || !chapName) {
+        alert('Please provide chapter number and title.');
+        return;
+      }
+
+      state.blueprintRows.push({
+        id: 'bp-' + Date.now(),
+        std: stdVal,
+        sub: subVal,
+        name: `${chapNo} - ${chapName}`,
+        m1_wo: 1, m1_with: 1,
+        m2_wo: 1, m2_with: 1,
+        m3_wo: 0, m3_with: 0,
+        m4_wo: 0, m4_with: 0,
+        c1_wo: 0, c1_with: 0,
+        c2_wo: 0, c2_with: 0
+      });
+
+      persistQuestions();
+      renderMatrixTable();
+      closeModal('modal-add-chapter');
+    }
+
+    function autoFetchChapterTitle() {
+      const stdEl = document.getElementById('bulk-target-std');
+      const subEl = document.getElementById('bulk-target-sub');
+      const chapEl = document.getElementById('bulk-target-chap-no');
+      const nameEl = document.getElementById('bulk-target-chap-name');
+      if (!stdEl || !subEl || !chapEl || !nameEl) return;
+
+      const std = stdEl.value;
+      const sub = subEl.value;
+      const chapNo = chapEl.value.trim();
+      const chapNum = extractChapterNumber(chapNo);
+
+      const bpMatch = state.blueprintRows.find(r => 
+        (r.std === std || !r.std) && 
+        (r.sub === sub || !r.sub) && 
+        extractChapterNumber(r.name) === chapNum
+      );
+
+      if (bpMatch) {
+        nameEl.value = bpMatch.name;
+        return;
+      }
+
+      const qMatch = state.questions.find(q => 
+        q.std === std && 
+        q.subject === sub && 
+        extractChapterNumber(q.chapter) === chapNum
+      );
+
+      if (qMatch && qMatch.chapter) {
+        nameEl.value = qMatch.chapter;
+      } else {
+        nameEl.value = `${chapNo} - Topic ${chapNum || ''}`;
+      }
+    }
+
+    function openBulkImportModal() {
+      syncSubjectDropdown('bulk-target-std', 'bulk-target-sub');
+      autoFetchChapterTitle();
+      state.parsedBulkItems = [];
+      const pBody = document.getElementById('bulk-parsed-body');
+      const pCount = document.getElementById('bulk-parsed-count');
+      if (pBody) pBody.innerHTML = `<tr><td colspan="3" class="p-3 text-center text-slate-400 italic">No questions parsed yet. Upload file or click "Parse Pasted Data".</td></tr>`;
+      if (pCount) pCount.innerText = "0 questions detected";
+      openModal('modal-bulk-import');
+    }
+
+    function handleBulkFileSelect(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      const isExcel = file.name.endsWith('.xlsx') || file.name.endsWith('.xls');
+
+      if (isExcel) {
+        reader.onload = function(e) {
+          try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonRows = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+            processRawMatrixRows(jsonRows);
+          } catch (err) {
+            alert('Error parsing Excel spreadsheet: ' + err.message);
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      } else {
+        reader.onload = function(e) {
+          processCsvOrTsvText(e.target.result);
+        };
+        reader.readAsText(file);
+      }
+      event.target.value = '';
+    }
+
+    function parsePastedBulkQuestions() {
+      const pasteArea = document.getElementById('bulk-paste-area');
+      const rawText = pasteArea ? pasteArea.value.trim() : '';
+      if (!rawText) {
+        alert('Please paste text or table rows from Google Sheets / CSV.');
+        return;
+      }
+      processCsvOrTsvText(rawText);
+    }
+
+    function processCsvOrTsvText(text) {
+      const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
+      const rows = lines.map(line => {
+        if (line.includes('\t')) return line.split('\t').map(c => c.trim());
+        return line.split(',').map(c => c.trim());
+      });
+      processRawMatrixRows(rows);
+    }
+
+    function processRawMatrixRows(rows) {
+      if (!rows || rows.length === 0) return;
+      const startIdx = isNaN(parseInt(rows[0][0])) ? 1 : 0;
+      state.parsedBulkItems = [];
+
+      for (let i = startIdx; i < rows.length; i++) {
+        const row = rows[i];
+        if (!row || row.length === 0) continue;
+
+        let marks = 1, text = '', options = '', ans = '';
+        if (row.length === 1) {
+          text = row[0];
+        } else if (row.length === 2) {
+          marks = parseInt(row[0]) || 1;
+          text = row[1];
+        } else if (row.length === 3) {
+          marks = parseInt(row[0]) || 1;
+          text = row[1];
+          ans = row[2];
+        } else {
+          marks = parseInt(row[0]) || 1;
+          text = row[1];
+          options = row[2];
+          ans = row[3];
+        }
+
+        if (text) {
+          state.parsedBulkItems.push({ marks, text, options, ans });
+        }
+      }
+      renderBulkParsedTable();
+    }
+
+    function renderBulkParsedTable() {
+      const tbody = document.getElementById('bulk-parsed-body');
+      const countEl = document.getElementById('bulk-parsed-count');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      if (countEl) countEl.innerText = `${state.parsedBulkItems.length} questions detected`;
+
+      if (state.parsedBulkItems.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" class="p-3 text-center text-slate-400 italic">No valid questions recognized. Format: Marks, Question, Options, Answer.</td></tr>`;
+        return;
+      }
+
+      state.parsedBulkItems.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-50";
+        tr.innerHTML = `
+          <td class="p-2 text-center font-bold font-mono text-brand-900">${item.marks}</td>
+          <td class="p-2">
+            <p class="font-semibold text-slate-900">${escapeHtml(item.text)}</p>
+            ${item.options ? `<p class="text-slate-500 font-mono text-[10px] mt-0.5">${escapeHtml(item.options)}</p>` : ''}
+          </td>
+          <td class="p-2 text-emerald-800 font-bold text-center">${escapeHtml(item.ans || '—')}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+      renderMath(tbody);
+    }
+
+    function commitBulkImport() {
+      if (state.parsedBulkItems.length === 0) {
+        alert('No parsed questions to import. Please upload a file or parse pasted data.');
+        return;
+      }
+
+      const bankType = document.getElementById('bulk-target-bank-type').value;
+      const std = document.getElementById('bulk-target-std').value;
+      const sub = document.getElementById('bulk-target-sub').value;
+      const med = document.getElementById('bulk-target-med').value;
+      const chapName = document.getElementById('bulk-target-chap-name').value.trim() || document.getElementById('bulk-target-chap-no').value.trim();
+
+      state.parsedBulkItems.forEach(item => {
+        state.questions.unshift({
+          id: 'q-b-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
+          bankType: bankType,
+          std: std,
+          subject: sub,
+          chapter: chapName,
+          medium: med,
+          marks: item.marks,
+          section: item.marks === 1 ? 'SECTION A' : (item.marks === 2 ? 'SECTION B' : (item.marks === 3 ? 'SECTION C' : 'SECTION D')),
+          text: item.text,
+          options: item.options,
+          answer: item.ans
+        });
+      });
+
+      persistQuestions();
+      filterQuestionBank();
+      closeModal('modal-bulk-import');
+      alert(`Successfully imported ${state.parsedBulkItems.length} questions for ${chapName}!`);
+    }
+
+    function openBulkDeleteModal() {
+      syncSubjectDropdown('del-bulk-std', 'del-bulk-sub');
+      updateBulkDeleteCount();
+      openModal('modal-bulk-delete');
+    }
+
+    function updateBulkDeleteCount() {
+      const stdEl = document.getElementById('del-bulk-std');
+      const subEl = document.getElementById('del-bulk-sub');
+      const chapEl = document.getElementById('del-bulk-chap');
+      const countEl = document.getElementById('del-affected-count');
+      if (!stdEl || !subEl || !chapEl || !countEl) return;
+
+      const std = stdEl.value;
+      const sub = subEl.value;
+      const chapKey = (chapEl.value || '').trim().toLowerCase();
+      const chapNum = extractChapterNumber(chapKey);
+
+      const matching = state.questions.filter(q => {
+        if (std !== 'ALL' && q.std !== std) return false;
+        if (sub !== 'ALL' && q.subject !== sub) return false;
+        if (!chapKey) return false;
+
+        const qChapNum = extractChapterNumber(q.chapter);
+        if (chapNum && qChapNum && chapNum === qChapNum) return true;
+
+        const qChapName = (q.chapter || '').toLowerCase();
+        return qChapName.includes(chapKey);
+      });
+
+      countEl.innerText = matching.length;
+    }
+
+    function confirmBulkDeleteChapter() {
+      const std = document.getElementById('del-bulk-std').value;
+      const sub = document.getElementById('del-bulk-sub').value;
+      const chapKey = (document.getElementById('del-bulk-chap').value || '').trim().toLowerCase();
+      const chapNum = extractChapterNumber(chapKey);
+
+      if (!chapKey) {
+        alert('Please specify the chapter number or name to delete.');
+        return;
+      }
+
+      const count = parseInt(document.getElementById('del-affected-count').innerText) || 0;
+      if (count === 0) {
+        alert('No matching questions found to delete.');
+        return;
+      }
+
+      if (confirm(`Are you sure you want to permanently delete ALL ${count} questions for "${chapKey}"?`)) {
+        state.questions = state.questions.filter(q => {
+          if (std !== 'ALL' && q.std !== std) return true;
+          if (sub !== 'ALL' && q.subject !== sub) return true;
+
+          const qChapNum = extractChapterNumber(q.chapter);
+          if (chapNum && qChapNum && chapNum === qChapNum) return false;
+
+          const qChapName = (q.chapter || '').toLowerCase();
+          if (qChapName.includes(chapKey)) return false;
+
+          return true;
+        });
+
+        persistQuestions();
+        filterQuestionBank();
+        closeModal('modal-bulk-delete');
+        alert(`Deleted ${count} questions successfully!`);
+      }
+    }
+
+    function switchBankType(type) {
+      state.currentBankType = type;
+      const genBtn = document.getElementById('bank-toggle-general');
+      const gujBtn = document.getElementById('bank-toggle-gujcet');
+      const filterStd = document.getElementById('filter-std');
+
+      if (type === 'GUJCET') {
+        if (gujBtn) gujBtn.className = "px-3 py-1 rounded bg-brand-900 text-white shadow font-black cursor-pointer";
+        if (genBtn) genBtn.className = "px-3 py-1 rounded text-slate-700 hover:text-brand-900 font-bold cursor-pointer";
+        if (filterStd) {
+          filterStd.value = 'GUJCET';
+          syncSubjectDropdown('filter-std', 'filter-sub');
+        }
+      } else {
+        if (genBtn) genBtn.className = "px-3 py-1 rounded bg-brand-900 text-white shadow font-black cursor-pointer";
+        if (gujBtn) gujBtn.className = "px-3 py-1 rounded text-slate-700 hover:text-brand-900 font-bold cursor-pointer";
+        if (filterStd) {
+          if (filterStd.value === 'GUJCET') filterStd.value = 'Std 10';
+          syncSubjectDropdown('filter-std', 'filter-sub');
+        }
+      }
+      filterQuestionBank();
+    }
+
+    function filterQuestionBank() {
+      const stdEl = document.getElementById('filter-std');
+      const subEl = document.getElementById('filter-sub');
+      const medEl = document.getElementById('filter-med');
+      const keyEl = document.getElementById('filter-keyword');
+      if (!stdEl || !subEl || !medEl) return;
+
+      const stdVal = stdEl.value;
+      const subVal = subEl.value;
+      const medVal = medEl.value;
+      const keyword = (keyEl ? keyEl.value : '').toLowerCase();
+
+      const filtered = state.questions.filter(q => {
+        const isGujcet = q.bankType === 'GUJCET' || q.std === 'GUJCET';
+        const matchesBank = state.currentBankType === 'GUJCET' ? isGujcet : !isGujcet;
+        const matchesStd = (stdVal === 'ALL' || q.std === stdVal);
+        const matchesSub = (subVal === 'ALL' || q.subject === subVal);
+        const matchesMed = (medVal === 'ALL' || q.medium === medVal);
+        const matchesKey = !keyword || (q.text && q.text.toLowerCase().includes(keyword));
+        return matchesBank && matchesStd && matchesSub && matchesMed && matchesKey;
+      });
+
+      const container = document.getElementById('qbank-items-container');
+      const indEl = document.getElementById('qbank-count-indicator');
+      if (indEl) indEl.innerText = `Showing ${filtered.length} Questions`;
+      if (!container) return;
+
+      container.innerHTML = '';
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-400 text-xs">No matching questions in bank.</div>`;
+        return;
+      }
+
+      filtered.forEach(q => {
+        const div = document.createElement('div');
+        div.className = "p-4 hover:bg-slate-50 transition flex items-start justify-between gap-4";
+        div.innerHTML = `
+          <div class="space-y-1.5 flex-1">
+            <div class="flex flex-wrap items-center gap-1.5 text-[10px]">
+              <span class="bg-blue-100 text-brand-900 font-bold px-2 py-0.5 rounded">${q.std}</span>
+              <span class="bg-purple-100 text-purple-900 font-semibold px-2 py-0.5 rounded">${q.subject}</span>
+              <span class="bg-slate-200 text-slate-700 font-mono font-bold px-2 py-0.5 rounded">${q.chapter}</span>
+              <span class="bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">${q.marks} Mark(s)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-900">${q.text}</p>
+            ${q.options ? formatInlineOptionsHtml(q.options) : ''}
+            <p class="text-emerald-800 font-bold text-xs">Ans: ${q.answer || 'Not provided'}</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button type="button" onclick="insertBankQuestionToPaper('${q.id}')" class="px-2.5 py-1 bg-brand-900 text-white rounded text-xs font-bold hover:bg-brand-800 cursor-pointer">Add to Paper</button>
+            <button type="button" onclick="openEditModal('${q.id}', 'bank')" class="p-1.5 text-blue-700 hover:bg-blue-100 rounded cursor-pointer" title="Edit Question">
+              <i data-lucide="edit-3" class="w-4 h-4"></i>
+            </button>
+            <button type="button" onclick="deleteBankQuestion('${q.id}')" class="p-1.5 text-rose-600 hover:bg-rose-100 rounded cursor-pointer" title="Delete">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+      renderMath(container);
+    }
+
+    function insertBankQuestionToPaper(id) {
+      const q = state.questions.find(item => item.id === id);
+      if (!q) return;
+
+      if (q.bankType === 'GUJCET' || q.std === 'GUJCET') {
+        state.gujcetPaperQuestions.push({ ...q });
+        renderGujcetPaperList();
+        alert('Question added to GUJCET Workspace!');
+      } else {
+        state.livePaperQuestions.push({ ...q, paperItemId: 'p-' + Date.now() });
+        localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+        renderLivePaper();
+        alert('Question added to live GSEB exam paper!');
+      }
+    }
+
+    function deleteBankQuestion(id) {
+      if (confirm('Delete question permanently?')) {
+        state.questions = state.questions.filter(q => q.id !== id);
+        persistQuestions();
+        filterQuestionBank();
+      }
+    }
+
+    function openAddQuestionModal() {
+      const filterStd = document.getElementById('filter-std');
+      const addStd = document.getElementById('add-q-std');
+      if (addStd) {
+        addStd.value = (filterStd && filterStd.value === 'ALL') ? 'Std 10' : (filterStd ? filterStd.value : 'Std 10');
+        syncSubjectDropdown('add-q-std', 'add-q-sub');
+      }
+      document.getElementById('add-q-text').value = '';
+      document.getElementById('add-q-options').value = '';
+      document.getElementById('add-q-ans').value = '';
+      openModal('modal-add-question');
+    }
+
+    function submitNewQuestion() {
+      const std = document.getElementById('add-q-std').value;
+      const sub = document.getElementById('add-q-sub').value;
+      const chap = document.getElementById('add-q-chap').value.trim();
+      const med = document.getElementById('add-q-med').value;
+      const marks = parseInt(document.getElementById('add-q-marks').value) || 1;
+      const text = document.getElementById('add-q-text').value.trim();
+      const options = document.getElementById('add-q-options').value.trim();
+      const ans = document.getElementById('add-q-ans').value.trim();
+
+      if (!text) {
+        alert('Please enter question statement.');
+        return;
+      }
+
+      const newQ = {
+        id: 'q-' + Date.now(),
+        bankType: std === 'GUJCET' ? 'GUJCET' : 'GENERAL',
+        std, subject: sub,
+        chapter: chap || 'Ch 1',
+        medium: med,
+        marks,
+        section: marks === 1 ? 'SECTION A' : (marks === 2 ? 'SECTION B' : (marks === 3 ? 'SECTION C' : 'SECTION D')),
+        text, answer: ans, options
+      };
+
+      state.questions.unshift(newQ);
+      persistQuestions();
+      filterQuestionBank();
+      closeModal('modal-add-question');
+    }
+
+    function openEditModal(id, origin) {
+      let q = state.questions.find(item => item.id === id);
+      if (!q) q = state.livePaperQuestions.find(item => item.id === id || item.paperItemId === id);
+      if (!q) return;
+
+      document.getElementById('edit-q-id').value = id;
+      document.getElementById('edit-q-origin').value = origin;
+      document.getElementById('edit-q-text').value = q.text || '';
+      document.getElementById('edit-q-options').value = q.options || '';
+      document.getElementById('edit-q-ans').value = q.answer || '';
+      document.getElementById('edit-q-marks').value = q.marks || 1;
+      document.getElementById('edit-q-section').value = q.section || 'SECTION A';
+      openModal('modal-edit-question');
+    }
+
+    function saveEditedQuestion() {
+      const id = document.getElementById('edit-q-id').value;
+      const text = document.getElementById('edit-q-text').value.trim();
+      const options = document.getElementById('edit-q-options').value.trim();
+      const ans = document.getElementById('edit-q-ans').value.trim();
+      const marks = parseInt(document.getElementById('edit-q-marks').value) || 1;
+      const sec = document.getElementById('edit-q-section').value;
+
+      const qBank = state.questions.find(item => item.id === id);
+      if (qBank) {
+        qBank.text = text;
+        qBank.options = options;
+        qBank.answer = ans;
+        qBank.marks = marks;
+        qBank.section = sec;
+        persistQuestions();
+      }
+
+      const qLive = state.livePaperQuestions.find(item => item.id === id || item.paperItemId === id);
+      if (qLive) {
+        qLive.text = text;
+        qLive.options = options;
+        qLive.answer = ans;
+        qLive.marks = marks;
+        qLive.section = sec;
+        localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+        renderLivePaper();
+      }
+
+      closeModal('modal-edit-question');
+    }
+
+    function swapPaperQuestion(itemId) {
+      const targetIndex = state.livePaperQuestions.findIndex(q => (q.paperItemId || q.id) === itemId);
+      if (targetIndex === -1) return;
+      const targetQ = state.livePaperQuestions[targetIndex];
+
+      const candidates = state.questions.filter(q => 
+        q.id !== targetQ.id &&
+        parseInt(q.marks) === parseInt(targetQ.marks) &&
+        q.subject === targetQ.subject &&
+        !state.livePaperQuestions.some(p => p.id === q.id)
+      );
+
+      if (candidates.length === 0) {
+        alert('No alternative question found in bank with identical subject and marks to swap with! Add more questions to the bank.');
+        return;
+      }
+
+      const randomCandidate = candidates[Math.floor(Math.random() * candidates.length)];
+      state.livePaperQuestions[targetIndex] = {
+        ...randomCandidate,
+        paperItemId: targetQ.paperItemId || ('p-' + Date.now()),
+        section: targetQ.section
+      };
+      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+      renderLivePaper();
+    }
+
+    function renderLivePaper() {
+      const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+      const getVal = (id, def) => { const el = document.getElementById(id); return el ? el.value : def; };
+
+      setTxt('view-school-name', getVal('paper-inst-name', 'BAI AVABAI HIGHSCHOOL, VALSAD'));
+      setTxt('view-exam-title', getVal('paper-exam-title', 'FIRST TERM EXAMINATION'));
+      setTxt('view-std', getVal('paper-std', 'Std 10'));
+      setTxt('view-sub', getVal('paper-sub', 'Mathematics'));
+      setTxt('view-medium', getVal('paper-medium', 'Gujarati'));
+      setTxt('view-time', getVal('paper-time', '2 Hours'));
+      setTxt('view-marks', getVal('paper-marks', '50'));
+      setTxt('view-instructions', getVal('paper-instructions', '1. All questions compulsory.'));
+
+      const container = document.getElementById('paper-sections-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (state.livePaperQuestions.length === 0) {
+        container.innerHTML = `<p class="text-slate-400 text-center py-10 italic">No questions added to current exam paper yet.</p>`;
+        return;
+      }
+
+      const sections = ['SECTION A', 'SECTION B', 'SECTION C', 'SECTION D'];
+      let questionIndex = 1;
+
+      sections.forEach(secName => {
+        const secQuestions = state.livePaperQuestions.filter(q => (q.section || 'SECTION A') === secName);
+        if (secQuestions.length === 0) return;
+
+        const secDiv = document.createElement('div');
+        secDiv.className = "space-y-3 pt-2";
+        secDiv.innerHTML = `
+          <div class="border-y border-slate-900 py-1 font-bold text-center uppercase tracking-wider text-xs bg-slate-50 flex justify-between px-3">
+            <span>${secName}</span>
+            <span>(${secName === 'SECTION A' ? '1 Mark Each' : (secName === 'SECTION B' ? '2 Marks Each' : (secName === 'SECTION C' ? '3 Marks Each' : 'Detailed Questions'))})</span>
+          </div>
+          <div class="space-y-3.5 pt-1" id="sec-list-${secName.replace(' ', '-')}"></div>
+        `;
+
+        const listDiv = secDiv.querySelector(`#sec-list-${secName.replace(' ', '-')}`);
+
+        secQuestions.forEach(q => {
+          const qBox = document.createElement('div');
+          qBox.className = "flex items-start justify-between text-xs leading-relaxed group";
+          qBox.innerHTML = `
+            <div class="flex-1 pr-3">
+              <p class="font-normal text-slate-900">
+                <span class="font-bold mr-1.5 font-mono">Q.${questionIndex}.</span>
+                <span>${q.text}</span>
+              </p>
+              ${q.options ? formatInlineOptionsHtml(q.options) : ''}
+              <div class="answer-key-box hidden mt-1.5 p-2 bg-emerald-50 border border-emerald-300 rounded text-[11px] font-bold text-emerald-900">
+                Ans: ${q.answer || 'Not provided'}
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="font-bold font-mono text-slate-800">[${q.marks}]</span>
+
+              <div class="no-print flex items-center space-x-1 opacity-80 group-hover:opacity-100 transition">
+                <button type="button" onclick="swapPaperQuestion('${q.paperItemId || q.id}')" title="Swap Question" class="p-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded cursor-pointer">
+                  <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                </button>
+                <button type="button" onclick="openEditModal('${q.paperItemId || q.id}', 'paper')" title="Edit Question" class="p-1 bg-blue-50 hover:bg-blue-100 text-brand-800 border border-blue-300 rounded cursor-pointer">
+                  <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                </button>
+                <button type="button" onclick="removePaperQuestion('${q.paperItemId || q.id}')" title="Remove" class="p-1 text-rose-600 hover:bg-rose-100 rounded cursor-pointer">
+                  <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          `;
+          listDiv.appendChild(qBox);
+          questionIndex++;
+        });
+
+        container.appendChild(secDiv);
+      });
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+      renderMath(container);
+    }
+
+    function quickAddQuestionToPaper() {
+      const sec = document.getElementById('quick-section').value;
+      const text = document.getElementById('quick-q-text').value.trim();
+      const options = document.getElementById('quick-q-options').value.trim();
+      const ans = document.getElementById('quick-q-ans').value.trim();
+      const marks = parseInt(document.getElementById('quick-q-marks').value) || 1;
+
+      if (!text) {
+        alert('Please enter question statement.');
+        return;
+      }
+
+      const newQ = {
+        id: 'q-' + Date.now(),
+        paperItemId: 'p-' + Date.now(),
+        bankType: 'GENERAL',
+        std: document.getElementById('paper-std').value,
+        subject: document.getElementById('paper-sub').value,
+        chapter: 'General Topic',
+        medium: document.getElementById('paper-medium').value,
+        section: sec,
+        marks, text, answer: ans, options
+      };
+
+      state.livePaperQuestions.push(newQ);
+      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+      renderLivePaper();
+
+      document.getElementById('quick-q-text').value = '';
+      document.getElementById('quick-q-options').value = '';
+      document.getElementById('quick-q-ans').value = '';
+    }
+
+    function removePaperQuestion(itemId) {
+      state.livePaperQuestions = state.livePaperQuestions.filter(q => (q.paperItemId || q.id) !== itemId);
+      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+      renderLivePaper();
+    }
+
+    function renderGujcetPaperList() {
+      const container = document.getElementById('gujcet-paper-preview');
+      const countEl = document.getElementById('gujcet-current-count');
+      if (countEl) countEl.innerText = state.gujcetPaperQuestions.length;
+      if (!container) return;
+
+      if (state.gujcetPaperQuestions.length === 0) {
+        container.innerHTML = `<p class="text-slate-400 text-center py-8">No MCQs added yet. Click <strong>"Auto-Generate 40 MCQs from Bank"</strong> or insert questions manually.</p>`;
+        return;
+      }
+
+      let html = '<div class="space-y-3">';
+      state.gujcetPaperQuestions.forEach((q, idx) => {
+        html += `
+          <div class="p-3.5 bg-slate-50 border border-slate-300 rounded-lg flex items-start justify-between">
+            <div class="flex-1 pr-3">
+              <p class="font-bold text-slate-900 text-sm">
+                <span class="text-brand-900 mr-1.5 font-mono">Q${idx + 1}.</span>
+                <span>${q.text}</span>
+              </p>
+              ${q.options ? formatInlineOptionsHtml(q.options) : ''}
+              <p class="text-emerald-800 font-bold text-xs mt-2">Ans: ${q.answer || 'Not provided'}</p>
+            </div>
+            <button type="button" onclick="removeGujcetQuestion(${idx})" class="text-rose-600 hover:text-rose-800 p-1 font-bold cursor-pointer">×</button>
+          </div>
+        `;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+      renderMath(container);
+    }
+
+    function removeGujcetQuestion(idx) {
+      state.gujcetPaperQuestions.splice(idx, 1);
+      renderGujcetPaperList();
+    }
+
+    function addSingleGujcetMcq() {
+      const text = document.getElementById('gujcet-quick-text').value.trim();
+      const options = document.getElementById('gujcet-quick-options').value.trim();
+      const ans = document.getElementById('gujcet-quick-ans').value.trim();
+      const sub = document.getElementById('gujcet-subject').value;
+      const med = document.getElementById('gujcet-medium').value;
+
+      if (!text) {
+        alert('Please enter MCQ statement.');
+        return;
+      }
+
+      const newQ = {
+        id: 'g-mcq-' + Date.now(),
+        bankType: 'GUJCET',
+        std: 'GUJCET',
+        subject: sub,
+        chapter: 'GUJCET Practice',
+        medium: med,
+        section: 'GUJCET MCQ',
+        marks: 1,
+        text, answer: ans, options
+      };
+
+      state.gujcetPaperQuestions.push(newQ);
+      state.questions.unshift(newQ);
+      persistQuestions();
+
+      document.getElementById('gujcet-quick-text').value = '';
+      document.getElementById('gujcet-quick-options').value = '';
+      document.getElementById('gujcet-quick-ans').value = '';
+      renderGujcetPaperList();
+    }
+
+    function autoPopulateGujcet40Paper() {
+      const subEl = document.getElementById('gujcet-subject');
+      const sub = subEl ? subEl.value : 'Mathematics';
+      const available = state.questions.filter(q => q.bankType === 'GUJCET' || q.std === 'GUJCET');
+      if (available.length === 0) {
+        alert('No GUJCET questions available in bank. Please add some first.');
+        return;
+      }
+      state.gujcetPaperQuestions = available.slice(0, 40);
+      renderGujcetPaperList();
+      alert(`Loaded ${state.gujcetPaperQuestions.length} MCQs into GUJCET workspace!`);
+    }
+
+    function savePaperToArchive() {
+      if (state.livePaperQuestions.length === 0) {
+        alert('Current paper has no questions to save.');
+        return;
+      }
+
+      const archiveItem = {
+        id: 'arch-' + Date.now(),
+        date: new Date().toLocaleDateString(),
+        school: document.getElementById('paper-inst-name').value,
+        title: document.getElementById('paper-exam-title').value,
+        std: document.getElementById('paper-std').value,
+        sub: document.getElementById('paper-sub').value,
+        med: document.getElementById('paper-medium').value,
+        marks: document.getElementById('paper-marks').value,
+        time: document.getElementById('paper-time').value,
+        questions: JSON.parse(JSON.stringify(state.livePaperQuestions))
+      };
+
+      state.archivedPapers.unshift(archiveItem);
+      persistQuestions();
+      renderArchiveList();
+      alert('Paper saved to archive!');
+    }
+
+    function renderArchiveList() {
+      const container = document.getElementById('archive-list-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (state.archivedPapers.length === 0) {
+        container.innerHTML = `<p class="col-span-full text-slate-400 text-center py-8 text-xs italic">No saved papers found in archive.</p>`;
+        return;
+      }
+
+      state.archivedPapers.forEach(item => {
+        const div = document.createElement('div');
+        div.className = "p-4 bg-slate-50 border border-slate-300 rounded-xl space-y-3 flex flex-col justify-between text-xs";
+        div.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between text-[11px] mb-1">
+              <span class="font-bold text-brand-900 bg-blue-100 px-2 py-0.5 rounded">${item.std}</span>
+              <span class="font-mono text-slate-500">${item.date}</span>
+            </div>
+            <h4 class="font-extrabold text-slate-800">${escapeHtml(item.title)}</h4>
+            <p class="text-slate-600 mt-1 font-semibold">${item.sub}</p>
+          </div>
+          <div class="pt-2 border-t border-slate-200 flex items-center space-x-2">
+            <button type="button" onclick="loadArchivedPaper('${item.id}')" class="flex-1 py-1.5 bg-brand-900 hover:bg-brand-800 text-white rounded-lg text-xs font-bold cursor-pointer">
+              Load Paper
+            </button>
+            <button type="button" onclick="deleteArchivedPaper('${item.id}')" class="p-1.5 text-rose-600 hover:bg-rose-100 rounded cursor-pointer">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+
+    function loadArchivedPaper(id) {
+      const item = state.archivedPapers.find(a => a.id === id);
+      if (!item) return;
+
+      state.livePaperQuestions = JSON.parse(JSON.stringify(item.questions));
+      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+
+      document.getElementById('paper-inst-name').value = item.school;
+      document.getElementById('paper-exam-title').value = item.title;
+      document.getElementById('paper-std').value = item.std;
+      syncSubjectDropdown('paper-std', 'paper-sub');
+      document.getElementById('paper-sub').value = item.sub;
+      document.getElementById('paper-medium').value = item.med;
+      document.getElementById('paper-marks').value = item.marks;
+      document.getElementById('paper-time').value = item.time;
+
+      renderLivePaper();
+      switchTab('tab-generator');
+    }
+
+    function deleteArchivedPaper(id) {
+      if (confirm('Delete this paper from archive?')) {
+        state.archivedPapers = state.archivedPapers.filter(a => a.id !== id);
+        persistQuestions();
+        renderArchiveList();
+      }
+    }
+
+    function clearAllArchivedPapers() {
+      if (confirm('Clear all papers from archive?')) {
+        state.archivedPapers = [];
+        persistQuestions();
+        renderArchiveList();
+      }
+    }
+
+    function exportToWordDoc() {
+      const canvas = document.getElementById('printable-paper');
+      if (!canvas) return;
+      const clone = canvas.cloneNode(true);
+      clone.querySelectorAll('.no-print').forEach(el => el.remove());
+
+      const contentHtml = clone.innerHTML;
+      const title = document.getElementById('paper-exam-title').value || 'Exam_Paper';
+      const docHtml = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <meta charset='utf-8'>
+          <title>${title}</title>
+          <style>
+            body { font-family: 'Cambria', serif; font-size: 11pt; color: #000; margin: 0; padding: 0; }
+            table { width: 100%; border-collapse: collapse; }
+            .mcq-options-inline { margin-top: 4px; padding-left: 15px; }
+            .mcq-option-col { margin-right: 15px; }
+          </style>
+        </head>
+        <body>
+          <div style="border: 2px solid #000; padding: 20px; box-sizing: border-box; min-height: 100%;">
+            ${contentHtml}
+          </div>
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff', docHtml], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${title.replace(/[^a-zA-Z0-9]/g, '_')}.doc`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function savePaperAsPdf() {
+      printStandardPaper();
+    }
+
+    function executeDirectPrint(contentHtml) {
+      const printZone = document.getElementById('print-zone');
+      if (!printZone) return;
+
+      printZone.innerHTML = contentHtml;
+      printZone.classList.remove('hidden');
+
+      renderMath(printZone);
+
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          printZone.classList.add('hidden');
+          printZone.innerHTML = '';
+        }, 1000);
+      }, 350);
+    }
+
+    function printStandardPaper() {
+      const canvas = document.getElementById('printable-paper');
+      if (!canvas) return;
+
+      const clone = canvas.cloneNode(true);
+      clone.querySelectorAll('.no-print').forEach(el => el.remove());
+      clone.querySelectorAll('.answer-key-box').forEach(el => el.remove());
+
+      const finalHtml = `<div class="print-page-box">${clone.innerHTML}</div>`;
+      executeDirectPrint(finalHtml);
+    }
+
+    function printPaperWithAnswers() {
+      const canvas = document.getElementById('printable-paper');
+      if (!canvas) return;
+
+      const clone = canvas.cloneNode(true);
+      clone.querySelectorAll('.no-print').forEach(el => el.remove());
+      clone.querySelectorAll('.answer-key-box').forEach(el => el.classList.remove('hidden'));
+
+      const finalHtml = `<div class="print-page-box">${clone.innerHTML}</div>`;
+      executeDirectPrint(finalHtml);
+    }
+
+    function printBlueprintMatrix() {
+      recalculateMatrix();
+      const school = document.getElementById('paper-inst-name').value;
+      const std = document.getElementById('matrix-filter-std').value;
+      const sub = document.getElementById('matrix-filter-sub').value;
+      const c1Weight = parseInt(document.getElementById('custom-weight-c1')?.value) || 5;
+      const c2Weight = parseInt(document.getElementById('custom-weight-c2')?.value) || 6;
+
+      const filtered = state.blueprintRows.filter(r => (!r.std || r.std === std) && (!r.sub || r.sub === sub));
+
+      let rows = '';
+      filtered.forEach((r, idx) => {
+        const q1_wo = r.m1_wo || 0, q1_w = r.m1_with || 0;
+        const q2_wo = r.m2_wo || 0, q2_w = r.m2_with || 0;
+        const q3_wo = r.m3_wo || 0, q3_w = r.m3_with || 0;
+        const q4_wo = r.m4_wo || 0, q4_w = r.m4_with || 0;
+        const qc1_wo = r.c1_wo || 0, qc1_w = r.c1_with || 0;
+        const qc2_wo = r.c2_wo || 0, qc2_w = r.c2_with || 0;
+
+        const qNo = q1_wo + q2_wo + q3_wo + q4_wo + qc1_wo + qc2_wo;
+        const qWith = q1_w + q2_w + q3_w + q4_w + qc1_w + qc2_w;
+
+        const mNo = (q1_wo * 1) + (q2_wo * 2) + (q3_wo * 3) + (q4_wo * 4) + (qc1_wo * c1Weight) + (qc2_wo * c2Weight);
+        const mWith = (q1_w * 1) + (q2_w * 2) + (q3_w * 3) + (q4_w * 4) + (qc1_w * c1Weight) + (qc2_w * c2Weight);
+
+        rows += `
+          <tr style="border-bottom: 1px solid #000; text-align: center; font-size: 8pt;">
+            <td style="padding: 4px; border: 1px solid #000;">${idx + 1}</td>
+            <td style="padding: 4px; border: 1px solid #000; text-align: left;">${escapeHtml(r.name)}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${q1_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q1_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${q2_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q2_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${q3_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q3_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${q4_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q4_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${qc1_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #faf5ff;">${qc1_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${qc2_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #eef2ff;">${qc2_w}</td>
+            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${qNo}</td>
+            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${qWith}</td>
+            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${mNo} M</td>
+            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${mWith} M</td>
+          </tr>
+        `;
+      });
+
+      const finalHtml = `
+        <div class="print-page-box" style="font-family: 'Cambria', serif; color: #000;">
+          <h1 style="text-align: center; font-size: 15pt; font-weight: 800; text-transform: uppercase; margin-bottom: 2px;">${escapeHtml(school)}</h1>
+          <h2 style="text-align: center; font-size: 11pt; font-weight: 700; margin-bottom: 6px;">CHAPTERWISE ALLOCATION BLUEPRINT MATRIX (WITH & WITHOUT OPTION)</h2>
+          <div style="display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: 600; border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 4px 0; margin-bottom: 8px;">
+            <span>STANDARD: <b>${escapeHtml(std)}</b></span>
+            <span>SUBJECT: <b>${escapeHtml(sub)}</b></span>
+            <span>CUSTOM WEIGHTS: <b>C1=${c1Weight}M, C2=${c2Weight}M</b></span>
+          </div>
+          <table width="100%" style="border-collapse: collapse; border: 1.5px solid #000; font-size: 8pt;">
+            <thead>
+              <tr style="background: #f1f5f9; text-align: center;">
+                <th rowspan="2" style="padding: 4px; border: 1px solid #000;">#</th>
+                <th rowspan="2" style="padding: 4px; border: 1px solid #000; text-align: left;">Chapter Name</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">1M</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">2M</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">3M</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">4M</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">C1 (${c1Weight}M)</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">C2 (${c2Weight}M)</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">Total Qs</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">Total Marks</th>
+              </tr>
+              <tr style="background: #f8fafc; font-size: 7.5pt;">
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+            <tfoot>
+              <tr style="background: #f1f5f9; font-weight: bold; text-align: center; border-top: 2px solid #000;">
+                <td colspan="2" style="padding: 5px; border: 1px solid #000; text-align: right;">TOTAL:</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-1m-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-1m-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-2m-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-2m-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-3m-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-3m-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-4m-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-4m-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c1-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c1-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c2-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c2-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-q-no-opt')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-q-with-opt')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-m-no-opt')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-m-with-opt')?.innerText || 0}</td>
+              </tr>
+            </tfoot>
+          </table>
+          <div style="margin-top: 35px; display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold;">
+            <span>Teacher Signature: ____________</span>
+            <span>Examiner: KALPESH H TAILOR</span>
+            <span>Principal: ____________</span>
+          </div>
+        </div>
+      `;
+      executeDirectPrint(finalHtml);
+    }
+
+    function openPhotoModal() {
+      openModal('modal-photo');
+    }
+
+    function handleLocalPhoto(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById('user-avatar').src = evt.target.result;
+          closeModal('modal-photo');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+</html>
