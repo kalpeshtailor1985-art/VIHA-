@@ -1,0 +1,29 @@
+{
+  "name": "Kalpesh Tailor - Bai Avabai Exam Suite",
+  "short_name": "KT Maths",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1e3a8a",
+  "theme_color": "#1e3a8a",
+  "description": "Official Examination, GUJCET & Blueprint Suite - KT Maths",
+  "icons": [
+    {
+      "src": "web 6.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "web 6.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "web 6.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
