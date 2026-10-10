@@ -12,12 +12,9 @@
   <meta name="apple-mobile-web-app-title" content="KT Maths">
   <meta name="description" content="Official Examination, GUJCET & Blueprint Suite - Kalpesh Tailor - Bai Avabai Highschool, Valsad">
 
-  <!-- APP FAVICON & TOUCH ICON (KT MATHS LOGO) -->
-  <link id="app-favicon" rel="icon" type="image/png" href="web 6.png">
-  <link id="apple-touch-icon" rel="apple-touch-icon" href="web 6.png">
-
-  <!-- STANDALONE & EMBEDDED WEB APP MANIFEST -->
-  <link rel="manifest" href="manifest.json">
+  <!-- APP FAVICON & TOUCH ICON -->
+  <link id="app-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e3a8a'/%3E%3Ctext x='50' y='62' font-family='sans-serif' font-weight='900' font-size='42' fill='%23fbbf24' text-anchor='middle'%3EKT%3C/text%3E%3C/svg%3E">
+  <link id="apple-touch-icon" rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e3a8a'/%3E%3Ctext x='50' y='62' font-family='sans-serif' font-weight='900' font-size='42' fill='%23fbbf24' text-anchor='middle'%3EKT%3C/text%3E%3C/svg%3E">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -70,7 +67,6 @@
       font-family: 'Cambria', 'Georgia', serif !important;
     }
 
-    /* PRINT RULES FOR REPEATING BORDER ON EVERY PRINTED PAGE */
     @page {
       size: A4 portrait;
       margin: 8mm;
@@ -185,12 +181,12 @@
 
       <div class="flex items-center space-x-3.5 pb-3 border-b border-slate-100">
         <div class="flex flex-col items-center">
-          <img src="web 6.png" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-xl object-cover shadow-md border border-amber-300">
+          <img src="web 6.png" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' rx=\'20\' fill=\'%231e3a8a\'/%3E%3Ctext x=\'50\' y=\'62\' font-family=\'sans-serif\' font-weight=\'900\' font-size=\'42\' fill=\'%23fbbf24\' text-anchor=\'middle\'%3EKT%3C/text%3E%3C/svg%3E';" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-xl object-cover shadow-md border border-amber-300">
           <span class="text-[9px] font-black tracking-wider text-brand-900 mt-1 uppercase whitespace-nowrap">KALPESH TAILOR</span>
         </div>
         <div class="leading-tight">
           <h2 class="text-base font-black text-slate-900 uppercase tracking-tight">KALPESH TAILOR</h2>
-          <h3 class="font-extrabold text-xs text-brand-900" id="gate-header-title">Teacher Portal</h3>
+          <h3 class="font-extrabold text-xs text-brand-900" id="gate-header-title">Teacher Sign In</h3>
           <p class="text-[11px] text-slate-500 font-semibold">BAI AVABAI HIGHSCHOOL, VALSAD</p>
         </div>
       </div>
@@ -214,7 +210,7 @@
 
         <div>
           <label class="block font-bold text-slate-700 mb-1">Email Address:</label>
-          <input type="email" id="gate-user-email" placeholder="teacher@baiavabai.edu.in" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
+          <input type="email" id="gate-user-email" placeholder="teacher@baiavabai.edu.in" value="kalpesh.tailor@baiavabai.edu.in" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
         </div>
 
         <div>
@@ -224,10 +220,10 @@
               Forgot Password?
             </button>
           </div>
-          <input type="password" id="gate-user-password" placeholder="••••••••" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
+          <input type="password" id="gate-user-password" placeholder="••••••••" value="admin123" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
         </div>
 
-        <button type="submit" id="gate-main-submit-btn" class="w-full py-2.5 bg-brand-900 text-white font-bold rounded-lg shadow hover:bg-brand-800 transition cursor-pointer">
+        <button type="submit" id="gate-main-submit-btn" class="w-full py-2.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-lg shadow transition cursor-pointer">
           Sign In to Portal
         </button>
       </form>
@@ -275,7 +271,7 @@
   <header class="md:hidden bg-brand-900 text-white p-3.5 flex items-center justify-between shadow-md z-30">
     <div class="flex items-center space-x-3">
       <div class="flex flex-col items-center">
-        <img src="web 6.png" alt="KT Maths" class="kt-logo-img w-9 h-9 rounded-lg object-cover shadow border border-amber-300">
+        <img src="web 6.png" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' rx=\'20\' fill=\'%231e3a8a\'/%3E%3Ctext x=\'50\' y=\'62\' font-family=\'sans-serif\' font-weight=\'900\' font-size=\'42\' fill=\'%23fbbf24\' text-anchor=\'middle\'%3EKT%3C/text%3E%3C/svg%3E';" alt="KT Maths" class="kt-logo-img w-9 h-9 rounded-lg object-cover shadow border border-amber-300">
         <span class="text-[8px] font-black tracking-wider text-amber-300 mt-0.5 uppercase whitespace-nowrap">KALPESH TAILOR</span>
       </div>
       <div class="leading-tight">
@@ -284,10 +280,6 @@
       </div>
     </div>
     <div class="flex items-center space-x-2">
-      <button type="button" id="mobile-install-app-btn" onclick="triggerAppInstall()" class="px-2.5 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black rounded-lg text-[11px] shadow flex items-center space-x-1 cursor-pointer">
-        <i data-lucide="download" class="w-3.5 h-3.5"></i>
-        <span>Install</span>
-      </button>
       <button type="button" onclick="toggleSidebar()" class="p-2 text-white hover:bg-brand-800 rounded-lg cursor-pointer">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
@@ -299,7 +291,7 @@
 
     <div class="p-4 border-b border-brand-800 flex items-center space-x-3.5">
       <div class="flex flex-col items-center">
-        <img src="web 6.png" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-xl object-cover shadow-lg border border-amber-300">
+        <img src="web 6.png" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' rx=\'20\' fill=\'%231e3a8a\'/%3E%3Ctext x=\'50\' y=\'62\' font-family=\'sans-serif\' font-weight=\'900\' font-size=\'42\' fill=\'%23fbbf24\' text-anchor=\'middle\'%3EKT%3C/text%3E%3C/svg%3E';" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-xl object-cover shadow-lg border border-amber-300">
         <span class="text-[9px] font-black tracking-wider text-amber-300 mt-1 uppercase whitespace-nowrap">KALPESH TAILOR</span>
       </div>
       <div class="flex-1 min-w-0">
@@ -313,7 +305,7 @@
     <div class="p-3.5 mx-3 my-2.5 bg-brand-800/80 rounded-xl border border-brand-700/60 shadow-inner">
       <div class="flex items-center space-x-3">
         <div class="relative group cursor-pointer" onclick="openPhotoModal()" title="Click to Change Profile Picture">
-          <img id="user-avatar" src="web 6.png" alt="Teacher Profile" class="w-12 h-12 rounded-full object-cover border-2 border-amber-400 shadow-md transition group-hover:opacity-85">
+          <img id="user-avatar" src="web 6.png" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' rx=\'20\' fill=\'%231e3a8a\'/%3E%3Ctext x=\'50\' y=\'62\' font-family=\'sans-serif\' font-weight=\'900\' font-size=\'42\' fill=\'%23fbbf24\' text-anchor=\'middle\'%3EKT%3C/text%3E%3C/svg%3E';" alt="Teacher Profile" class="w-12 h-12 rounded-full object-cover border-2 border-amber-400 shadow-md transition group-hover:opacity-85">
           <div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-150">
             <i data-lucide="camera" class="w-4 h-4 text-white"></i>
           </div>
@@ -324,7 +316,7 @@
           <p class="text-[11px] text-amber-300 font-black tracking-tight truncate">M.Sc, B.Ed, GSET (MATHS)</p>
           <div class="flex items-center space-x-2 mt-0.5">
             <span id="firebase-sync-badge" class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/40">
-              ● Cloud Ready
+              ● Local Safe Mode
             </span>
             <button type="button" onclick="openPhotoModal()" class="text-[10px] text-blue-200 hover:text-white flex items-center space-x-0.5 cursor-pointer">
               <i data-lucide="pencil" class="w-2.5 h-2.5"></i>
@@ -337,11 +329,6 @@
 
     <!-- PRIMARY ACTION BUTTONS -->
     <div class="px-3 pb-2 space-y-2">
-      <button type="button" id="sidebar-install-app-btn" onclick="triggerAppInstall()" class="w-full flex items-center justify-center space-x-2 py-2 px-3 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black rounded-lg text-xs shadow-md transition transform active:scale-98 cursor-pointer">
-        <i data-lucide="download" class="w-4 h-4 text-slate-950"></i>
-        <span id="install-btn-text">INSTALL APP ON DEVICE</span>
-      </button>
-
       <button type="button" onclick="switchTab('tab-generator')" class="w-full flex items-center justify-center space-x-2 py-2 px-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold rounded-lg text-xs shadow-md transition transform active:scale-98 cursor-pointer">
         <i data-lucide="file-plus-2" class="w-4 h-4"></i>
         <span>GENERATE PAPER (GSEB)</span>
@@ -359,9 +346,9 @@
         <div class="flex items-center justify-between text-[11px] font-bold text-amber-300">
           <span class="flex items-center space-x-1">
             <i data-lucide="database-backup" class="w-3.5 h-3.5"></i>
-            <span>Local &amp; Cloud Backup</span>
+            <span>Local &amp; File Backup</span>
           </span>
-          <span id="cloud-vault-status" class="text-[9px] text-emerald-400 font-mono">ENCRYPTED</span>
+          <span class="text-[9px] text-emerald-400 font-mono">ENCRYPTED</span>
         </div>
         <div class="grid grid-cols-2 gap-1.5 pt-0.5">
           <button type="button" onclick="exportFullDataBackup()" class="flex items-center justify-center space-x-1 py-1 px-1.5 bg-blue-700 hover:bg-blue-600 text-white rounded text-[10px] font-bold shadow cursor-pointer">
@@ -579,7 +566,7 @@
           <!-- Canvas Preview -->
           <div class="lg:col-span-8 flex flex-col items-center">
             <div class="w-full flex justify-between items-center mb-2 px-1">
-              <span class="text-xs font-semibold text-slate-500">Live Paper Preview (Cambria Font • Outer Page Border • Multi-page Border Supported)</span>
+              <span class="text-xs font-semibold text-slate-500">Live Paper Preview (Cambria Font • Outer Page Border)</span>
               <button type="button" onclick="renderLivePaper()" class="text-xs text-brand-700 hover:underline flex items-center space-x-1 cursor-pointer">
                 <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
                 <span>Refresh</span>
@@ -590,7 +577,7 @@
               <div class="border-b-2 border-slate-900 pb-3 mb-4 text-center">
                 <div class="flex justify-between items-center mb-1">
                   <div class="flex flex-col items-center">
-                    <img src="web 6.png" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-lg object-cover border border-amber-300 shadow">
+                    <img src="web 6.png" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' rx=\'20\' fill=\'%231e3a8a\'/%3E%3Ctext x=\'50\' y=\'62\' font-family=\'sans-serif\' font-weight=\'900\' font-size=\'42\' fill=\'%23fbbf24\' text-anchor=\'middle\'%3EKT%3C/text%3E%3C/svg%3E';" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-lg object-cover border border-amber-300 shadow">
                     <span class="text-[9px] font-black tracking-wider text-slate-900 mt-0.5 uppercase whitespace-nowrap">KALPESH TAILOR</span>
                   </div>
                   <div class="flex-1 px-3">
@@ -844,18 +831,18 @@
                   <th rowspan="2" class="p-2 text-center w-12 no-print">Act</th>
                 </tr>
                 <tr class="text-[9px] font-bold border-t border-slate-200 bg-slate-50 text-slate-600">
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-blue-50/30" title="Without Option">W/O</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-blue-100/50 text-blue-900" title="With Option">With</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-sky-50/30" title="Without Option">W/O</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-sky-100/50 text-sky-900" title="With Option">With</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-cyan-50/30" title="Without Option">W/O</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-cyan-100/50 text-cyan-900" title="With Option">With</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-teal-50/30" title="Without Option">W/O</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-teal-100/50 text-teal-900" title="With Option">With</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-purple-50/30" title="Without Option">W/O</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-purple-100/50 text-purple-900" title="With Option">With</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-indigo-50/30" title="Without Option">W/O</th>
-                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-indigo-100/50 text-indigo-900" title="With Option">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-blue-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-blue-100/50 text-blue-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-sky-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-sky-100/50 text-sky-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-cyan-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-cyan-100/50 text-cyan-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-teal-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-teal-100/50 text-teal-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-purple-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-purple-100/50 text-purple-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-indigo-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-indigo-100/50 text-indigo-900">With</th>
                   <th class="p-1 text-center border-r border-slate-200 w-14 bg-amber-50 font-black text-amber-900">W/O Opt</th>
                   <th class="p-1 text-center border-r border-slate-200 w-14 bg-amber-100/70 font-black text-amber-950">With Opt</th>
                   <th class="p-1 text-center border-r border-slate-200 w-14 bg-emerald-50 font-black text-emerald-900">W/O Opt</th>
@@ -925,7 +912,7 @@
             <div class="flex flex-wrap items-center gap-2">
               <button type="button" onclick="openBulkImportModal()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
                 <i data-lucide="file-up" class="w-3.5 h-3.5"></i>
-                <span>Bulk Import (CSV / Excel / Sheet)</span>
+                <span>Bulk Import (CSV / Excel)</span>
               </button>
 
               <button type="button" onclick="openBulkDeleteModal()" class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
@@ -1074,7 +1061,7 @@
           </div>
           <div>
             <h3 class="font-extrabold text-base text-slate-900">Bulk Import Questions by Chapter</h3>
-            <p class="text-xs text-slate-500">Auto chapter lookup with CSV, Excel (.xlsx) &amp; Google Sheet pasting</p>
+            <p class="text-xs text-slate-500">Auto chapter lookup with CSV, Excel (.xlsx) &amp; Sheet pasting</p>
           </div>
         </div>
         <button type="button" onclick="closeModal('modal-bulk-import')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
@@ -1148,8 +1135,8 @@
         </div>
 
         <div class="flex flex-col">
-          <label class="block font-bold text-slate-700 mb-1">Or Copy &amp; Paste Directly from Google Sheets / TSV:</label>
-          <textarea id="bulk-paste-area" rows="6" placeholder="Marks	Question Statement	Options	Answer&#10;1	Find gcd of 12 and 18	(A) 2 (B) 6 (C) 12 (D) 36	(B) 6&#10;2	Prove that sqrt(5) is irrational		See solution steps" class="flex-1 w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300 outline-none"></textarea>
+          <label class="block font-bold text-slate-700 mb-1">Or Copy &amp; Paste Directly from Sheets / TSV:</label>
+          <textarea id="bulk-paste-area" rows="6" placeholder="Marks&#9;Question Statement&#9;Options&#9;Answer&#10;1&#9;Find gcd of 12 and 18&#9;(A) 2 (B) 6 (C) 12 (D) 36&#9;(B) 6" class="flex-1 w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300 outline-none"></textarea>
         </div>
       </div>
 
@@ -1426,239 +1413,17 @@
   <!-- PRINT WRAPPER ZONE -->
   <div id="print-zone" class="hidden"></div>
 
-  <!-- APPLICATION ENGINE & SECURE CLOUD STORAGE SCRIPT -->
-  <script type="module">
-    const FIREBASE_CONFIG = {
-      apiKey: "",
-      authDomain: "",
-      projectId: "",
-      storageBucket: "",
-      messagingSenderId: "",
-      appId: ""
-    };
-
-    let dbInstance = null;
-    let isCloudOnline = false;
-
-    async function initCloudStorage() {
-      try {
-        if (FIREBASE_CONFIG.projectId && window.navigator.onLine) {
-          const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js');
-          const { getFirestore, doc, setDoc, getDoc, enableIndexedDbPersistence } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js');
-          const app = initializeApp(FIREBASE_CONFIG);
-          dbInstance = getFirestore(app);
-          try {
-            await enableIndexedDbPersistence(dbInstance);
-          } catch(e) {}
-          isCloudOnline = true;
-          updateSyncIndicator("● Cloud Active", "emerald");
-        } else {
-          isCloudOnline = false;
-          updateSyncIndicator("● Local Safe Mode", "emerald");
-        }
-      } catch (err) {
-        isCloudOnline = false;
-        updateSyncIndicator("● Local Safe Mode", "emerald");
-      }
-    }
-
-    function updateSyncIndicator(text, color) {
-      const badge = document.getElementById('firebase-sync-badge');
-      if (badge) {
-        badge.innerText = text;
-        if (color === "emerald") {
-          badge.className = "inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/40";
-        } else if (color === "amber") {
-          badge.className = "inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-amber-950 text-amber-300 border border-amber-500/40";
-        }
-      }
-    }
-
-    let syncDebounceTimer = null;
-
-    window.triggerSilentCloudSave = function() {
-      clearTimeout(syncDebounceTimer);
-      updateSyncIndicator("● Syncing...", "amber");
-
-      syncDebounceTimer = setTimeout(async () => {
-        try {
-          localStorage.setItem(APP_STORAGE_KEY_Q, JSON.stringify(state.questions));
-          localStorage.setItem(APP_STORAGE_KEY_MATRIX, JSON.stringify(state.blueprintRows));
-          localStorage.setItem(APP_STORAGE_KEY_SAVED_BLUEPRINTS, JSON.stringify(state.savedBlueprints));
-          localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
-          localStorage.setItem(APP_STORAGE_KEY_ARCHIVE, JSON.stringify(state.archivedPapers));
-
-          if (isCloudOnline && dbInstance && state.currentUser && state.currentUser.email) {
-            const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js');
-            const sanitizedEmail = state.currentUser.email.replace(/[^a-zA-Z0-9]/g, '_');
-            const userDocRef = doc(dbInstance, 'teachers_storage', sanitizedEmail);
-
-            await setDoc(userDocRef, {
-              lastSync: new Date().toISOString(),
-              questions: state.questions,
-              blueprintRows: state.blueprintRows,
-              savedBlueprints: state.savedBlueprints,
-              archivedPapers: state.archivedPapers
-            }, { merge: true });
-
-            updateSyncIndicator("● Cloud Synced", "emerald");
-          } else {
-            updateSyncIndicator("● Local Safe", "emerald");
-          }
-        } catch (silentErr) {
-          updateSyncIndicator("● Local Safe", "emerald");
-        }
-      }, 800);
-    };
-
-    window.syncFromCloudSilently = async function() {
-      if (!isCloudOnline || !dbInstance || !state.currentUser || !state.currentUser.email) return;
-      try {
-        const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js');
-        const sanitizedEmail = state.currentUser.email.replace(/[^a-zA-Z0-9]/g, '_');
-        const userDocRef = doc(dbInstance, 'teachers_storage', sanitizedEmail);
-        const snapshot = await getDoc(userDocRef);
-
-        if (snapshot.exists()) {
-          const remoteData = snapshot.data();
-          if (remoteData.questions && Array.isArray(remoteData.questions)) state.questions = remoteData.questions;
-          if (remoteData.blueprintRows && Array.isArray(remoteData.blueprintRows)) state.blueprintRows = remoteData.blueprintRows;
-          if (remoteData.savedBlueprints && Array.isArray(remoteData.savedBlueprints)) state.savedBlueprints = remoteData.savedBlueprints;
-          if (remoteData.archivedPapers && Array.isArray(remoteData.archivedPapers)) state.archivedPapers = remoteData.archivedPapers;
-
-          persistQuestions();
-          renderMatrixTable();
-          renderSavedBlueprintsList();
-          filterQuestionBank();
-          renderLivePaper();
-          renderArchiveList();
-          updateSyncIndicator("● Cloud Synced", "emerald");
-        }
-      } catch (err) {}
-    };
-
-    window.addEventListener('online', () => {
-      initCloudStorage().then(() => window.syncFromCloudSilently());
-    });
-    window.addEventListener('offline', () => {
-      isCloudOnline = false;
-      updateSyncIndicator("● Offline Safe", "emerald");
-    });
-
-    initCloudStorage();
-  </script>
-
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
-    let deferredInstallPrompt = null;
-
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        try {
-          const swCode = `
-            const CACHE_NAME = 'bai-avabai-cache-v2';
-            self.addEventListener('install', (e) => {
-              self.skipWaiting();
-            });
-            self.addEventListener('activate', (e) => {
-              e.waitUntil(clients.claim());
-            });
-            self.addEventListener('fetch', (e) => {
-              e.respondWith(
-                fetch(e.request).catch(() => caches.match(e.request))
-              );
-            });
-          `;
-          const blob = new Blob([swCode], { type: 'application/javascript' });
-          const swUrl = URL.createObjectURL(blob);
-          navigator.serviceWorker.register(swUrl).catch(err => {
-            console.log('SW registration note:', err.message);
-          });
-        } catch (e) {
-          console.log('SW unsupported or restricted:', e);
-        }
-      });
-    }
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredInstallPrompt = e;
-      updateInstallButtonsVisibility(true);
-    });
-
-    window.addEventListener('appinstalled', () => {
-      deferredInstallPrompt = null;
-      updateInstallButtonsVisibility(false);
-      alert('Bai Avabai Exam Suite was installed successfully!');
-    });
-
-    function updateInstallButtonsVisibility(isAvailable) {
-      const sbBtn = document.getElementById('sidebar-install-app-btn');
-      const mbBtn = document.getElementById('mobile-install-app-btn');
-      const btnTxt = document.getElementById('install-btn-text');
-
-      if (isAvailable) {
-        if (btnTxt) btnTxt.innerText = "INSTALL APP ON DEVICE";
-        if (sbBtn) sbBtn.classList.remove('opacity-50');
-      }
-    }
-
-    function triggerAppInstall() {
-      if (deferredInstallPrompt) {
-        deferredInstallPrompt.prompt();
-        deferredInstallPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            deferredInstallPrompt = null;
-          }
-        });
-      } else {
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (isIOS) {
-          alert("To install on iPhone/iPad:\n1. Tap the Share button (square with arrow) at the bottom.\n2. Select 'Add to Home Screen'.");
-        } else {
-          alert("To install:\n1. Look for the Install icon in your browser's address bar.\n2. Or click your browser's three-dot menu and select 'Install app' or 'Add to Home screen'.");
-        }
-      }
-    }
-
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
-    function renderMath(targetElement) {
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        try {
-          const targets = targetElement ? [targetElement] : undefined;
-          window.MathJax.typesetPromise(targets).catch(() => {});
-        } catch (e) {}
-      }
-    }
-
-    function extractChapterNumber(str) {
-      if (!str) return '';
-      const match = String(str).match(/(?:ch|chapter|પ્રકરણ)?\s*(\d+)/i);
-      return match ? match[1] : '';
-    }
-
-    function formatInlineOptionsHtml(optionsText) {
-      if (!optionsText || !optionsText.trim()) return '';
-      const clean = optionsText.trim();
-      const hasLabels = /\(A\)|\(B\)|\(C\)|\(D\)/i.test(clean);
-      if (hasLabels) {
-        const parts = clean.split(/(?=\([A-D]\))/i).map(s => s.trim()).filter(Boolean);
-        if (parts.length >= 2) {
-          return `<div class="mcq-options-inline text-slate-800 text-[11px] font-sans font-medium">` +
-            parts.map(p => `<span class="mcq-option-col">${p}</span>`).join('') +
-          `</div>`;
-        }
-      }
-      return `<div class="mcq-options-inline text-slate-800 text-[11px] font-sans font-medium"><span class="mcq-option-col">${clean}</span></div>`;
-    }
+    const APP_STORAGE_KEY_Q = "BAI_AVABAI_QUESTIONS_SAFE_V18";
+    const APP_STORAGE_KEY_PAPER = "BAI_AVABAI_LIVE_PAPER_SAFE_V18";
+    const APP_STORAGE_KEY_ARCHIVE = "BAI_AVABAI_ARCHIVES_SAFE_V18";
+    const APP_STORAGE_KEY_MATRIX = "BAI_AVABAI_MATRIX_SAFE_V18";
+    const APP_STORAGE_KEY_SAVED_BLUEPRINTS = "BAI_AVABAI_SAVED_BLUEPRINTS_SAFE_V18";
+    const APP_AUTH_CACHE_KEY = "BAI_AVABAI_AUTH_CACHE_V18";
+    const APP_USERS_REGISTRY_KEY = "BAI_AVABAI_USERS_REGISTRY_V18";
+    const APP_STORAGE_KEY_AVATAR = "KT_TEACHER_AVATAR_SAFE_V1";
+    const APP_STORAGE_KEY_LOGO = "KT_MATHS_APP_LOGO_SAFE_V1";
 
     const GSEB_SUBJECTS = {
       "Std 9": ["Mathematics", "Science & Technology", "Social Science", "Gujarati", "English", "Hindi", "Sanskrit"],
@@ -1671,18 +1436,6 @@
       "Std 11 Arts": ["Psychology", "Sociology", "Philosophy", "Geography", "History"],
       "Std 12 Arts": ["Psychology", "Sociology", "Philosophy", "Geography", "History"]
     };
-
-    const APP_STORAGE_KEY_Q = "BAI_AVABAI_QUESTIONS_SAFE_V18";
-    const APP_STORAGE_KEY_PAPER = "BAI_AVABAI_LIVE_PAPER_SAFE_V18";
-    const APP_STORAGE_KEY_ARCHIVE = "BAI_AVABAI_ARCHIVES_SAFE_V18";
-    const APP_STORAGE_KEY_MATRIX = "BAI_AVABAI_MATRIX_SAFE_V18";
-    const APP_STORAGE_KEY_SAVED_BLUEPRINTS = "BAI_AVABAI_SAVED_BLUEPRINTS_SAFE_V18";
-    const APP_AUTH_CACHE_KEY = "BAI_AVABAI_AUTH_CACHE_V18";
-    const APP_USERS_REGISTRY_KEY = "BAI_AVABAI_USERS_REGISTRY_V18";
-
-    /* KEYS FOR PERSISTENT IMAGES */
-    const APP_STORAGE_KEY_AVATAR = "KT_TEACHER_AVATAR_SAFE_V1";
-    const APP_STORAGE_KEY_LOGO = "KT_MATHS_APP_LOGO_SAFE_V1";
 
     const DEFAULT_BLUEPRINT_ROWS = [
       { id: 'bp-1', std: 'Std 10', sub: 'Mathematics (Standard - 12)', name: 'Ch 1 - Real Numbers', m1_wo: 2, m1_with: 2, m2_wo: 1, m2_with: 2, m3_wo: 1, m3_with: 1, m4_wo: 0, m4_with: 0, c1_wo: 0, c1_with: 0, c2_wo: 0, c2_with: 0 },
@@ -1774,48 +1527,107 @@
       parsedBulkItems: []
     };
 
-    window.addEventListener('DOMContentLoaded', () => {
-      try {
-        loadPersistentImages();
-        loadStorageData();
-        initSubjectDropdowns();
-        checkCachedSession();
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderMath(targetElement) {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        try {
+          const targets = targetElement ? [targetElement] : undefined;
+          window.MathJax.typesetPromise(targets).catch(() => {});
+        } catch (e) {}
+      }
+    }
+
+    function extractChapterNumber(str) {
+      if (!str) return '';
+      const match = String(str).match(/(?:ch|chapter|પ્રકરણ)?\s*(\d+)/i);
+      return match ? match[1] : '';
+    }
+
+    function formatInlineOptionsHtml(optionsText) {
+      if (!optionsText || !optionsText.trim()) return '';
+      const clean = optionsText.trim();
+      const hasLabels = /\(A\)|\(B\)|\(C\)|\(D\)/i.test(clean);
+      if (hasLabels) {
+        const parts = clean.split(/(?=\([A-D]\))/i).map(s => s.trim()).filter(Boolean);
+        if (parts.length >= 2) {
+          return `<div class="mcq-options-inline text-slate-800 text-[11px] font-sans font-medium">` +
+            parts.map(p => `<span class="mcq-option-col">${p}</span>`).join('') +
+            `</div>`;
+        }
+      }
+      return `<div class="mcq-options-inline text-slate-800 text-[11px] font-sans font-medium"><span class="mcq-option-col">${clean}</span></div>`;
+    }
+
+    function openModal(modalId) {
+      const el = document.getElementById(modalId);
+      if (el) {
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+        if (window.lucide && lucide.createIcons) lucide.createIcons();
+      }
+    }
+
+    function closeModal(modalId) {
+      const el = document.getElementById(modalId);
+      if (el) {
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+      }
+    }
+
+    function toggleSidebar() {
+      const sb = document.getElementById('app-sidebar');
+      if (sb) sb.classList.toggle('-translate-x-full');
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      const target = document.getElementById(tabId);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-600', 'text-white', 'shadow');
+        btn.classList.add('text-blue-100', 'hover:bg-brand-800', 'hover:text-white');
+      });
+
+      const activeNavId = 'nav-' + tabId.replace('tab-', '');
+      const activeNav = document.getElementById(activeNavId);
+      if (activeNav) {
+        activeNav.classList.remove('text-blue-100', 'hover:bg-brand-800');
+        activeNav.classList.add('bg-blue-600', 'text-white', 'shadow');
+      }
+
+      const titles = {
+        'tab-generator': 'Question Paper Workspace',
+        'tab-gujcet': 'GUJCET Examination Workspace (40 MCQs)',
+        'tab-blueprint': 'Chapterwise Blueprint Allocation Matrix',
+        'tab-qbank': 'Question Bank Management',
+        'tab-archive': 'Saved Papers Archive'
+      };
+      const titleEl = document.getElementById('active-tab-title');
+      if (titleEl && titles[tabId]) titleEl.innerText = titles[tabId];
+
+      const sb = document.getElementById('app-sidebar');
+      if (sb && window.innerWidth < 768) sb.classList.add('-translate-x-full');
+
+      if (tabId === 'tab-blueprint') {
         renderMatrixTable();
         renderSavedBlueprintsList();
-        filterQuestionBank();
-        renderLivePaper();
-        renderGujcetPaperList();
-        renderArchiveList();
-      } catch (err) {
-        console.error("Initialization error:", err);
       }
+
       if (window.lucide && lucide.createIcons) lucide.createIcons();
-    });
-
-    /* FUNCTION: LOAD PERSISTENT AVATAR AND KT MATHS LOGO ACROSS APP */
-    function loadPersistentImages() {
-      const savedAvatar = localStorage.getItem(APP_STORAGE_KEY_AVATAR);
-      if (savedAvatar) {
-        const avatarEl = document.getElementById('user-avatar');
-        if (avatarEl) avatarEl.src = savedAvatar;
-      }
-
-      const savedLogo = localStorage.getItem(APP_STORAGE_KEY_LOGO);
-      if (savedLogo) {
-        applyLogoEverywhere(savedLogo);
-      }
     }
 
-    function applyLogoEverywhere(logoDataUrl) {
-      document.querySelectorAll('.kt-logo-img').forEach(img => {
-        img.src = logoDataUrl;
-      });
-      const favicon = document.getElementById('app-favicon');
-      if (favicon) favicon.href = logoDataUrl;
-      const appleTouch = document.getElementById('apple-touch-icon');
-      if (appleTouch) appleTouch.href = logoDataUrl;
-    }
-
+    /* AUTHENTICATION SYSTEM */
     function hideAuthGate() {
       const gate = document.getElementById('auth-gate');
       if (gate) {
@@ -1830,20 +1642,6 @@
         gate.classList.remove('hidden');
         gate.classList.add('flex');
       }
-    }
-
-    function checkCachedSession() {
-      const cached = localStorage.getItem(APP_AUTH_CACHE_KEY);
-      if (cached) {
-        try {
-          const user = JSON.parse(cached);
-          if (user && user.email) {
-            completeLoginSuccess(user);
-            return;
-          }
-        } catch (e) {}
-      }
-      showAuthGate();
     }
 
     function switchGateTab(tab) {
@@ -1878,6 +1676,18 @@
       box.className = isSuccess 
         ? "p-2.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 block" 
         : "p-2.5 rounded-lg text-xs font-semibold bg-rose-50 text-rose-800 border border-rose-200 block";
+    }
+
+    function completeLoginSuccess(userObj) {
+      state.currentUser = userObj;
+      localStorage.setItem(APP_AUTH_CACHE_KEY, JSON.stringify(userObj));
+      hideAuthGate();
+
+      const nameEl = document.getElementById('logged-user-name');
+      if (nameEl && userObj.displayName) {
+        nameEl.innerText = userObj.displayName.toUpperCase();
+      }
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
     }
 
     function handleSimpleAuthSubmit(e) {
@@ -1931,28 +1741,13 @@
           }
         }
 
+        // First login default registration
         const autoUser = { email, password, displayName: fullName };
         users.push(autoUser);
         localStorage.setItem(APP_USERS_REGISTRY_KEY, JSON.stringify(users));
         completeLoginSuccess(autoUser);
         return false;
       }
-    }
-
-    function completeLoginSuccess(userObj) {
-      state.currentUser = userObj;
-      localStorage.setItem(APP_AUTH_CACHE_KEY, JSON.stringify(userObj));
-      hideAuthGate();
-
-      const nameEl = document.getElementById('logged-user-name');
-      if (nameEl && userObj.displayName) {
-        nameEl.innerText = userObj.displayName.toUpperCase();
-      }
-
-      if (window.syncFromCloudSilently) {
-        window.syncFromCloudSilently();
-      }
-      if (window.lucide && lucide.createIcons) lucide.createIcons();
     }
 
     function bypassDemoLogin() {
@@ -2016,66 +1811,21 @@
       document.getElementById('gate-user-email').value = email;
     }
 
-    function openModal(modalId) {
-      const el = document.getElementById(modalId);
-      if (el) {
-        el.classList.remove('hidden');
-        el.classList.add('flex');
-        if (window.lucide && lucide.createIcons) lucide.createIcons();
+    function checkCachedSession() {
+      const cached = localStorage.getItem(APP_AUTH_CACHE_KEY);
+      if (cached) {
+        try {
+          const user = JSON.parse(cached);
+          if (user && user.email) {
+            completeLoginSuccess(user);
+            return;
+          }
+        } catch (e) {}
       }
+      showAuthGate();
     }
 
-    function closeModal(modalId) {
-      const el = document.getElementById(modalId);
-      if (el) {
-        el.classList.add('hidden');
-        el.classList.remove('flex');
-      }
-    }
-
-    function toggleSidebar() {
-      const sb = document.getElementById('app-sidebar');
-      if (sb) sb.classList.toggle('-translate-x-full');
-    }
-
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
-      const target = document.getElementById(tabId);
-      if (target) target.classList.remove('hidden');
-
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('bg-blue-600', 'text-white', 'shadow');
-        btn.classList.add('text-blue-100', 'hover:bg-brand-800', 'hover:text-white');
-      });
-
-      const activeNavId = 'nav-' + tabId.replace('tab-', '');
-      const activeNav = document.getElementById(activeNavId);
-      if (activeNav) {
-        activeNav.classList.remove('text-blue-100', 'hover:bg-brand-800');
-        activeNav.classList.add('bg-blue-600', 'text-white', 'shadow');
-      }
-
-      const titles = {
-        'tab-generator': 'Question Paper Workspace',
-        'tab-gujcet': 'GUJCET Examination Workspace (40 MCQs)',
-        'tab-blueprint': 'Chapterwise Blueprint Allocation Matrix',
-        'tab-qbank': 'Question Bank Management',
-        'tab-archive': 'Saved Papers Archive'
-      };
-      const titleEl = document.getElementById('active-tab-title');
-      if (titleEl && titles[tabId]) titleEl.innerText = titles[tabId];
-
-      const sb = document.getElementById('app-sidebar');
-      if (sb && window.innerWidth < 768) sb.classList.add('-translate-x-full');
-
-      if (tabId === 'tab-blueprint') {
-        renderMatrixTable();
-        renderSavedBlueprintsList();
-      }
-
-      if (window.lucide && lucide.createIcons) lucide.createIcons();
-    }
-
+    /* STORAGE & LOCAL DATA */
     function loadStorageData() {
       const storedQ = localStorage.getItem(APP_STORAGE_KEY_Q);
       state.questions = storedQ ? JSON.parse(storedQ) : DEFAULT_QUESTIONS;
@@ -2114,11 +1864,11 @@
     function persistQuestions() {
       updateQuestionCountBadge();
       renderMatrixTable();
-      if (window.triggerSilentCloudSave) {
-        window.triggerSilentCloudSave();
-      } else {
-        localStorage.setItem(APP_STORAGE_KEY_Q, JSON.stringify(state.questions));
-      }
+      localStorage.setItem(APP_STORAGE_KEY_Q, JSON.stringify(state.questions));
+      localStorage.setItem(APP_STORAGE_KEY_MATRIX, JSON.stringify(state.blueprintRows));
+      localStorage.setItem(APP_STORAGE_KEY_SAVED_BLUEPRINTS, JSON.stringify(state.savedBlueprints));
+      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+      localStorage.setItem(APP_STORAGE_KEY_ARCHIVE, JSON.stringify(state.archivedPapers));
     }
 
     function updateQuestionCountBadge() {
@@ -2170,21 +1920,6 @@
             applyLogoEverywhere(imported.logoImg);
           }
 
-          state.blueprintRows.forEach(r => {
-            if (r.m1_wo === undefined) r.m1_wo = r.m1 || 0;
-            if (r.m1_with === undefined) r.m1_with = r.m1 || 0;
-            if (r.m2_wo === undefined) r.m2_wo = r.m2 || 0;
-            if (r.m2_with === undefined) r.m2_with = r.m2 || 0;
-            if (r.m3_wo === undefined) r.m3_wo = r.m3 || 0;
-            if (r.m3_with === undefined) r.m3_with = r.m3 || 0;
-            if (r.m4_wo === undefined) r.m4_wo = r.m4 || 0;
-            if (r.m4_with === undefined) r.m4_with = r.m4 || 0;
-            if (r.c1_wo === undefined) r.c1_wo = r.c1 || 0;
-            if (r.c1_with === undefined) r.c1_with = r.c1 || 0;
-            if (r.c2_wo === undefined) r.c2_wo = r.c2 || 0;
-            if (r.c2_with === undefined) r.c2_with = r.c2 || 0;
-          });
-
           persistQuestions();
           renderMatrixTable();
           renderSavedBlueprintsList();
@@ -2193,11 +1928,60 @@
           renderArchiveList();
           alert('Backup restored successfully!');
         } catch (err) {
-          alert('Invalid JSON file.');
+          alert('Invalid JSON file format.');
         }
       };
       reader.readAsText(file);
       event.target.value = '';
+    }
+
+    function loadPersistentImages() {
+      const savedAvatar = localStorage.getItem(APP_STORAGE_KEY_AVATAR);
+      if (savedAvatar) {
+        const avatarEl = document.getElementById('user-avatar');
+        if (avatarEl) avatarEl.src = savedAvatar;
+      }
+
+      const savedLogo = localStorage.getItem(APP_STORAGE_KEY_LOGO);
+      if (savedLogo) {
+        applyLogoEverywhere(savedLogo);
+      }
+    }
+
+    function applyLogoEverywhere(logoDataUrl) {
+      document.querySelectorAll('.kt-logo-img').forEach(img => {
+        img.src = logoDataUrl;
+      });
+      const favicon = document.getElementById('app-favicon');
+      if (favicon) favicon.href = logoDataUrl;
+      const appleTouch = document.getElementById('apple-touch-icon');
+      if (appleTouch) appleTouch.href = logoDataUrl;
+    }
+
+    function handleLocalPhoto(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const imgData = evt.target.result;
+          document.getElementById('user-avatar').src = imgData;
+          localStorage.setItem(APP_STORAGE_KEY_AVATAR, imgData);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function handleAppLogoUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const logoData = evt.target.result;
+          localStorage.setItem(APP_STORAGE_KEY_LOGO, logoData);
+          applyLogoEverywhere(logoData);
+        };
+        reader.readAsDataURL(file);
+      }
     }
 
     function initSubjectDropdowns() {
@@ -2233,6 +2017,7 @@
       });
     }
 
+    /* BLUEPRINT MATRIX FUNCTIONS */
     function getChapterBankBreakdown(row) {
       const filterStdEl = document.getElementById('matrix-filter-std');
       const filterSubEl = document.getElementById('matrix-filter-sub');
@@ -2259,19 +2044,12 @@
         return false;
       });
 
-      const m1Count = matched.filter(q => parseInt(q.marks) === 1).length;
-      const m2Count = matched.filter(q => parseInt(q.marks) === 2).length;
-      const m3Count = matched.filter(q => parseInt(q.marks) === 3).length;
-      const m4Count = matched.filter(q => parseInt(q.marks) === 4).length;
-      const otherCount = matched.filter(q => ![1, 2, 3, 4].includes(parseInt(q.marks))).length;
-
       return {
         total: matched.length,
-        m1: m1Count,
-        m2: m2Count,
-        m3: m3Count,
-        m4: m4Count,
-        other: otherCount
+        m1: matched.filter(q => parseInt(q.marks) === 1).length,
+        m2: matched.filter(q => parseInt(q.marks) === 2).length,
+        m3: matched.filter(q => parseInt(q.marks) === 3).length,
+        m4: matched.filter(q => parseInt(q.marks) === 4).length
       };
     }
 
@@ -2379,63 +2157,46 @@
               <span class="px-1 py-0.2 rounded bg-slate-100 text-slate-700">4M:${breakdown.m4}</span>
             </div>
           </td>
-
-          <!-- 1 MARK (W/O & WITH) -->
           <td class="p-1 text-center bg-blue-50/20">
             <input type="number" min="0" value="${m1_wo}" onchange="updateMatrixRow('${row.id}', 'm1_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-slate-300">
           </td>
           <td class="p-1 text-center border-r border-slate-200 bg-blue-100/30">
             <input type="number" min="0" value="${m1_with}" onchange="updateMatrixRow('${row.id}', 'm1_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-blue-300 text-blue-900 bg-white">
           </td>
-
-          <!-- 2 MARKS (W/O & WITH) -->
           <td class="p-1 text-center bg-sky-50/20">
             <input type="number" min="0" value="${m2_wo}" onchange="updateMatrixRow('${row.id}', 'm2_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-slate-300">
           </td>
           <td class="p-1 text-center border-r border-slate-200 bg-sky-100/30">
             <input type="number" min="0" value="${m2_with}" onchange="updateMatrixRow('${row.id}', 'm2_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-sky-300 text-sky-900 bg-white">
           </td>
-
-          <!-- 3 MARKS (W/O & WITH) -->
           <td class="p-1 text-center bg-cyan-50/20">
             <input type="number" min="0" value="${m3_wo}" onchange="updateMatrixRow('${row.id}', 'm3_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-slate-300">
           </td>
           <td class="p-1 text-center border-r border-slate-200 bg-cyan-100/30">
             <input type="number" min="0" value="${m3_with}" onchange="updateMatrixRow('${row.id}', 'm3_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-cyan-300 text-cyan-900 bg-white">
           </td>
-
-          <!-- 4 MARKS (W/O & WITH) -->
           <td class="p-1 text-center bg-teal-50/20">
             <input type="number" min="0" value="${m4_wo}" onchange="updateMatrixRow('${row.id}', 'm4_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-slate-300">
           </td>
           <td class="p-1 text-center border-r border-slate-200 bg-teal-100/30">
             <input type="number" min="0" value="${m4_with}" onchange="updateMatrixRow('${row.id}', 'm4_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-teal-300 text-teal-900 bg-white">
           </td>
-
-          <!-- CUSTOM 1 (W/O & WITH) -->
           <td class="p-1 text-center bg-purple-50/20">
             <input type="number" min="0" value="${c1_wo}" onchange="updateMatrixRow('${row.id}', 'c1_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-purple-200 text-purple-900 bg-white">
           </td>
           <td class="p-1 text-center border-r border-slate-200 bg-purple-100/30">
             <input type="number" min="0" value="${c1_with}" onchange="updateMatrixRow('${row.id}', 'c1_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-purple-400 text-purple-950 bg-white">
           </td>
-
-          <!-- CUSTOM 2 (W/O & WITH) -->
           <td class="p-1 text-center bg-indigo-50/20">
             <input type="number" min="0" value="${c2_wo}" onchange="updateMatrixRow('${row.id}', 'c2_wo', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-semibold text-xs border-indigo-200 text-indigo-900 bg-white">
           </td>
           <td class="p-1 text-center border-r border-slate-200 bg-indigo-100/30">
             <input type="number" min="0" value="${c2_with}" onchange="updateMatrixRow('${row.id}', 'c2_with', this.value)" class="w-10 text-center border rounded p-1 mx-auto block font-bold text-xs border-indigo-400 text-indigo-950 bg-white">
           </td>
-
-          <!-- TOTAL QS: W/O & WITH -->
           <td class="p-1 text-center font-mono font-bold bg-amber-50 text-amber-900">${totalQNoOpt}</td>
           <td class="p-1 text-center font-mono font-black border-r border-slate-200 bg-amber-100/70 text-amber-950">${totalQWithOpt}</td>
-
-          <!-- TOTAL MARKS: W/O & WITH -->
           <td class="p-1 text-center font-mono font-bold bg-emerald-50 text-emerald-900">${totalMNoOpt}M</td>
           <td class="p-1 text-center font-mono font-black border-r border-slate-200 bg-emerald-100/70 text-emerald-950">${totalMWithOpt}M</td>
-
           <td class="p-1 text-center no-print">
             <button type="button" onclick="deleteMatrixRow('${row.id}')" class="text-rose-600 hover:text-rose-800 p-1 cursor-pointer">
               <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
@@ -2503,29 +2264,18 @@
 
       const filtered = state.blueprintRows.filter(r => (!r.std || r.std === activeStd) && (!r.sub || r.sub === activeSub));
 
-      let s1_wo = 0, s1_with = 0;
-      let s2_wo = 0, s2_with = 0;
-      let s3_wo = 0, s3_with = 0;
-      let s4_wo = 0, s4_with = 0;
-      let sc1_wo = 0, sc1_with = 0;
-      let sc2_wo = 0, sc2_with = 0;
-
-      let totalQNoOpt = 0, totalQWithOpt = 0;
-      let totalMNoOpt = 0, totalMWithOpt = 0;
+      let s1_wo = 0, s1_with = 0, s2_wo = 0, s2_with = 0;
+      let s3_wo = 0, s3_with = 0, s4_wo = 0, s4_with = 0;
+      let sc1_wo = 0, sc1_with = 0, sc2_wo = 0, sc2_with = 0;
+      let totalQNoOpt = 0, totalQWithOpt = 0, totalMNoOpt = 0, totalMWithOpt = 0;
 
       filtered.forEach(r => {
-        const q1_wo = r.m1_wo || 0;
-        const q1_with = r.m1_with || 0;
-        const q2_wo = r.m2_wo || 0;
-        const q2_with = r.m2_with || 0;
-        const q3_wo = r.m3_wo || 0;
-        const q3_with = r.m3_with || 0;
-        const q4_wo = r.m4_wo || 0;
-        const q4_with = r.m4_with || 0;
-        const qc1_wo = r.c1_wo || 0;
-        const qc1_with = r.c1_with || 0;
-        const qc2_wo = r.c2_wo || 0;
-        const qc2_with = r.c2_with || 0;
+        const q1_wo = r.m1_wo || 0, q1_with = r.m1_with || 0;
+        const q2_wo = r.m2_wo || 0, q2_with = r.m2_with || 0;
+        const q3_wo = r.m3_wo || 0, q3_with = r.m3_with || 0;
+        const q4_wo = r.m4_wo || 0, q4_with = r.m4_with || 0;
+        const qc1_wo = r.c1_wo || 0, qc1_with = r.c1_with || 0;
+        const qc2_wo = r.c2_wo || 0, qc2_with = r.c2_with || 0;
 
         s1_wo += q1_wo; s1_with += q1_with;
         s2_wo += q2_wo; s2_with += q2_with;
@@ -2534,16 +2284,11 @@
         sc1_wo += qc1_wo; sc1_with += qc1_with;
         sc2_wo += qc2_wo; sc2_with += qc2_with;
 
-        const rowQNo = q1_wo + q2_wo + q3_wo + q4_wo + qc1_wo + qc2_wo;
-        const rowQWith = q1_with + q2_with + q3_with + q4_with + qc1_with + qc2_with;
+        totalQNoOpt += (q1_wo + q2_wo + q3_wo + q4_wo + qc1_wo + qc2_wo);
+        totalQWithOpt += (q1_with + q2_with + q3_with + q4_with + qc1_with + qc2_with);
 
-        const rowMNo = (q1_wo * 1) + (q2_wo * 2) + (q3_wo * 3) + (q4_wo * 4) + (qc1_wo * c1Weight) + (qc2_wo * c2Weight);
-        const rowMWith = (q1_with * 1) + (q2_with * 2) + (q3_with * 3) + (q4_with * 4) + (qc1_with * c1Weight) + (qc2_with * c2Weight);
-
-        totalQNoOpt += rowQNo;
-        totalQWithOpt += rowQWith;
-        totalMNoOpt += rowMNo;
-        totalMWithOpt += rowMWith;
+        totalMNoOpt += (q1_wo * 1) + (q2_wo * 2) + (q3_wo * 3) + (q4_wo * 4) + (qc1_wo * c1Weight) + (qc2_wo * c2Weight);
+        totalMWithOpt += (q1_with * 1) + (q2_with * 2) + (q3_with * 3) + (q4_with * 4) + (qc1_with * c1Weight) + (qc2_with * c2Weight);
       });
 
       const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
@@ -2559,7 +2304,6 @@
       setVal('foot-c1-with', sc1_with);
       setVal('foot-c2-wo', sc2_wo);
       setVal('foot-c2-with', sc2_with);
-
       setVal('foot-q-no-opt', totalQNoOpt + " Qs");
       setVal('foot-q-with-opt', totalQWithOpt + " Qs");
       setVal('foot-m-no-opt', totalMNoOpt + " M");
@@ -2586,11 +2330,7 @@
       const bpRecord = {
         id: 'saved-bp-' + Date.now(),
         date: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        std: std,
-        sub: sub,
-        med: med,
-        c1Weight: c1Weight,
-        c2Weight: c2Weight,
+        std, sub, med, c1Weight, c2Weight,
         totalMarksWo: totalMarksWithoutOpt,
         totalMarksWith: totalMarksWithOpt,
         rows: JSON.parse(JSON.stringify(filtered))
@@ -2819,6 +2559,747 @@
       closeModal('modal-add-chapter');
     }
 
+    /* QUESTION BANK & PAPER WORKSPACE */
+    function renderLivePaper() {
+      const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+      const getVal = (id, def) => { const el = document.getElementById(id); return el ? el.value : def; };
+
+      setTxt('view-school-name', getVal('paper-inst-name', 'BAI AVABAI HIGHSCHOOL, VALSAD'));
+      setTxt('view-exam-title', getVal('paper-exam-title', 'FIRST TERM EXAMINATION'));
+      setTxt('view-std', getVal('paper-std', 'Std 10'));
+      setTxt('view-sub', getVal('paper-sub', 'Mathematics'));
+      setTxt('view-medium', getVal('paper-medium', 'Gujarati'));
+      setTxt('view-time', getVal('paper-time', '2 Hours'));
+      setTxt('view-marks', getVal('paper-marks', '50'));
+      setTxt('view-instructions', getVal('paper-instructions', '1. All questions compulsory.'));
+
+      const container = document.getElementById('paper-sections-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (state.livePaperQuestions.length === 0) {
+        container.innerHTML = `<p class="text-slate-400 text-center py-10 italic">No questions added to current exam paper yet.</p>`;
+        return;
+      }
+
+      const sections = ['SECTION A', 'SECTION B', 'SECTION C', 'SECTION D'];
+      let questionIndex = 1;
+
+      sections.forEach(secName => {
+        const secQuestions = state.livePaperQuestions.filter(q => (q.section || 'SECTION A') === secName);
+        if (secQuestions.length === 0) return;
+
+        const secDiv = document.createElement('div');
+        secDiv.className = "space-y-3 pt-2";
+        secDiv.innerHTML = `
+          <div class="border-y border-slate-900 py-1 font-bold text-center uppercase tracking-wider text-xs bg-slate-50 flex justify-between px-3">
+            <span>${secName}</span>
+            <span>(${secName === 'SECTION A' ? '1 Mark Each' : (secName === 'SECTION B' ? '2 Marks Each' : (secName === 'SECTION C' ? '3 Marks Each' : 'Detailed Questions'))})</span>
+          </div>
+          <div class="space-y-3.5 pt-1" id="sec-list-${secName.replace(' ', '-')}"></div>
+        `;
+
+        const listDiv = secDiv.querySelector(`#sec-list-${secName.replace(' ', '-')}`);
+
+        secQuestions.forEach(q => {
+          const qBox = document.createElement('div');
+          qBox.className = "flex items-start justify-between text-xs leading-relaxed group";
+          qBox.innerHTML = `
+            <div class="flex-1 pr-3">
+              <p class="font-normal text-slate-900">
+                <span class="font-bold mr-1.5 font-mono">Q.${questionIndex}.</span>
+                <span>${q.text}</span>
+              </p>
+              ${q.options ? formatInlineOptionsHtml(q.options) : ''}
+              <div class="answer-key-box hidden mt-1.5 p-2 bg-emerald-50 border border-emerald-300 rounded text-[11px] font-bold text-emerald-900">
+                Ans: ${q.answer || 'Not provided'}
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="font-bold font-mono text-slate-800">[${q.marks}]</span>
+
+              <div class="no-print flex items-center space-x-1 opacity-80 group-hover:opacity-100 transition">
+                <button type="button" onclick="swapPaperQuestion('${q.paperItemId || q.id}')" title="Swap Question" class="p-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded cursor-pointer">
+                  <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                </button>
+                <button type="button" onclick="openEditModal('${q.paperItemId || q.id}', 'paper')" title="Edit Question" class="p-1 bg-blue-50 hover:bg-blue-100 text-brand-800 border border-blue-300 rounded cursor-pointer">
+                  <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                </button>
+                <button type="button" onclick="removePaperQuestion('${q.paperItemId || q.id}')" title="Remove" class="p-1 text-rose-600 hover:bg-rose-100 rounded cursor-pointer">
+                  <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          `;
+          listDiv.appendChild(qBox);
+          questionIndex++;
+        });
+
+        container.appendChild(secDiv);
+      });
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+      renderMath(container);
+    }
+
+    function quickAddQuestionToPaper() {
+      const sec = document.getElementById('quick-section').value;
+      const text = document.getElementById('quick-q-text').value.trim();
+      const options = document.getElementById('quick-q-options').value.trim();
+      const ans = document.getElementById('quick-q-ans').value.trim();
+      const marks = parseInt(document.getElementById('quick-q-marks').value) || 1;
+
+      if (!text) {
+        alert('Please enter question statement.');
+        return;
+      }
+
+      const newQ = {
+        id: 'q-' + Date.now(),
+        paperItemId: 'p-' + Date.now(),
+        bankType: 'GENERAL',
+        std: document.getElementById('paper-std').value,
+        subject: document.getElementById('paper-sub').value,
+        chapter: 'General Topic',
+        medium: document.getElementById('paper-medium').value,
+        section: sec,
+        marks, text, answer: ans, options
+      };
+
+      state.livePaperQuestions.push(newQ);
+      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+      renderLivePaper();
+
+      document.getElementById('quick-q-text').value = '';
+      document.getElementById('quick-q-options').value = '';
+      document.getElementById('quick-q-ans').value = '';
+    }
+
+    function removePaperQuestion(itemId) {
+      state.livePaperQuestions = state.livePaperQuestions.filter(q => (q.paperItemId || q.id) !== itemId);
+      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+      renderLivePaper();
+    }
+
+    function swapPaperQuestion(itemId) {
+      const targetIndex = state.livePaperQuestions.findIndex(q => (q.paperItemId || q.id) === itemId);
+      if (targetIndex === -1) return;
+      const targetQ = state.livePaperQuestions[targetIndex];
+
+      const candidates = state.questions.filter(q => 
+        q.id !== targetQ.id &&
+        parseInt(q.marks) === parseInt(targetQ.marks) &&
+        q.subject === targetQ.subject &&
+        !state.livePaperQuestions.some(p => p.id === q.id)
+      );
+
+      if (candidates.length === 0) {
+        alert('No alternative question found in bank with identical subject and marks to swap with!');
+        return;
+      }
+
+      const randomCandidate = candidates[Math.floor(Math.random() * candidates.length)];
+      state.livePaperQuestions[targetIndex] = {
+        ...randomCandidate,
+        paperItemId: targetQ.paperItemId || ('p-' + Date.now()),
+        section: targetQ.section
+      };
+      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+      renderLivePaper();
+    }
+
+    function switchBankType(type) {
+      state.currentBankType = type;
+      const genBtn = document.getElementById('bank-toggle-general');
+      const gujBtn = document.getElementById('bank-toggle-gujcet');
+      const filterStd = document.getElementById('filter-std');
+
+      if (type === 'GUJCET') {
+        if (gujBtn) gujBtn.className = "px-3 py-1 rounded bg-brand-900 text-white shadow font-black cursor-pointer";
+        if (genBtn) genBtn.className = "px-3 py-1 rounded text-slate-700 hover:text-brand-900 font-bold cursor-pointer";
+        if (filterStd) {
+          filterStd.value = 'GUJCET';
+          syncSubjectDropdown('filter-std', 'filter-sub');
+        }
+      } else {
+        if (genBtn) genBtn.className = "px-3 py-1 rounded bg-brand-900 text-white shadow font-black cursor-pointer";
+        if (gujBtn) gujBtn.className = "px-3 py-1 rounded text-slate-700 hover:text-brand-900 font-bold cursor-pointer";
+        if (filterStd) {
+          if (filterStd.value === 'GUJCET') filterStd.value = 'Std 10';
+          syncSubjectDropdown('filter-std', 'filter-sub');
+        }
+      }
+      filterQuestionBank();
+    }
+
+    function filterQuestionBank() {
+      const stdEl = document.getElementById('filter-std');
+      const subEl = document.getElementById('filter-sub');
+      const medEl = document.getElementById('filter-med');
+      const keyEl = document.getElementById('filter-keyword');
+      if (!stdEl || !subEl || !medEl) return;
+
+      const stdVal = stdEl.value;
+      const subVal = subEl.value;
+      const medVal = medEl.value;
+      const keyword = (keyEl ? keyEl.value : '').toLowerCase();
+
+      const filtered = state.questions.filter(q => {
+        const isGujcet = q.bankType === 'GUJCET' || q.std === 'GUJCET';
+        const matchesBank = state.currentBankType === 'GUJCET' ? isGujcet : !isGujcet;
+        const matchesStd = (stdVal === 'ALL' || q.std === stdVal);
+        const matchesSub = (subVal === 'ALL' || q.subject === subVal);
+        const matchesMed = (medVal === 'ALL' || q.medium === medVal);
+        const matchesKey = !keyword || (q.text && q.text.toLowerCase().includes(keyword));
+        return matchesBank && matchesStd && matchesSub && matchesMed && matchesKey;
+      });
+
+      const container = document.getElementById('qbank-items-container');
+      const indEl = document.getElementById('qbank-count-indicator');
+      if (indEl) indEl.innerText = `Showing ${filtered.length} Questions`;
+      if (!container) return;
+
+      container.innerHTML = '';
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-400 text-xs">No matching questions in bank.</div>`;
+        return;
+      }
+
+      filtered.forEach(q => {
+        const div = document.createElement('div');
+        div.className = "p-4 hover:bg-slate-50 transition flex items-start justify-between gap-4";
+        div.innerHTML = `
+          <div class="space-y-1.5 flex-1">
+            <div class="flex flex-wrap items-center gap-1.5 text-[10px]">
+              <span class="bg-blue-100 text-brand-900 font-bold px-2 py-0.5 rounded">${q.std}</span>
+              <span class="bg-purple-100 text-purple-900 font-semibold px-2 py-0.5 rounded">${q.subject}</span>
+              <span class="bg-slate-200 text-slate-700 font-mono font-bold px-2 py-0.5 rounded">${q.chapter}</span>
+              <span class="bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">${q.marks} Mark(s)</span>
+            </div>
+            <p class="text-xs font-semibold text-slate-900">${q.text}</p>
+            ${q.options ? formatInlineOptionsHtml(q.options) : ''}
+            <p class="text-emerald-800 font-bold text-xs">Ans: ${q.answer || 'Not provided'}</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button type="button" onclick="insertBankQuestionToPaper('${q.id}')" class="px-2.5 py-1 bg-brand-900 text-white rounded text-xs font-bold hover:bg-brand-800 cursor-pointer">Add to Paper</button>
+            <button type="button" onclick="openEditModal('${q.id}', 'bank')" class="p-1.5 text-blue-700 hover:bg-blue-100 rounded cursor-pointer" title="Edit Question">
+              <i data-lucide="edit-3" class="w-4 h-4"></i>
+            </button>
+            <button type="button" onclick="deleteBankQuestion('${q.id}')" class="p-1.5 text-rose-600 hover:bg-rose-100 rounded cursor-pointer" title="Delete">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+      renderMath(container);
+    }
+
+    function insertBankQuestionToPaper(id) {
+      const q = state.questions.find(item => item.id === id);
+      if (!q) return;
+
+      if (q.bankType === 'GUJCET' || q.std === 'GUJCET') {
+        state.gujcetPaperQuestions.push({ ...q });
+        renderGujcetPaperList();
+        alert('Question added to GUJCET Workspace!');
+      } else {
+        state.livePaperQuestions.push({ ...q, paperItemId: 'p-' + Date.now() });
+        localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+        renderLivePaper();
+        alert('Question added to live GSEB exam paper!');
+      }
+    }
+
+    function deleteBankQuestion(id) {
+      if (confirm('Delete question permanently?')) {
+        state.questions = state.questions.filter(q => q.id !== id);
+        persistQuestions();
+        filterQuestionBank();
+      }
+    }
+
+    function openAddQuestionModal() {
+      const filterStd = document.getElementById('filter-std');
+      const addStd = document.getElementById('add-q-std');
+      if (addStd) {
+        addStd.value = (filterStd && filterStd.value === 'ALL') ? 'Std 10' : (filterStd ? filterStd.value : 'Std 10');
+        syncSubjectDropdown('add-q-std', 'add-q-sub');
+      }
+      document.getElementById('add-q-text').value = '';
+      document.getElementById('add-q-options').value = '';
+      document.getElementById('add-q-ans').value = '';
+      openModal('modal-add-question');
+    }
+
+    function submitNewQuestion() {
+      const std = document.getElementById('add-q-std').value;
+      const sub = document.getElementById('add-q-sub').value;
+      const chap = document.getElementById('add-q-chap').value.trim();
+      const med = document.getElementById('add-q-med').value;
+      const marks = parseInt(document.getElementById('add-q-marks').value) || 1;
+      const text = document.getElementById('add-q-text').value.trim();
+      const options = document.getElementById('add-q-options').value.trim();
+      const ans = document.getElementById('add-q-ans').value.trim();
+
+      if (!text) {
+        alert('Please enter question statement.');
+        return;
+      }
+
+      const newQ = {
+        id: 'q-' + Date.now(),
+        bankType: std === 'GUJCET' ? 'GUJCET' : 'GENERAL',
+        std, subject: sub,
+        chapter: chap || 'Ch 1',
+        medium: med,
+        marks,
+        section: marks === 1 ? 'SECTION A' : (marks === 2 ? 'SECTION B' : (marks === 3 ? 'SECTION C' : 'SECTION D')),
+        text, answer: ans, options
+      };
+
+      state.questions.unshift(newQ);
+      persistQuestions();
+      filterQuestionBank();
+      closeModal('modal-add-question');
+    }
+
+    function openEditModal(id, origin) {
+      let q = state.questions.find(item => item.id === id);
+      if (!q) q = state.livePaperQuestions.find(item => item.id === id || item.paperItemId === id);
+      if (!q) return;
+
+      document.getElementById('edit-q-id').value = id;
+      document.getElementById('edit-q-origin').value = origin;
+      document.getElementById('edit-q-text').value = q.text || '';
+      document.getElementById('edit-q-options').value = q.options || '';
+      document.getElementById('edit-q-ans').value = q.answer || '';
+      document.getElementById('edit-q-marks').value = q.marks || 1;
+      document.getElementById('edit-q-section').value = q.section || 'SECTION A';
+      openModal('modal-edit-question');
+    }
+
+    function saveEditedQuestion() {
+      const id = document.getElementById('edit-q-id').value;
+      const text = document.getElementById('edit-q-text').value.trim();
+      const options = document.getElementById('edit-q-options').value.trim();
+      const ans = document.getElementById('edit-q-ans').value.trim();
+      const marks = parseInt(document.getElementById('edit-q-marks').value) || 1;
+      const sec = document.getElementById('edit-q-section').value;
+
+      const qBank = state.questions.find(item => item.id === id);
+      if (qBank) {
+        qBank.text = text;
+        qBank.options = options;
+        qBank.answer = ans;
+        qBank.marks = marks;
+        qBank.section = sec;
+        persistQuestions();
+      }
+
+      const qLive = state.livePaperQuestions.find(item => item.id === id || item.paperItemId === id);
+      if (qLive) {
+        qLive.text = text;
+        qLive.options = options;
+        qLive.answer = ans;
+        qLive.marks = marks;
+        qLive.section = sec;
+        localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+        renderLivePaper();
+      }
+
+      closeModal('modal-edit-question');
+    }
+
+    /* GUJCET WORKSPACE */
+    function renderGujcetPaperList() {
+      const container = document.getElementById('gujcet-paper-preview');
+      const countEl = document.getElementById('gujcet-current-count');
+      if (countEl) countEl.innerText = state.gujcetPaperQuestions.length;
+      if (!container) return;
+
+      if (state.gujcetPaperQuestions.length === 0) {
+        container.innerHTML = `<p class="text-slate-400 text-center py-8">No MCQs added yet. Click <strong>"Auto-Generate 40 MCQs from Bank"</strong> or insert questions manually.</p>`;
+        return;
+      }
+
+      let html = '<div class="space-y-3">';
+      state.gujcetPaperQuestions.forEach((q, idx) => {
+        html += `
+          <div class="p-3.5 bg-slate-50 border border-slate-300 rounded-lg flex items-start justify-between">
+            <div class="flex-1 pr-3">
+              <p class="font-bold text-slate-900 text-sm">
+                <span class="text-brand-900 mr-1.5 font-mono">Q${idx + 1}.</span>
+                <span>${q.text}</span>
+              </p>
+              ${q.options ? formatInlineOptionsHtml(q.options) : ''}
+              <p class="text-emerald-800 font-bold text-xs mt-2">Ans: ${q.answer || 'Not provided'}</p>
+            </div>
+            <button type="button" onclick="removeGujcetQuestion(${idx})" class="text-rose-600 hover:text-rose-800 p-1 font-bold cursor-pointer">×</button>
+          </div>
+        `;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+      renderMath(container);
+    }
+
+    function removeGujcetQuestion(idx) {
+      state.gujcetPaperQuestions.splice(idx, 1);
+      renderGujcetPaperList();
+    }
+
+    function addSingleGujcetMcq() {
+      const text = document.getElementById('gujcet-quick-text').value.trim();
+      const options = document.getElementById('gujcet-quick-options').value.trim();
+      const ans = document.getElementById('gujcet-quick-ans').value.trim();
+      const sub = document.getElementById('gujcet-subject').value;
+      const med = document.getElementById('gujcet-medium').value;
+
+      if (!text) {
+        alert('Please enter MCQ statement.');
+        return;
+      }
+
+      const newQ = {
+        id: 'g-mcq-' + Date.now(),
+        bankType: 'GUJCET',
+        std: 'GUJCET',
+        subject: sub,
+        chapter: 'GUJCET Practice',
+        medium: med,
+        section: 'GUJCET MCQ',
+        marks: 1,
+        text, answer: ans, options
+      };
+
+      state.gujcetPaperQuestions.push(newQ);
+      state.questions.unshift(newQ);
+      persistQuestions();
+
+      document.getElementById('gujcet-quick-text').value = '';
+      document.getElementById('gujcet-quick-options').value = '';
+      document.getElementById('gujcet-quick-ans').value = '';
+      renderGujcetPaperList();
+    }
+
+    function autoPopulateGujcet40Paper() {
+      const subEl = document.getElementById('gujcet-subject');
+      const sub = subEl ? subEl.value : 'Mathematics';
+      const available = state.questions.filter(q => q.bankType === 'GUJCET' || q.std === 'GUJCET');
+      if (available.length === 0) {
+        alert('No GUJCET questions available in bank. Please add some first.');
+        return;
+      }
+      state.gujcetPaperQuestions = available.slice(0, 40);
+      renderGujcetPaperList();
+      alert(`Loaded ${state.gujcetPaperQuestions.length} MCQs into GUJCET workspace!`);
+    }
+
+    /* ARCHIVE MANAGEMENT */
+    function savePaperToArchive() {
+      if (state.livePaperQuestions.length === 0) {
+        alert('Current paper has no questions to save.');
+        return;
+      }
+
+      const archiveItem = {
+        id: 'arch-' + Date.now(),
+        date: new Date().toLocaleDateString(),
+        school: document.getElementById('paper-inst-name').value,
+        title: document.getElementById('paper-exam-title').value,
+        std: document.getElementById('paper-std').value,
+        sub: document.getElementById('paper-sub').value,
+        med: document.getElementById('paper-medium').value,
+        marks: document.getElementById('paper-marks').value,
+        time: document.getElementById('paper-time').value,
+        questions: JSON.parse(JSON.stringify(state.livePaperQuestions))
+      };
+
+      state.archivedPapers.unshift(archiveItem);
+      persistQuestions();
+      renderArchiveList();
+      alert('Paper saved to archive!');
+    }
+
+    function renderArchiveList() {
+      const container = document.getElementById('archive-list-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (state.archivedPapers.length === 0) {
+        container.innerHTML = `<p class="col-span-full text-slate-400 text-center py-8 text-xs italic">No saved papers found in archive.</p>`;
+        return;
+      }
+
+      state.archivedPapers.forEach(item => {
+        const div = document.createElement('div');
+        div.className = "p-4 bg-slate-50 border border-slate-300 rounded-xl space-y-3 flex flex-col justify-between text-xs";
+        div.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between text-[11px] mb-1">
+              <span class="font-bold text-brand-900 bg-blue-100 px-2 py-0.5 rounded">${item.std}</span>
+              <span class="font-mono text-slate-500">${item.date}</span>
+            </div>
+            <h4 class="font-extrabold text-slate-800">${escapeHtml(item.title)}</h4>
+            <p class="text-slate-600 mt-1 font-semibold">${item.sub}</p>
+          </div>
+          <div class="pt-2 border-t border-slate-200 flex items-center space-x-2">
+            <button type="button" onclick="loadArchivedPaper('${item.id}')" class="flex-1 py-1.5 bg-brand-900 hover:bg-brand-800 text-white rounded-lg text-xs font-bold cursor-pointer">
+              Load Paper
+            </button>
+            <button type="button" onclick="deleteArchivedPaper('${item.id}')" class="p-1.5 text-rose-600 hover:bg-rose-100 rounded cursor-pointer">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    }
+
+    function loadArchivedPaper(id) {
+      const item = state.archivedPapers.find(a => a.id === id);
+      if (!item) return;
+
+      state.livePaperQuestions = JSON.parse(JSON.stringify(item.questions));
+      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
+
+      document.getElementById('paper-inst-name').value = item.school;
+      document.getElementById('paper-exam-title').value = item.title;
+      document.getElementById('paper-std').value = item.std;
+      syncSubjectDropdown('paper-std', 'paper-sub');
+      document.getElementById('paper-sub').value = item.sub;
+      document.getElementById('paper-medium').value = item.med;
+      document.getElementById('paper-marks').value = item.marks;
+      document.getElementById('paper-time').value = item.time;
+
+      renderLivePaper();
+      switchTab('tab-generator');
+    }
+
+    function deleteArchivedPaper(id) {
+      if (confirm('Delete this paper from archive?')) {
+        state.archivedPapers = state.archivedPapers.filter(a => a.id !== id);
+        persistQuestions();
+        renderArchiveList();
+      }
+    }
+
+    function clearAllArchivedPapers() {
+      if (confirm('Clear all papers from archive?')) {
+        state.archivedPapers = [];
+        persistQuestions();
+        renderArchiveList();
+      }
+    }
+
+    /* EXPORT & PRINT METHODS */
+    function exportToWordDoc() {
+      const canvas = document.getElementById('printable-paper');
+      if (!canvas) return;
+      const clone = canvas.cloneNode(true);
+      clone.querySelectorAll('.no-print').forEach(el => el.remove());
+
+      const contentHtml = clone.innerHTML;
+      const title = document.getElementById('paper-exam-title').value || 'Exam_Paper';
+      const docHtml = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <meta charset='utf-8'>
+          <title>${title}</title>
+          <style>
+            body { font-family: 'Cambria', serif; font-size: 11pt; color: #000; margin: 0; padding: 0; }
+            table { width: 100%; border-collapse: collapse; }
+            .mcq-options-inline { margin-top: 4px; padding-left: 15px; }
+            .mcq-option-col { margin-right: 15px; }
+          </style>
+        </head>
+        <body>
+          <div style="border: 2px solid #000; padding: 20px; box-sizing: border-box; min-height: 100%;">
+            ${contentHtml}
+          </div>
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff', docHtml], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${title.replace(/[^a-zA-Z0-9]/g, '_')}.doc`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function savePaperAsPdf() {
+      printStandardPaper();
+    }
+
+    function executeDirectPrint(contentHtml) {
+      const printZone = document.getElementById('print-zone');
+      if (!printZone) return;
+
+      printZone.innerHTML = contentHtml;
+      printZone.classList.remove('hidden');
+
+      renderMath(printZone);
+
+      setTimeout(() => {
+        window.print();
+        setTimeout(() => {
+          printZone.classList.add('hidden');
+          printZone.innerHTML = '';
+        }, 1000);
+      }, 350);
+    }
+
+    function printStandardPaper() {
+      const canvas = document.getElementById('printable-paper');
+      if (!canvas) return;
+
+      const clone = canvas.cloneNode(true);
+      clone.querySelectorAll('.no-print').forEach(el => el.remove());
+      clone.querySelectorAll('.answer-key-box').forEach(el => el.remove());
+
+      const finalHtml = `<div class="print-page-box">${clone.innerHTML}</div>`;
+      executeDirectPrint(finalHtml);
+    }
+
+    function printPaperWithAnswers() {
+      const canvas = document.getElementById('printable-paper');
+      if (!canvas) return;
+
+      const clone = canvas.cloneNode(true);
+      clone.querySelectorAll('.no-print').forEach(el => el.remove());
+      clone.querySelectorAll('.answer-key-box').forEach(el => el.classList.remove('hidden'));
+
+      const finalHtml = `<div class="print-page-box">${clone.innerHTML}</div>`;
+      executeDirectPrint(finalHtml);
+    }
+
+    function printBlueprintMatrix() {
+      recalculateMatrix();
+      const school = document.getElementById('paper-inst-name').value;
+      const std = document.getElementById('matrix-filter-std').value;
+      const sub = document.getElementById('matrix-filter-sub').value;
+      const c1Weight = parseInt(document.getElementById('custom-weight-c1')?.value) || 5;
+      const c2Weight = parseInt(document.getElementById('custom-weight-c2')?.value) || 6;
+
+      const filtered = state.blueprintRows.filter(r => (!r.std || r.std === std) && (!r.sub || r.sub === sub));
+
+      let rows = '';
+      filtered.forEach((r, idx) => {
+        const q1_wo = r.m1_wo || 0, q1_w = r.m1_with || 0;
+        const q2_wo = r.m2_wo || 0, q2_w = r.m2_with || 0;
+        const q3_wo = r.m3_wo || 0, q3_w = r.m3_with || 0;
+        const q4_wo = r.m4_wo || 0, q4_w = r.m4_with || 0;
+        const qc1_wo = r.c1_wo || 0, qc1_w = r.c1_with || 0;
+        const qc2_wo = r.c2_wo || 0, qc2_w = r.c2_with || 0;
+
+        const qNo = q1_wo + q2_wo + q3_wo + q4_wo + qc1_wo + qc2_wo;
+        const qWith = q1_w + q2_w + q3_w + q4_w + qc1_w + qc2_w;
+
+        const mNo = (q1_wo * 1) + (q2_wo * 2) + (q3_wo * 3) + (q4_wo * 4) + (qc1_wo * c1Weight) + (qc2_wo * c2Weight);
+        const mWith = (q1_w * 1) + (q2_w * 2) + (q3_w * 3) + (q4_w * 4) + (qc1_w * c1Weight) + (qc2_w * c2Weight);
+
+        rows += `
+          <tr style="border-bottom: 1px solid #000; text-align: center; font-size: 8pt;">
+            <td style="padding: 4px; border: 1px solid #000;">${idx + 1}</td>
+            <td style="padding: 4px; border: 1px solid #000; text-align: left;">${escapeHtml(r.name)}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${q1_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q1_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${q2_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q2_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${q3_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q3_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${q4_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q4_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${qc1_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #faf5ff;">${qc1_w}</td>
+            <td style="padding: 4px; border: 1px solid #000;">${qc2_wo}</td>
+            <td style="padding: 4px; border: 1px solid #000; background: #eef2ff;">${qc2_w}</td>
+            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${qNo}</td>
+            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${qWith}</td>
+            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${mNo} M</td>
+            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${mWith} M</td>
+          </tr>
+        `;
+      });
+
+      const finalHtml = `
+        <div class="print-page-box" style="font-family: 'Cambria', serif; color: #000;">
+          <h1 style="text-align: center; font-size: 15pt; font-weight: 800; text-transform: uppercase; margin-bottom: 2px;">${escapeHtml(school)}</h1>
+          <h2 style="text-align: center; font-size: 11pt; font-weight: 700; margin-bottom: 6px;">CHAPTERWISE ALLOCATION BLUEPRINT MATRIX (WITH & WITHOUT OPTION)</h2>
+          <div style="display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: 600; border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 4px 0; margin-bottom: 8px;">
+            <span>STANDARD: <b>${escapeHtml(std)}</b></span>
+            <span>SUBJECT: <b>${escapeHtml(sub)}</b></span>
+            <span>CUSTOM WEIGHTS: <b>C1=${c1Weight}M, C2=${c2Weight}M</b></span>
+          </div>
+          <table width="100%" style="border-collapse: collapse; border: 1.5px solid #000; font-size: 8pt;">
+            <thead>
+              <tr style="background: #f1f5f9; text-align: center;">
+                <th rowspan="2" style="padding: 4px; border: 1px solid #000;">#</th>
+                <th rowspan="2" style="padding: 4px; border: 1px solid #000; text-align: left;">Chapter Name</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">1M</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">2M</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">3M</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">4M</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">C1 (${c1Weight}M)</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">C2 (${c2Weight}M)</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">Total Qs</th>
+                <th colspan="2" style="padding: 3px; border: 1px solid #000;">Total Marks</th>
+              </tr>
+              <tr style="background: #f8fafc; font-size: 7.5pt;">
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+            <tfoot>
+              <tr style="background: #f1f5f9; font-weight: bold; text-align: center; border-top: 2px solid #000;">
+                <td colspan="2" style="padding: 5px; border: 1px solid #000; text-align: right;">TOTAL:</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-1m-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-1m-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-2m-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-2m-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-3m-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-3m-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-4m-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-4m-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c1-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c1-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c2-wo')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c2-with')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-q-no-opt')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-q-with-opt')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-m-no-opt')?.innerText || 0}</td>
+                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-m-with-opt')?.innerText || 0}</td>
+              </tr>
+            </tfoot>
+          </table>
+          <div style="margin-top: 35px; display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold;">
+            <span>Teacher Signature: ____________</span>
+            <span>Examiner: KALPESH H TAILOR</span>
+            <span>Principal: ____________</span>
+          </div>
+        </div>
+      `;
+      executeDirectPrint(finalHtml);
+    }
+
+    /* BULK OPERATIONS */
     function autoFetchChapterTitle() {
       const stdEl = document.getElementById('bulk-target-std');
       const subEl = document.getElementById('bulk-target-sub');
@@ -3081,773 +3562,91 @@
       }
     }
 
-    function switchBankType(type) {
-      state.currentBankType = type;
-      const genBtn = document.getElementById('bank-toggle-general');
-      const gujBtn = document.getElementById('bank-toggle-gujcet');
-      const filterStd = document.getElementById('filter-std');
-
-      if (type === 'GUJCET') {
-        if (gujBtn) gujBtn.className = "px-3 py-1 rounded bg-brand-900 text-white shadow font-black cursor-pointer";
-        if (genBtn) genBtn.className = "px-3 py-1 rounded text-slate-700 hover:text-brand-900 font-bold cursor-pointer";
-        if (filterStd) {
-          filterStd.value = 'GUJCET';
-          syncSubjectDropdown('filter-std', 'filter-sub');
-        }
-      } else {
-        if (genBtn) genBtn.className = "px-3 py-1 rounded bg-brand-900 text-white shadow font-black cursor-pointer";
-        if (gujBtn) gujBtn.className = "px-3 py-1 rounded text-slate-700 hover:text-brand-900 font-bold cursor-pointer";
-        if (filterStd) {
-          if (filterStd.value === 'GUJCET') filterStd.value = 'Std 10';
-          syncSubjectDropdown('filter-std', 'filter-sub');
-        }
-      }
-      filterQuestionBank();
-    }
-
-    function filterQuestionBank() {
-      const stdEl = document.getElementById('filter-std');
-      const subEl = document.getElementById('filter-sub');
-      const medEl = document.getElementById('filter-med');
-      const keyEl = document.getElementById('filter-keyword');
-      if (!stdEl || !subEl || !medEl) return;
-
-      const stdVal = stdEl.value;
-      const subVal = subEl.value;
-      const medVal = medEl.value;
-      const keyword = (keyEl ? keyEl.value : '').toLowerCase();
-
-      const filtered = state.questions.filter(q => {
-        const isGujcet = q.bankType === 'GUJCET' || q.std === 'GUJCET';
-        const matchesBank = state.currentBankType === 'GUJCET' ? isGujcet : !isGujcet;
-        const matchesStd = (stdVal === 'ALL' || q.std === stdVal);
-        const matchesSub = (subVal === 'ALL' || q.subject === subVal);
-        const matchesMed = (medVal === 'ALL' || q.medium === medVal);
-        const matchesKey = !keyword || (q.text && q.text.toLowerCase().includes(keyword));
-        return matchesBank && matchesStd && matchesSub && matchesMed && matchesKey;
-      });
-
-      const container = document.getElementById('qbank-items-container');
-      const indEl = document.getElementById('qbank-count-indicator');
-      if (indEl) indEl.innerText = `Showing ${filtered.length} Questions`;
-      if (!container) return;
-
-      container.innerHTML = '';
-      if (filtered.length === 0) {
-        container.innerHTML = `<div class="p-8 text-center text-slate-400 text-xs">No matching questions in bank.</div>`;
-        return;
-      }
-
-      filtered.forEach(q => {
-        const div = document.createElement('div');
-        div.className = "p-4 hover:bg-slate-50 transition flex items-start justify-between gap-4";
-        div.innerHTML = `
-          <div class="space-y-1.5 flex-1">
-            <div class="flex flex-wrap items-center gap-1.5 text-[10px]">
-              <span class="bg-blue-100 text-brand-900 font-bold px-2 py-0.5 rounded">${q.std}</span>
-              <span class="bg-purple-100 text-purple-900 font-semibold px-2 py-0.5 rounded">${q.subject}</span>
-              <span class="bg-slate-200 text-slate-700 font-mono font-bold px-2 py-0.5 rounded">${q.chapter}</span>
-              <span class="bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">${q.marks} Mark(s)</span>
-            </div>
-            <p class="text-xs font-semibold text-slate-900">${q.text}</p>
-            ${q.options ? formatInlineOptionsHtml(q.options) : ''}
-            <p class="text-emerald-800 font-bold text-xs">Ans: ${q.answer || 'Not provided'}</p>
-          </div>
-          <div class="flex items-center space-x-2">
-            <button type="button" onclick="insertBankQuestionToPaper('${q.id}')" class="px-2.5 py-1 bg-brand-900 text-white rounded text-xs font-bold hover:bg-brand-800 cursor-pointer">Add to Paper</button>
-            <button type="button" onclick="openEditModal('${q.id}', 'bank')" class="p-1.5 text-blue-700 hover:bg-blue-100 rounded cursor-pointer" title="Edit Question">
-              <i data-lucide="edit-3" class="w-4 h-4"></i>
-            </button>
-            <button type="button" onclick="deleteBankQuestion('${q.id}')" class="p-1.5 text-rose-600 hover:bg-rose-100 rounded cursor-pointer" title="Delete">
-              <i data-lucide="trash-2" class="w-4 h-4"></i>
-            </button>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-
-      if (window.lucide && lucide.createIcons) lucide.createIcons();
-      renderMath(container);
-    }
-
-    function insertBankQuestionToPaper(id) {
-      const q = state.questions.find(item => item.id === id);
-      if (!q) return;
-
-      if (q.bankType === 'GUJCET' || q.std === 'GUJCET') {
-        state.gujcetPaperQuestions.push({ ...q });
-        renderGujcetPaperList();
-        alert('Question added to GUJCET Workspace!');
-      } else {
-        state.livePaperQuestions.push({ ...q, paperItemId: 'p-' + Date.now() });
-        localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
-        renderLivePaper();
-        alert('Question added to live GSEB exam paper!');
-      }
-    }
-
-    function deleteBankQuestion(id) {
-      if (confirm('Delete question permanently?')) {
-        state.questions = state.questions.filter(q => q.id !== id);
-        persistQuestions();
-        filterQuestionBank();
-      }
-    }
-
-    function openAddQuestionModal() {
-      const filterStd = document.getElementById('filter-std');
-      const addStd = document.getElementById('add-q-std');
-      if (addStd) {
-        addStd.value = (filterStd && filterStd.value === 'ALL') ? 'Std 10' : (filterStd ? filterStd.value : 'Std 10');
-        syncSubjectDropdown('add-q-std', 'add-q-sub');
-      }
-      document.getElementById('add-q-text').value = '';
-      document.getElementById('add-q-options').value = '';
-      document.getElementById('add-q-ans').value = '';
-      openModal('modal-add-question');
-    }
-
-    function submitNewQuestion() {
-      const std = document.getElementById('add-q-std').value;
-      const sub = document.getElementById('add-q-sub').value;
-      const chap = document.getElementById('add-q-chap').value.trim();
-      const med = document.getElementById('add-q-med').value;
-      const marks = parseInt(document.getElementById('add-q-marks').value) || 1;
-      const text = document.getElementById('add-q-text').value.trim();
-      const options = document.getElementById('add-q-options').value.trim();
-      const ans = document.getElementById('add-q-ans').value.trim();
-
-      if (!text) {
-        alert('Please enter question statement.');
-        return;
-      }
-
-      const newQ = {
-        id: 'q-' + Date.now(),
-        bankType: std === 'GUJCET' ? 'GUJCET' : 'GENERAL',
-        std, subject: sub,
-        chapter: chap || 'Ch 1',
-        medium: med,
-        marks,
-        section: marks === 1 ? 'SECTION A' : (marks === 2 ? 'SECTION B' : (marks === 3 ? 'SECTION C' : 'SECTION D')),
-        text, answer: ans, options
-      };
-
-      state.questions.unshift(newQ);
-      persistQuestions();
-      filterQuestionBank();
-      closeModal('modal-add-question');
-    }
-
-    function openEditModal(id, origin) {
-      let q = state.questions.find(item => item.id === id);
-      if (!q) q = state.livePaperQuestions.find(item => item.id === id || item.paperItemId === id);
-      if (!q) return;
-
-      document.getElementById('edit-q-id').value = id;
-      document.getElementById('edit-q-origin').value = origin;
-      document.getElementById('edit-q-text').value = q.text || '';
-      document.getElementById('edit-q-options').value = q.options || '';
-      document.getElementById('edit-q-ans').value = q.answer || '';
-      document.getElementById('edit-q-marks').value = q.marks || 1;
-      document.getElementById('edit-q-section').value = q.section || 'SECTION A';
-      openModal('modal-edit-question');
-    }
-
-    function saveEditedQuestion() {
-      const id = document.getElementById('edit-q-id').value;
-      const text = document.getElementById('edit-q-text').value.trim();
-      const options = document.getElementById('edit-q-options').value.trim();
-      const ans = document.getElementById('edit-q-ans').value.trim();
-      const marks = parseInt(document.getElementById('edit-q-marks').value) || 1;
-      const sec = document.getElementById('edit-q-section').value;
-
-      const qBank = state.questions.find(item => item.id === id);
-      if (qBank) {
-        qBank.text = text;
-        qBank.options = options;
-        qBank.answer = ans;
-        qBank.marks = marks;
-        qBank.section = sec;
-        persistQuestions();
-      }
-
-      const qLive = state.livePaperQuestions.find(item => item.id === id || item.paperItemId === id);
-      if (qLive) {
-        qLive.text = text;
-        qLive.options = options;
-        qLive.answer = ans;
-        qLive.marks = marks;
-        qLive.section = sec;
-        localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
-        renderLivePaper();
-      }
-
-      closeModal('modal-edit-question');
-    }
-
-    function swapPaperQuestion(itemId) {
-      const targetIndex = state.livePaperQuestions.findIndex(q => (q.paperItemId || q.id) === itemId);
-      if (targetIndex === -1) return;
-      const targetQ = state.livePaperQuestions[targetIndex];
-
-      const candidates = state.questions.filter(q => 
-        q.id !== targetQ.id &&
-        parseInt(q.marks) === parseInt(targetQ.marks) &&
-        q.subject === targetQ.subject &&
-        !state.livePaperQuestions.some(p => p.id === q.id)
-      );
-
-      if (candidates.length === 0) {
-        alert('No alternative question found in bank with identical subject and marks to swap with! Add more questions to the bank.');
-        return;
-      }
-
-      const randomCandidate = candidates[Math.floor(Math.random() * candidates.length)];
-      state.livePaperQuestions[targetIndex] = {
-        ...randomCandidate,
-        paperItemId: targetQ.paperItemId || ('p-' + Date.now()),
-        section: targetQ.section
-      };
-      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
-      renderLivePaper();
-    }
-
-    function renderLivePaper() {
-      const setTxt = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
-      const getVal = (id, def) => { const el = document.getElementById(id); return el ? el.value : def; };
-
-      setTxt('view-school-name', getVal('paper-inst-name', 'BAI AVABAI HIGHSCHOOL, VALSAD'));
-      setTxt('view-exam-title', getVal('paper-exam-title', 'FIRST TERM EXAMINATION'));
-      setTxt('view-std', getVal('paper-std', 'Std 10'));
-      setTxt('view-sub', getVal('paper-sub', 'Mathematics'));
-      setTxt('view-medium', getVal('paper-medium', 'Gujarati'));
-      setTxt('view-time', getVal('paper-time', '2 Hours'));
-      setTxt('view-marks', getVal('paper-marks', '50'));
-      setTxt('view-instructions', getVal('paper-instructions', '1. All questions compulsory.'));
-
-      const container = document.getElementById('paper-sections-container');
-      if (!container) return;
-      container.innerHTML = '';
-
-      if (state.livePaperQuestions.length === 0) {
-        container.innerHTML = `<p class="text-slate-400 text-center py-10 italic">No questions added to current exam paper yet.</p>`;
-        return;
-      }
-
-      const sections = ['SECTION A', 'SECTION B', 'SECTION C', 'SECTION D'];
-      let questionIndex = 1;
-
-      sections.forEach(secName => {
-        const secQuestions = state.livePaperQuestions.filter(q => (q.section || 'SECTION A') === secName);
-        if (secQuestions.length === 0) return;
-
-        const secDiv = document.createElement('div');
-        secDiv.className = "space-y-3 pt-2";
-        secDiv.innerHTML = `
-          <div class="border-y border-slate-900 py-1 font-bold text-center uppercase tracking-wider text-xs bg-slate-50 flex justify-between px-3">
-            <span>${secName}</span>
-            <span>(${secName === 'SECTION A' ? '1 Mark Each' : (secName === 'SECTION B' ? '2 Marks Each' : (secName === 'SECTION C' ? '3 Marks Each' : 'Detailed Questions'))})</span>
-          </div>
-          <div class="space-y-3.5 pt-1" id="sec-list-${secName.replace(' ', '-')}"></div>
-        `;
-
-        const listDiv = secDiv.querySelector(`#sec-list-${secName.replace(' ', '-')}`);
-
-        secQuestions.forEach(q => {
-          const qBox = document.createElement('div');
-          qBox.className = "flex items-start justify-between text-xs leading-relaxed group";
-          qBox.innerHTML = `
-            <div class="flex-1 pr-3">
-              <p class="font-normal text-slate-900">
-                <span class="font-bold mr-1.5 font-mono">Q.${questionIndex}.</span>
-                <span>${q.text}</span>
-              </p>
-              ${q.options ? formatInlineOptionsHtml(q.options) : ''}
-              <div class="answer-key-box hidden mt-1.5 p-2 bg-emerald-50 border border-emerald-300 rounded text-[11px] font-bold text-emerald-900">
-                Ans: ${q.answer || 'Not provided'}
-              </div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <span class="font-bold font-mono text-slate-800">[${q.marks}]</span>
-
-              <div class="no-print flex items-center space-x-1 opacity-80 group-hover:opacity-100 transition">
-                <button type="button" onclick="swapPaperQuestion('${q.paperItemId || q.id}')" title="Swap Question" class="p-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded cursor-pointer">
-                  <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
-                </button>
-                <button type="button" onclick="openEditModal('${q.paperItemId || q.id}', 'paper')" title="Edit Question" class="p-1 bg-blue-50 hover:bg-blue-100 text-brand-800 border border-blue-300 rounded cursor-pointer">
-                  <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                </button>
-                <button type="button" onclick="removePaperQuestion('${q.paperItemId || q.id}')" title="Remove" class="p-1 text-rose-600 hover:bg-rose-100 rounded cursor-pointer">
-                  <i data-lucide="x" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
-            </div>
-          `;
-          listDiv.appendChild(qBox);
-          questionIndex++;
-        });
-
-        container.appendChild(secDiv);
-      });
-
-      if (window.lucide && lucide.createIcons) lucide.createIcons();
-      renderMath(container);
-    }
-
-    function quickAddQuestionToPaper() {
-      const sec = document.getElementById('quick-section').value;
-      const text = document.getElementById('quick-q-text').value.trim();
-      const options = document.getElementById('quick-q-options').value.trim();
-      const ans = document.getElementById('quick-q-ans').value.trim();
-      const marks = parseInt(document.getElementById('quick-q-marks').value) || 1;
-
-      if (!text) {
-        alert('Please enter question statement.');
-        return;
-      }
-
-      const newQ = {
-        id: 'q-' + Date.now(),
-        paperItemId: 'p-' + Date.now(),
-        bankType: 'GENERAL',
-        std: document.getElementById('paper-std').value,
-        subject: document.getElementById('paper-sub').value,
-        chapter: 'General Topic',
-        medium: document.getElementById('paper-medium').value,
-        section: sec,
-        marks, text, answer: ans, options
-      };
-
-      state.livePaperQuestions.push(newQ);
-      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
-      renderLivePaper();
-
-      document.getElementById('quick-q-text').value = '';
-      document.getElementById('quick-q-options').value = '';
-      document.getElementById('quick-q-ans').value = '';
-    }
-
-    function removePaperQuestion(itemId) {
-      state.livePaperQuestions = state.livePaperQuestions.filter(q => (q.paperItemId || q.id) !== itemId);
-      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
-      renderLivePaper();
-    }
-
-    function renderGujcetPaperList() {
-      const container = document.getElementById('gujcet-paper-preview');
-      const countEl = document.getElementById('gujcet-current-count');
-      if (countEl) countEl.innerText = state.gujcetPaperQuestions.length;
-      if (!container) return;
-
-      if (state.gujcetPaperQuestions.length === 0) {
-        container.innerHTML = `<p class="text-slate-400 text-center py-8">No MCQs added yet. Click <strong>"Auto-Generate 40 MCQs from Bank"</strong> or insert questions manually.</p>`;
-        return;
-      }
-
-      let html = '<div class="space-y-3">';
-      state.gujcetPaperQuestions.forEach((q, idx) => {
-        html += `
-          <div class="p-3.5 bg-slate-50 border border-slate-300 rounded-lg flex items-start justify-between">
-            <div class="flex-1 pr-3">
-              <p class="font-bold text-slate-900 text-sm">
-                <span class="text-brand-900 mr-1.5 font-mono">Q${idx + 1}.</span>
-                <span>${q.text}</span>
-              </p>
-              ${q.options ? formatInlineOptionsHtml(q.options) : ''}
-              <p class="text-emerald-800 font-bold text-xs mt-2">Ans: ${q.answer || 'Not provided'}</p>
-            </div>
-            <button type="button" onclick="removeGujcetQuestion(${idx})" class="text-rose-600 hover:text-rose-800 p-1 font-bold cursor-pointer">×</button>
-          </div>
-        `;
-      });
-      html += '</div>';
-      container.innerHTML = html;
-      renderMath(container);
-    }
-
-    function removeGujcetQuestion(idx) {
-      state.gujcetPaperQuestions.splice(idx, 1);
-      renderGujcetPaperList();
-    }
-
-    function addSingleGujcetMcq() {
-      const text = document.getElementById('gujcet-quick-text').value.trim();
-      const options = document.getElementById('gujcet-quick-options').value.trim();
-      const ans = document.getElementById('gujcet-quick-ans').value.trim();
-      const sub = document.getElementById('gujcet-subject').value;
-      const med = document.getElementById('gujcet-medium').value;
-
-      if (!text) {
-        alert('Please enter MCQ statement.');
-        return;
-      }
-
-      const newQ = {
-        id: 'g-mcq-' + Date.now(),
-        bankType: 'GUJCET',
-        std: 'GUJCET',
-        subject: sub,
-        chapter: 'GUJCET Practice',
-        medium: med,
-        section: 'GUJCET MCQ',
-        marks: 1,
-        text, answer: ans, options
-      };
-
-      state.gujcetPaperQuestions.push(newQ);
-      state.questions.unshift(newQ);
-      persistQuestions();
-
-      document.getElementById('gujcet-quick-text').value = '';
-      document.getElementById('gujcet-quick-options').value = '';
-      document.getElementById('gujcet-quick-ans').value = '';
-      renderGujcetPaperList();
-    }
-
-    function autoPopulateGujcet40Paper() {
-      const subEl = document.getElementById('gujcet-subject');
-      const sub = subEl ? subEl.value : 'Mathematics';
-      const available = state.questions.filter(q => q.bankType === 'GUJCET' || q.std === 'GUJCET');
-      if (available.length === 0) {
-        alert('No GUJCET questions available in bank. Please add some first.');
-        return;
-      }
-      state.gujcetPaperQuestions = available.slice(0, 40);
-      renderGujcetPaperList();
-      alert(`Loaded ${state.gujcetPaperQuestions.length} MCQs into GUJCET workspace!`);
-    }
-
-    function savePaperToArchive() {
-      if (state.livePaperQuestions.length === 0) {
-        alert('Current paper has no questions to save.');
-        return;
-      }
-
-      const archiveItem = {
-        id: 'arch-' + Date.now(),
-        date: new Date().toLocaleDateString(),
-        school: document.getElementById('paper-inst-name').value,
-        title: document.getElementById('paper-exam-title').value,
-        std: document.getElementById('paper-std').value,
-        sub: document.getElementById('paper-sub').value,
-        med: document.getElementById('paper-medium').value,
-        marks: document.getElementById('paper-marks').value,
-        time: document.getElementById('paper-time').value,
-        questions: JSON.parse(JSON.stringify(state.livePaperQuestions))
-      };
-
-      state.archivedPapers.unshift(archiveItem);
-      persistQuestions();
-      renderArchiveList();
-      alert('Paper saved to archive!');
-    }
-
-    function renderArchiveList() {
-      const container = document.getElementById('archive-list-container');
-      if (!container) return;
-      container.innerHTML = '';
-
-      if (state.archivedPapers.length === 0) {
-        container.innerHTML = `<p class="col-span-full text-slate-400 text-center py-8 text-xs italic">No saved papers found in archive.</p>`;
-        return;
-      }
-
-      state.archivedPapers.forEach(item => {
-        const div = document.createElement('div');
-        div.className = "p-4 bg-slate-50 border border-slate-300 rounded-xl space-y-3 flex flex-col justify-between text-xs";
-        div.innerHTML = `
-          <div>
-            <div class="flex items-center justify-between text-[11px] mb-1">
-              <span class="font-bold text-brand-900 bg-blue-100 px-2 py-0.5 rounded">${item.std}</span>
-              <span class="font-mono text-slate-500">${item.date}</span>
-            </div>
-            <h4 class="font-extrabold text-slate-800">${escapeHtml(item.title)}</h4>
-            <p class="text-slate-600 mt-1 font-semibold">${item.sub}</p>
-          </div>
-          <div class="pt-2 border-t border-slate-200 flex items-center space-x-2">
-            <button type="button" onclick="loadArchivedPaper('${item.id}')" class="flex-1 py-1.5 bg-brand-900 hover:bg-brand-800 text-white rounded-lg text-xs font-bold cursor-pointer">
-              Load Paper
-            </button>
-            <button type="button" onclick="deleteArchivedPaper('${item.id}')" class="p-1.5 text-rose-600 hover:bg-rose-100 rounded cursor-pointer">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-            </button>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-
-      if (window.lucide && lucide.createIcons) lucide.createIcons();
-    }
-
-    function loadArchivedPaper(id) {
-      const item = state.archivedPapers.find(a => a.id === id);
-      if (!item) return;
-
-      state.livePaperQuestions = JSON.parse(JSON.stringify(item.questions));
-      localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
-
-      document.getElementById('paper-inst-name').value = item.school;
-      document.getElementById('paper-exam-title').value = item.title;
-      document.getElementById('paper-std').value = item.std;
-      syncSubjectDropdown('paper-std', 'paper-sub');
-      document.getElementById('paper-sub').value = item.sub;
-      document.getElementById('paper-medium').value = item.med;
-      document.getElementById('paper-marks').value = item.marks;
-      document.getElementById('paper-time').value = item.time;
-
-      renderLivePaper();
-      switchTab('tab-generator');
-    }
-
-    function deleteArchivedPaper(id) {
-      if (confirm('Delete this paper from archive?')) {
-        state.archivedPapers = state.archivedPapers.filter(a => a.id !== id);
-        persistQuestions();
-        renderArchiveList();
-      }
-    }
-
-    function clearAllArchivedPapers() {
-      if (confirm('Clear all papers from archive?')) {
-        state.archivedPapers = [];
-        persistQuestions();
-        renderArchiveList();
-      }
-    }
-
-    function exportToWordDoc() {
-      const canvas = document.getElementById('printable-paper');
-      if (!canvas) return;
-      const clone = canvas.cloneNode(true);
-      clone.querySelectorAll('.no-print').forEach(el => el.remove());
-
-      const contentHtml = clone.innerHTML;
-      const title = document.getElementById('paper-exam-title').value || 'Exam_Paper';
-      const docHtml = `
-        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-        <head>
-          <meta charset='utf-8'>
-          <title>${title}</title>
-          <style>
-            body { font-family: 'Cambria', serif; font-size: 11pt; color: #000; margin: 0; padding: 0; }
-            table { width: 100%; border-collapse: collapse; }
-            .mcq-options-inline { margin-top: 4px; padding-left: 15px; }
-            .mcq-option-col { margin-right: 15px; }
-          </style>
-        </head>
-        <body>
-          <div style="border: 2px solid #000; padding: 20px; box-sizing: border-box; min-height: 100%;">
-            ${contentHtml}
-          </div>
-        </body>
-        </html>
-      `;
-
-      const blob = new Blob(['\ufeff', docHtml], { type: 'application/msword' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${title.replace(/[^a-zA-Z0-9]/g, '_')}.doc`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-
-    function savePaperAsPdf() {
-      printStandardPaper();
-    }
-
-    function executeDirectPrint(contentHtml) {
-      const printZone = document.getElementById('print-zone');
-      if (!printZone) return;
-
-      printZone.innerHTML = contentHtml;
-      printZone.classList.remove('hidden');
-
-      renderMath(printZone);
-
-      setTimeout(() => {
-        window.print();
-        setTimeout(() => {
-          printZone.classList.add('hidden');
-          printZone.innerHTML = '';
-        }, 1000);
-      }, 350);
-    }
-
-    function printStandardPaper() {
-      const canvas = document.getElementById('printable-paper');
-      if (!canvas) return;
-
-      const clone = canvas.cloneNode(true);
-      clone.querySelectorAll('.no-print').forEach(el => el.remove());
-      clone.querySelectorAll('.answer-key-box').forEach(el => el.remove());
-
-      const finalHtml = `<div class="print-page-box">${clone.innerHTML}</div>`;
-      executeDirectPrint(finalHtml);
-    }
-
-    function printPaperWithAnswers() {
-      const canvas = document.getElementById('printable-paper');
-      if (!canvas) return;
-
-      const clone = canvas.cloneNode(true);
-      clone.querySelectorAll('.no-print').forEach(el => el.remove());
-      clone.querySelectorAll('.answer-key-box').forEach(el => el.classList.remove('hidden'));
-
-      const finalHtml = `<div class="print-page-box">${clone.innerHTML}</div>`;
-      executeDirectPrint(finalHtml);
-    }
-
-    function printBlueprintMatrix() {
-      recalculateMatrix();
-      const school = document.getElementById('paper-inst-name').value;
-      const std = document.getElementById('matrix-filter-std').value;
-      const sub = document.getElementById('matrix-filter-sub').value;
-      const c1Weight = parseInt(document.getElementById('custom-weight-c1')?.value) || 5;
-      const c2Weight = parseInt(document.getElementById('custom-weight-c2')?.value) || 6;
-
-      const filtered = state.blueprintRows.filter(r => (!r.std || r.std === std) && (!r.sub || r.sub === sub));
-
-      let rows = '';
-      filtered.forEach((r, idx) => {
-        const q1_wo = r.m1_wo || 0, q1_w = r.m1_with || 0;
-        const q2_wo = r.m2_wo || 0, q2_w = r.m2_with || 0;
-        const q3_wo = r.m3_wo || 0, q3_w = r.m3_with || 0;
-        const q4_wo = r.m4_wo || 0, q4_w = r.m4_with || 0;
-        const qc1_wo = r.c1_wo || 0, qc1_w = r.c1_with || 0;
-        const qc2_wo = r.c2_wo || 0, qc2_w = r.c2_with || 0;
-
-        const qNo = q1_wo + q2_wo + q3_wo + q4_wo + qc1_wo + qc2_wo;
-        const qWith = q1_w + q2_w + q3_w + q4_w + qc1_w + qc2_w;
-
-        const mNo = (q1_wo * 1) + (q2_wo * 2) + (q3_wo * 3) + (q4_wo * 4) + (qc1_wo * c1Weight) + (qc2_wo * c2Weight);
-        const mWith = (q1_w * 1) + (q2_w * 2) + (q3_w * 3) + (q4_w * 4) + (qc1_w * c1Weight) + (qc2_w * c2Weight);
-
-        rows += `
-          <tr style="border-bottom: 1px solid #000; text-align: center; font-size: 8pt;">
-            <td style="padding: 4px; border: 1px solid #000;">${idx + 1}</td>
-            <td style="padding: 4px; border: 1px solid #000; text-align: left;">${escapeHtml(r.name)}</td>
-            <td style="padding: 4px; border: 1px solid #000;">${q1_wo}</td>
-            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q1_w}</td>
-            <td style="padding: 4px; border: 1px solid #000;">${q2_wo}</td>
-            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q2_w}</td>
-            <td style="padding: 4px; border: 1px solid #000;">${q3_wo}</td>
-            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q3_w}</td>
-            <td style="padding: 4px; border: 1px solid #000;">${q4_wo}</td>
-            <td style="padding: 4px; border: 1px solid #000; background: #f8fafc;">${q4_w}</td>
-            <td style="padding: 4px; border: 1px solid #000;">${qc1_wo}</td>
-            <td style="padding: 4px; border: 1px solid #000; background: #faf5ff;">${qc1_w}</td>
-            <td style="padding: 4px; border: 1px solid #000;">${qc2_wo}</td>
-            <td style="padding: 4px; border: 1px solid #000; background: #eef2ff;">${qc2_w}</td>
-            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${qNo}</td>
-            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${qWith}</td>
-            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${mNo} M</td>
-            <td style="padding: 4px; border: 1px solid #000; font-weight: bold;">${mWith} M</td>
-          </tr>
-        `;
-      });
-
-      const finalHtml = `
-        <div class="print-page-box" style="font-family: 'Cambria', serif; color: #000;">
-          <h1 style="text-align: center; font-size: 15pt; font-weight: 800; text-transform: uppercase; margin-bottom: 2px;">${escapeHtml(school)}</h1>
-          <h2 style="text-align: center; font-size: 11pt; font-weight: 700; margin-bottom: 6px;">CHAPTERWISE ALLOCATION BLUEPRINT MATRIX (WITH & WITHOUT OPTION)</h2>
-          <div style="display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: 600; border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 4px 0; margin-bottom: 8px;">
-            <span>STANDARD: <b>${escapeHtml(std)}</b></span>
-            <span>SUBJECT: <b>${escapeHtml(sub)}</b></span>
-            <span>CUSTOM WEIGHTS: <b>C1=${c1Weight}M, C2=${c2Weight}M</b></span>
-          </div>
-          <table width="100%" style="border-collapse: collapse; border: 1.5px solid #000; font-size: 8pt;">
-            <thead>
-              <tr style="background: #f1f5f9; text-align: center;">
-                <th rowspan="2" style="padding: 4px; border: 1px solid #000;">#</th>
-                <th rowspan="2" style="padding: 4px; border: 1px solid #000; text-align: left;">Chapter Name</th>
-                <th colspan="2" style="padding: 3px; border: 1px solid #000;">1M</th>
-                <th colspan="2" style="padding: 3px; border: 1px solid #000;">2M</th>
-                <th colspan="2" style="padding: 3px; border: 1px solid #000;">3M</th>
-                <th colspan="2" style="padding: 3px; border: 1px solid #000;">4M</th>
-                <th colspan="2" style="padding: 3px; border: 1px solid #000;">C1 (${c1Weight}M)</th>
-                <th colspan="2" style="padding: 3px; border: 1px solid #000;">C2 (${c2Weight}M)</th>
-                <th colspan="2" style="padding: 3px; border: 1px solid #000;">Total Qs</th>
-                <th colspan="2" style="padding: 3px; border: 1px solid #000;">Total Marks</th>
-              </tr>
-              <tr style="background: #f8fafc; font-size: 7.5pt;">
-                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
-                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
-                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
-                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
-                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
-                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
-                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
-                <th style="padding: 2px; border: 1px solid #000;">W/O</th><th style="padding: 2px; border: 1px solid #000;">With</th>
-              </tr>
-            </thead>
-            <tbody>${rows}</tbody>
-            <tfoot>
-              <tr style="background: #f1f5f9; font-weight: bold; text-align: center; border-top: 2px solid #000;">
-                <td colspan="2" style="padding: 5px; border: 1px solid #000; text-align: right;">TOTAL:</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-1m-wo')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-1m-with')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-2m-wo')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-2m-with')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-3m-wo')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-3m-with')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-4m-wo')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-4m-with')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c1-wo')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c1-with')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c2-wo')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-c2-with')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-q-no-opt')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-q-with-opt')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-m-no-opt')?.innerText || 0}</td>
-                <td style="padding: 3px; border: 1px solid #000;">${document.getElementById('foot-m-with-opt')?.innerText || 0}</td>
-              </tr>
-            </tfoot>
-          </table>
-          <div style="margin-top: 35px; display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: bold;">
-            <span>Teacher Signature: ____________</span>
-            <span>Examiner: KALPESH H TAILOR</span>
-            <span>Principal: ____________</span>
-          </div>
-        </div>
-      `;
-      executeDirectPrint(finalHtml);
-    }
-
     function openPhotoModal() {
       openModal('modal-photo');
     }
 
-    /* PERSISTENT TEACHER PROFILE PICTURE */
-    function handleLocalPhoto(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          const imgData = evt.target.result;
-          document.getElementById('user-avatar').src = imgData;
-          localStorage.setItem(APP_STORAGE_KEY_AVATAR, imgData);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+    /* GLOBAL EXPORTS TO WINDOW */
+    window.switchTab = switchTab;
+    window.toggleSidebar = toggleSidebar;
+    window.openModal = openModal;
+    window.closeModal = closeModal;
+    window.switchGateTab = switchGateTab;
+    window.handleSimpleAuthSubmit = handleSimpleAuthSubmit;
+    window.bypassDemoLogin = bypassDemoLogin;
+    window.bypassGuestLogin = bypassGuestLogin;
+    window.handleSignOutAction = handleSignOutAction;
+    window.openForgotPasswordModal = openForgotPasswordModal;
+    window.handlePasswordReset = handlePasswordReset;
+    window.syncSubjectDropdown = syncSubjectDropdown;
+    window.exportFullDataBackup = exportFullDataBackup;
+    window.importFullDataBackup = importFullDataBackup;
+    window.setMatrixMode = setMatrixMode;
+    window.applyMatrixSelectorFilter = applyMatrixSelectorFilter;
+    window.renderMatrixTable = renderMatrixTable;
+    window.updateMatrixRow = updateMatrixRow;
+    window.addBlueprintRow = addBlueprintRow;
+    window.deleteMatrixRow = deleteMatrixRow;
+    window.saveCurrentBlueprint = saveCurrentBlueprint;
+    window.loadSavedBlueprint = loadSavedBlueprint;
+    window.deleteSavedBlueprint = deleteSavedBlueprint;
+    window.applyBlueprintToPaper = applyBlueprintToPaper;
+    window.openAddChapterModal = openAddChapterModal;
+    window.saveNewChapter = saveNewChapter;
+    window.renderLivePaper = renderLivePaper;
+    window.quickAddQuestionToPaper = quickAddQuestionToPaper;
+    window.removePaperQuestion = removePaperQuestion;
+    window.swapPaperQuestion = swapPaperQuestion;
+    window.switchBankType = switchBankType;
+    window.filterQuestionBank = filterQuestionBank;
+    window.insertBankQuestionToPaper = insertBankQuestionToPaper;
+    window.deleteBankQuestion = deleteBankQuestion;
+    window.openAddQuestionModal = openAddQuestionModal;
+    window.submitNewQuestion = submitNewQuestion;
+    window.openEditModal = openEditModal;
+    window.saveEditedQuestion = saveEditedQuestion;
+    window.removeGujcetQuestion = removeGujcetQuestion;
+    window.addSingleGujcetMcq = addSingleGujcetMcq;
+    window.autoPopulateGujcet40Paper = autoPopulateGujcet40Paper;
+    window.savePaperToArchive = savePaperToArchive;
+    window.loadArchivedPaper = loadArchivedPaper;
+    window.deleteArchivedPaper = deleteArchivedPaper;
+    window.clearAllArchivedPapers = clearAllArchivedPapers;
+    window.exportToWordDoc = exportToWordDoc;
+    window.savePaperAsPdf = savePaperAsPdf;
+    window.printStandardPaper = printStandardPaper;
+    window.printPaperWithAnswers = printPaperWithAnswers;
+    window.printBlueprintMatrix = printBlueprintMatrix;
+    window.autoFetchChapterTitle = autoFetchChapterTitle;
+    window.openBulkImportModal = openBulkImportModal;
+    window.handleBulkFileSelect = handleBulkFileSelect;
+    window.parsePastedBulkQuestions = parsePastedBulkQuestions;
+    window.commitBulkImport = commitBulkImport;
+    window.openBulkDeleteModal = openBulkDeleteModal;
+    window.updateBulkDeleteCount = updateBulkDeleteCount;
+    window.confirmBulkDeleteChapter = confirmBulkDeleteChapter;
+    window.openPhotoModal = openPhotoModal;
+    window.handleLocalPhoto = handleLocalPhoto;
+    window.handleAppLogoUpload = handleAppLogoUpload;
 
-    /* PERSISTENT KT MATHS APP LOGO & FAVICON */
-    function handleAppLogoUpload(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          const logoData = evt.target.result;
-          localStorage.setItem(APP_STORAGE_KEY_LOGO, logoData);
-          applyLogoEverywhere(logoData);
-        };
-        reader.readAsDataURL(file);
+    /* APPLICATION INITIALIZATION */
+    window.addEventListener('DOMContentLoaded', () => {
+      try {
+        loadPersistentImages();
+        loadStorageData();
+        initSubjectDropdowns();
+        checkCachedSession();
+        renderMatrixTable();
+        renderSavedBlueprintsList();
+        filterQuestionBank();
+        renderLivePaper();
+        renderGujcetPaperList();
+        renderArchiveList();
+      } catch (err) {
+        console.error("Initialization error:", err);
       }
-    }
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
+    });
   </script>
 </body>
 </html>
