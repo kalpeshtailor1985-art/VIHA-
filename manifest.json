@@ -1,29 +1,19 @@
 {
-  "name": "Kalpesh Tailor - Bai Avabai Exam Suite",
+  "name": "KT Maths - Kalpesh Tailor",
   "short_name": "KT Maths",
-  "start_url": "./index.html",
+  "description": "Question Paper Generator & Blueprint Matrix - Bai Avabai Highschool",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#1e3a8a",
+  "background_color": "#0f172a",
   "theme_color": "#1e3a8a",
-  "description": "Official Examination, GUJCET & Blueprint Suite - KT Maths",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "web 6.png",
-      "sizes": "192x192",
+      "src": "icon.png",
+      "sizes": "192x192 512x512 1024x1024",
       "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "web 6.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "web 6.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ]
 }
