@@ -14,7 +14,7 @@
 
   <!-- APP FAVICON & TOUCH ICON (KT MATHS LOGO) -->
   <link id="app-favicon" rel="icon" type="image/png" href="web 6.png">
-  <link rel="apple-touch-icon" href="web 6.png">
+  <link id="apple-touch-icon" rel="apple-touch-icon" href="web 6.png">
 
   <!-- STANDALONE & EMBEDDED WEB APP MANIFEST -->
   <link rel="manifest" href="manifest.json">
@@ -86,7 +86,6 @@
         height: auto !important;
       }
 
-      /* Pratyek print jhalelya page var exact outer border basvnyasathi fixed layer */
       body::before {
         content: "";
         position: fixed;
@@ -186,7 +185,7 @@
 
       <div class="flex items-center space-x-3.5 pb-3 border-b border-slate-100">
         <div class="flex flex-col items-center">
-          <img src="web 6.png" alt="KT Maths" class="w-12 h-12 rounded-xl object-cover shadow-md border border-amber-300">
+          <img src="web 6.png" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-xl object-cover shadow-md border border-amber-300">
           <span class="text-[9px] font-black tracking-wider text-brand-900 mt-1 uppercase whitespace-nowrap">KALPESH TAILOR</span>
         </div>
         <div class="leading-tight">
@@ -276,7 +275,7 @@
   <header class="md:hidden bg-brand-900 text-white p-3.5 flex items-center justify-between shadow-md z-30">
     <div class="flex items-center space-x-3">
       <div class="flex flex-col items-center">
-        <img src="web 6.png" alt="KT Maths" class="w-9 h-9 rounded-lg object-cover shadow border border-amber-300">
+        <img src="web 6.png" alt="KT Maths" class="kt-logo-img w-9 h-9 rounded-lg object-cover shadow border border-amber-300">
         <span class="text-[8px] font-black tracking-wider text-amber-300 mt-0.5 uppercase whitespace-nowrap">KALPESH TAILOR</span>
       </div>
       <div class="leading-tight">
@@ -300,7 +299,7 @@
 
     <div class="p-4 border-b border-brand-800 flex items-center space-x-3.5">
       <div class="flex flex-col items-center">
-        <img src="web 6.png" alt="KT Maths" class="w-12 h-12 rounded-xl object-cover shadow-lg border border-amber-300">
+        <img src="web 6.png" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-xl object-cover shadow-lg border border-amber-300">
         <span class="text-[9px] font-black tracking-wider text-amber-300 mt-1 uppercase whitespace-nowrap">KALPESH TAILOR</span>
       </div>
       <div class="flex-1 min-w-0">
@@ -591,7 +590,7 @@
               <div class="border-b-2 border-slate-900 pb-3 mb-4 text-center">
                 <div class="flex justify-between items-center mb-1">
                   <div class="flex flex-col items-center">
-                    <img src="web 6.png" alt="KT Maths" class="w-12 h-12 rounded-lg object-cover border border-amber-300 shadow">
+                    <img src="web 6.png" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-lg object-cover border border-amber-300 shadow">
                     <span class="text-[9px] font-black tracking-wider text-slate-900 mt-0.5 uppercase whitespace-nowrap">KALPESH TAILOR</span>
                   </div>
                   <div class="flex-1 px-3">
@@ -1389,7 +1388,7 @@
     </div>
   </div>
 
-  <!-- MODAL: PROFILE PICTURE -->
+  <!-- MODAL: PROFILE PICTURE & APP LOGO SETTINGS -->
   <div id="modal-photo" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-3">
@@ -1397,20 +1396,27 @@
           <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-900 flex items-center justify-center">
             <i data-lucide="camera" class="w-5 h-5"></i>
           </div>
-          <h3 class="font-extrabold text-base text-slate-900">Update Profile Picture</h3>
+          <h3 class="font-extrabold text-base text-slate-900">Manage Picture &amp; App Logo</h3>
         </div>
         <button type="button" onclick="closeModal('modal-photo')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
       </div>
 
-      <div class="space-y-3 text-xs">
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Upload Local Image:</label>
-          <input type="file" id="local-photo-input" accept="image/*" class="w-full text-xs text-slate-500" onchange="handleLocalPhoto(event)">
+      <div class="space-y-4 text-xs">
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+          <label class="block font-bold text-slate-800">1. Teacher Profile Picture (Persistent):</label>
+          <p class="text-[11px] text-slate-500">Updates avatar photo permanently across browser refreshes.</p>
+          <input type="file" id="local-photo-input" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer" onchange="handleLocalPhoto(event)">
+        </div>
+
+        <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl space-y-2">
+          <label class="block font-bold text-amber-950">2. KT Maths App Logo &amp; Favicon (Persistent):</label>
+          <p class="text-[11px] text-amber-800">Updates the web app logo everywhere (header, sidebar, paper header, and browser tab favicon) permanently.</p>
+          <input type="file" id="local-logo-input" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-amber-600 file:text-white hover:file:bg-amber-700 cursor-pointer" onchange="handleAppLogoUpload(event)">
         </div>
       </div>
 
       <div class="flex justify-end space-x-2 pt-3 border-t">
-        <button type="button" onclick="closeModal('modal-photo')" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">
+        <button type="button" onclick="closeModal('modal-photo')" class="px-4 py-2 bg-brand-900 text-white font-bold rounded-lg text-xs shadow hover:bg-brand-800 cursor-pointer">
           Done
         </button>
       </div>
@@ -1674,6 +1680,10 @@
     const APP_AUTH_CACHE_KEY = "BAI_AVABAI_AUTH_CACHE_V18";
     const APP_USERS_REGISTRY_KEY = "BAI_AVABAI_USERS_REGISTRY_V18";
 
+    /* KEYS FOR PERSISTENT IMAGES */
+    const APP_STORAGE_KEY_AVATAR = "KT_TEACHER_AVATAR_SAFE_V1";
+    const APP_STORAGE_KEY_LOGO = "KT_MATHS_APP_LOGO_SAFE_V1";
+
     const DEFAULT_BLUEPRINT_ROWS = [
       { id: 'bp-1', std: 'Std 10', sub: 'Mathematics (Standard - 12)', name: 'Ch 1 - Real Numbers', m1_wo: 2, m1_with: 2, m2_wo: 1, m2_with: 2, m3_wo: 1, m3_with: 1, m4_wo: 0, m4_with: 0, c1_wo: 0, c1_with: 0, c2_wo: 0, c2_with: 0 },
       { id: 'bp-2', std: 'Std 10', sub: 'Mathematics (Standard - 12)', name: 'Ch 2 - Polynomials', m1_wo: 2, m1_with: 2, m2_wo: 2, m2_with: 2, m3_wo: 0, m3_with: 1, m4_wo: 1, m4_with: 1, c1_wo: 0, c1_with: 0, c2_wo: 0, c2_with: 0 },
@@ -1766,6 +1776,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       try {
+        loadPersistentImages();
         loadStorageData();
         initSubjectDropdowns();
         checkCachedSession();
@@ -1780,6 +1791,30 @@
       }
       if (window.lucide && lucide.createIcons) lucide.createIcons();
     });
+
+    /* FUNCTION: LOAD PERSISTENT AVATAR AND KT MATHS LOGO ACROSS APP */
+    function loadPersistentImages() {
+      const savedAvatar = localStorage.getItem(APP_STORAGE_KEY_AVATAR);
+      if (savedAvatar) {
+        const avatarEl = document.getElementById('user-avatar');
+        if (avatarEl) avatarEl.src = savedAvatar;
+      }
+
+      const savedLogo = localStorage.getItem(APP_STORAGE_KEY_LOGO);
+      if (savedLogo) {
+        applyLogoEverywhere(savedLogo);
+      }
+    }
+
+    function applyLogoEverywhere(logoDataUrl) {
+      document.querySelectorAll('.kt-logo-img').forEach(img => {
+        img.src = logoDataUrl;
+      });
+      const favicon = document.getElementById('app-favicon');
+      if (favicon) favicon.href = logoDataUrl;
+      const appleTouch = document.getElementById('apple-touch-icon');
+      if (appleTouch) appleTouch.href = logoDataUrl;
+    }
 
     function hideAuthGate() {
       const gate = document.getElementById('auth-gate');
@@ -2099,7 +2134,9 @@
         blueprintRows: state.blueprintRows,
         savedBlueprints: state.savedBlueprints,
         livePaperQuestions: state.livePaperQuestions,
-        archivedPapers: state.archivedPapers
+        archivedPapers: state.archivedPapers,
+        avatarImg: localStorage.getItem(APP_STORAGE_KEY_AVATAR),
+        logoImg: localStorage.getItem(APP_STORAGE_KEY_LOGO)
       };
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
       const a = document.createElement('a');
@@ -2122,6 +2159,16 @@
           if (imported.savedBlueprints) state.savedBlueprints = imported.savedBlueprints;
           if (imported.livePaperQuestions) state.livePaperQuestions = imported.livePaperQuestions;
           if (imported.archivedPapers) state.archivedPapers = imported.archivedPapers;
+
+          if (imported.avatarImg) {
+            localStorage.setItem(APP_STORAGE_KEY_AVATAR, imported.avatarImg);
+            const avatarEl = document.getElementById('user-avatar');
+            if (avatarEl) avatarEl.src = imported.avatarImg;
+          }
+          if (imported.logoImg) {
+            localStorage.setItem(APP_STORAGE_KEY_LOGO, imported.logoImg);
+            applyLogoEverywhere(imported.logoImg);
+          }
 
           state.blueprintRows.forEach(r => {
             if (r.m1_wo === undefined) r.m1_wo = r.m1 || 0;
@@ -3774,13 +3821,29 @@
       openModal('modal-photo');
     }
 
+    /* PERSISTENT TEACHER PROFILE PICTURE */
     function handleLocalPhoto(e) {
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = function(evt) {
-          document.getElementById('user-avatar').src = evt.target.result;
-          closeModal('modal-photo');
+          const imgData = evt.target.result;
+          document.getElementById('user-avatar').src = imgData;
+          localStorage.setItem(APP_STORAGE_KEY_AVATAR, imgData);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    /* PERSISTENT KT MATHS APP LOGO & FAVICON */
+    function handleAppLogoUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const logoData = evt.target.result;
+          localStorage.setItem(APP_STORAGE_KEY_LOGO, logoData);
+          applyLogoEverywhere(logoData);
         };
         reader.readAsDataURL(file);
       }
