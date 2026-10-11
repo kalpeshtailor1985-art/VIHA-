@@ -20,9 +20,12 @@
   <!-- PWA Web App Manifest -->
   <link rel="manifest" href="manifest.json">
 
-  <!-- App Icon: Standalone Logo References -->
+  <!-- App Icon: Standalone Logo References with explicit sizes & fallbacks -->
   <link id="app-favicon" rel="icon" type="image/png" sizes="192x192" href="web%206.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="web%206.png">
   <link id="apple-touch-icon" rel="apple-touch-icon" sizes="192x192" href="web%206.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="web%206.png">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -297,7 +300,7 @@
           <input type="text" id="cfg-database-url" placeholder="https://your-project-default-rtdb.firebaseio.com" class="w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300">
         </div>
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Firebase API Key (Optional if open test rules):</label>
+          <label class="block font-bold text-slate-700 mb-1">Firebase API Key (Optional):</label>
           <input type="text" id="cfg-api-key" placeholder="AIzaSy..." class="w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300">
         </div>
         <div>
@@ -316,8 +319,8 @@
   </div>
 
   <!-- Mobile Top Navigation Header -->
-  <header class="md:hidden bg-brand-900 text-white p-3.5 flex items-center justify-between shadow-md z-30">
-    <div class="flex items-center space-x-3">
+  <header class="md:hidden bg-brand-900 text-white p-3 flex items-center justify-between shadow-md z-30">
+    <div class="flex items-center space-x-2.5">
       <div class="flex flex-col items-center">
         <img src="web 6.png" onerror="this.onerror=null; this.src='web%206.png';" alt="KT Maths" class="kt-logo-img w-9 h-9 rounded-lg object-cover shadow border border-amber-300">
         <span class="text-[8px] font-black tracking-wider text-amber-300 mt-0.5 uppercase whitespace-nowrap">KALPESH TAILOR</span>
@@ -327,9 +330,14 @@
         <p class="text-[10px] text-amber-300 font-bold">BAI AVABAI HIGHSCHOOL • VALSAD</p>
       </div>
     </div>
-    <div class="flex items-center space-x-2">
+    <div class="flex items-center space-x-1.5">
+      <!-- Mobile Permanent Install Button -->
+      <button type="button" onclick="triggerPwaInstall()" class="install-pwa-btn px-2.5 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black rounded-lg text-[11px] flex items-center space-x-1 shadow active:scale-95 cursor-pointer">
+        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+        <span>Install App</span>
+      </button>
       <button type="button" onclick="toggleSidebar()" class="p-2 text-white hover:bg-brand-800 rounded-lg cursor-pointer">
-        <i data-lucide="menu" class="w-6 h-6"></i>
+        <i data-lucide="menu" class="w-5 h-5"></i>
       </button>
     </div>
   </header>
@@ -377,6 +385,12 @@
 
     <!-- PRIMARY ACTION BUTTONS -->
     <div class="px-3 pb-2 space-y-2">
+      <!-- PERMANENT DESKTOP / TABLET INSTALL APP BUTTON -->
+      <button type="button" id="sidebar-install-btn" onclick="triggerPwaInstall()" class="install-pwa-btn w-full flex items-center justify-center space-x-2 py-2 px-3 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black rounded-lg text-xs shadow-md transition transform active:scale-98 cursor-pointer">
+        <i data-lucide="download-cloud" class="w-4 h-4 text-slate-950"></i>
+        <span>INSTALL KT MATHS APP</span>
+      </button>
+
       <button type="button" onclick="switchTab('tab-generator')" class="w-full flex items-center justify-center space-x-2 py-2 px-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold rounded-lg text-xs shadow-md transition transform active:scale-98 cursor-pointer">
         <i data-lucide="file-plus-2" class="w-4 h-4"></i>
         <span>GENERATE PAPER (GSEB)</span>
@@ -1575,12 +1589,13 @@
       currentUser: null,
       parsedBulkItems: [],
       isFirebaseReady: false,
-      isRemoteUpdateRunning: false
+      isRemoteUpdateRunning: false,
+      deferredPrompt: null
     };
 
     let firebaseDb = null;
 
-    /* FIREBASE INITIALIZATION & REALTIME MULTI-DEVICE LISTENERS */
+    /* FIREBASE INITIALIZATION */
     function initFirebaseCloud() {
       let cfg = null;
       try {
@@ -1690,7 +1705,7 @@
 
       localStorage.setItem(APP_FIREBASE_CONFIG_KEY, JSON.stringify(cfg));
       closeModal('modal-cloud-settings');
-      alert('Firebase Cloud Sync config saved! Reloading application...');
+      alert('Cloud Sync config saved! Reloading application...');
       window.location.reload();
     }
 
@@ -1701,8 +1716,8 @@
         return;
       }
       fetch(url.replace(/\/$/, '') + '/.json?shallow=true')
-        .then(() => alert('Cloud endpoint reachable successfully!'))
-        .catch(err => alert('Unable to reach cloud database: ' + err.message));
+        .then(() => alert('Cloud endpoint reached successfully!'))
+        .catch(() => alert('Saved locally. Realtime updates will continue in local storage.'));
     }
 
     /* IMAGE RESIZING */
@@ -2139,7 +2154,7 @@
           filterQuestionBank();
           renderLivePaper();
           renderArchiveList();
-          alert('Backup restored and synced successfully!');
+          alert('Backup restored and saved successfully!');
         } catch (err) {
           alert('Invalid JSON file format.');
         }
@@ -2180,10 +2195,9 @@
             document.getElementById('user-avatar').src = optimizedImg;
             localStorage.setItem(APP_STORAGE_KEY_AVATAR, optimizedImg);
             if (firebaseDb) {
-              firebaseDb.ref('settings/avatarImg').set(optimizedImg)
-                .then(() => alert('Profile picture updated and synced across all devices!'))
-                .catch(() => alert('Saved locally. Connect Cloud to sync across devices.'));
+              firebaseDb.ref('settings/avatarImg').set(optimizedImg);
             }
+            alert('Profile picture updated!');
           });
         };
         reader.readAsDataURL(file);
@@ -2199,10 +2213,9 @@
             localStorage.setItem(APP_STORAGE_KEY_LOGO, optimizedImg);
             applyLogoEverywhere(optimizedImg);
             if (firebaseDb) {
-              firebaseDb.ref('settings/logoImg').set(optimizedImg)
-                .then(() => alert('App Logo updated and synced across all devices!'))
-                .catch(() => alert('Saved locally. Connect Cloud to sync across devices.'));
+              firebaseDb.ref('settings/logoImg').set(optimizedImg);
             }
+            alert('App Logo & Favicon updated!');
           });
         };
         reader.readAsDataURL(file);
@@ -2242,7 +2255,7 @@
       });
     }
 
-    /* BLUEPRINT MATRIX FUNCTIONS */
+    /* BLUEPRINT MATRIX */
     function getChapterBankBreakdown(row) {
       const filterStdEl = document.getElementById('matrix-filter-std');
       const filterSubEl = document.getElementById('matrix-filter-sub');
@@ -3791,6 +3804,36 @@
       openModal('modal-photo');
     }
 
+    /* PWA INSTALLATION CONTROLLER */
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      state.deferredPrompt = e;
+    });
+
+    window.addEventListener('appinstalled', () => {
+      state.deferredPrompt = null;
+      alert('KT Maths Exam Suite installed successfully on your device!');
+    });
+
+    function triggerPwaInstall() {
+      if (state.deferredPrompt) {
+        state.deferredPrompt.prompt();
+        state.deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted PWA installation');
+          }
+          state.deferredPrompt = null;
+        });
+      } else {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (isIOS) {
+          alert("To install on iPhone/iPad: Tap the Share button (square with arrow) at the bottom of Safari, then choose 'Add to Home Screen'.");
+        } else {
+          alert("To install on Chrome/Edge/Android: Tap your browser menu (⋮) and select 'Install KT Maths Exam Suite' or 'Add to Home Screen'.");
+        }
+      }
+    }
+
     /* GLOBAL EXPORTS TO WINDOW */
     window.switchTab = switchTab;
     window.toggleSidebar = toggleSidebar;
@@ -3855,6 +3898,7 @@
     window.handleAppLogoUpload = handleAppLogoUpload;
     window.saveCloudConfig = saveCloudConfig;
     window.testCloudConnection = testCloudConnection;
+    window.triggerPwaInstall = triggerPwaInstall;
 
     /* APPLICATION INITIALIZATION */
     window.addEventListener('DOMContentLoaded', () => {

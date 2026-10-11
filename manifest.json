@@ -1,9 +1,13 @@
 {
   "name": "KT Maths Exam Suite",
-  "short_name": "KT",
-  "start_url": "./index.html",
+  "short_name": "KT Maths",
+  "description": "Official GSEB Examination, GUJCET & Blueprint Suite - Kalpesh Tailor - Bai Avabai Highschool, Valsad",
+  "start_url": "./",
+  "id": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
   "theme_color": "#1e3a8a",
   "icons": [
     {
