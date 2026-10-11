@@ -12,6 +12,9 @@
   <meta name="apple-mobile-web-app-title" content="KT Maths">
   <meta name="description" content="Official Examination, GUJCET & Blueprint Suite - Kalpesh Tailor - Bai Avabai Highschool, Valsad">
 
+  <!-- PWA WEB APP MANIFEST -->
+  <link rel="manifest" href="manifest.json">
+
   <!-- APP FAVICON & TOUCH ICON -->
   <link id="app-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e3a8a'/%3E%3Ctext x='50' y='62' font-family='sans-serif' font-weight='900' font-size='42' fill='%23fbbf24' text-anchor='middle'%3EKT%3C/text%3E%3C/svg%3E">
   <link id="apple-touch-icon" rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231e3a8a'/%3E%3Ctext x='50' y='62' font-family='sans-serif' font-weight='900' font-size='42' fill='%23fbbf24' text-anchor='middle'%3EKT%3C/text%3E%3C/svg%3E">
@@ -1580,7 +1583,6 @@
         cfg = JSON.parse(localStorage.getItem(APP_FIREBASE_CONFIG_KEY));
       } catch (e) {}
 
-      // Fallback default setup (kalpesh-maths-portal or user defined)
       if (!cfg || !cfg.databaseURL) {
         cfg = {
           databaseURL: "https://kt-maths-avabai-default-rtdb.firebaseio.com",
@@ -1597,7 +1599,6 @@
         updateCloudSyncBadge(true, "Cloud Connected");
         setupRealtimeListeners();
       } catch (err) {
-        console.warn("Firebase not active yet. Operating in Local Safe Mode.", err);
         state.isFirebaseReady = false;
         updateCloudSyncBadge(false, "Local Safe Mode");
       }
@@ -1618,7 +1619,6 @@
     function setupRealtimeListeners() {
       if (!firebaseDb) return;
 
-      // 1. Sync Profile Photo Across All Devices
       firebaseDb.ref('settings/avatarImg').on('value', snapshot => {
         const cloudAvatar = snapshot.val();
         if (cloudAvatar && cloudAvatar !== localStorage.getItem(APP_STORAGE_KEY_AVATAR)) {
@@ -1628,7 +1628,6 @@
         }
       });
 
-      // 2. Sync App Logo Across All Devices
       firebaseDb.ref('settings/logoImg').on('value', snapshot => {
         const cloudLogo = snapshot.val();
         if (cloudLogo && cloudLogo !== localStorage.getItem(APP_STORAGE_KEY_LOGO)) {
@@ -1637,7 +1636,6 @@
         }
       });
 
-      // 3. Sync Question Bank Across All Devices
       firebaseDb.ref('database/questions').on('value', snapshot => {
         const cloudQuestions = snapshot.val();
         if (cloudQuestions && Array.isArray(cloudQuestions)) {
@@ -1651,7 +1649,6 @@
         }
       });
 
-      // 4. Sync Blueprint Rows Across Devices
       firebaseDb.ref('database/blueprintRows').on('value', snapshot => {
         const cloudBp = snapshot.val();
         if (cloudBp && Array.isArray(cloudBp)) {
@@ -1661,7 +1658,6 @@
         }
       });
 
-      // 5. Sync Saved Blueprints Across Devices
       firebaseDb.ref('database/savedBlueprints').on('value', snapshot => {
         const cloudSaved = snapshot.val();
         if (cloudSaved && Array.isArray(cloudSaved)) {
@@ -1705,7 +1701,7 @@
         .catch(err => alert('Unable to reach cloud database: ' + err.message));
     }
 
-    /* IMAGE RESIZING (Ensures snappy network transfer across devices) */
+    /* IMAGE RESIZING */
     function resizeImage(base64Str, maxWidth, maxHeight, callback) {
       const img = new Image();
       img.src = base64Str;
@@ -2075,7 +2071,6 @@
       localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
       localStorage.setItem(APP_STORAGE_KEY_ARCHIVE, JSON.stringify(state.archivedPapers));
 
-      // Push to Cloud Database in Realtime across devices
       if (firebaseDb && !state.isRemoteUpdateRunning) {
         firebaseDb.ref('database/questions').set(state.questions).catch(() => {});
         firebaseDb.ref('database/blueprintRows').set(state.blueprintRows).catch(() => {});
@@ -3876,6 +3871,15 @@
       }
       if (window.lucide && lucide.createIcons) lucide.createIcons();
     });
+
+    /* PWA SERVICE WORKER REGISTRATION (OFFLINE SUPPORT) */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => console.log('KT Maths PWA Service Worker Registered', reg))
+          .catch((err) => console.warn('Service Worker registration skipped/failed', err));
+      });
+    }
   </script>
 </body>
 </html>
