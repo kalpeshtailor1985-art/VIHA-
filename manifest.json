@@ -1,12 +1,9 @@
 {
-  "name": "KALPESH TAILOR - BAI AVABAI HIGHSCHOOL, VALSAD",
-  "short_name": "KT Maths",
-  "description": "Official Examination, GUJCET & Blueprint Suite - Bai Avabai Highschool, Valsad",
-  "start_url": "./",
-  "scope": "./",
+  "name": "KT Maths Exam Suite",
+  "short_name": "KT",
+  "start_url": "./index.html",
   "display": "standalone",
-  "orientation": "any",
-  "background_color": "#1e3a8a",
+  "background_color": "#ffffff",
   "theme_color": "#1e3a8a",
   "icons": [
     {
