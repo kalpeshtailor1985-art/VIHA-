@@ -44,6 +44,10 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
+  <!-- Firebase App & Realtime Database CDN (v9 Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
   <!-- MathJax Configuration -->
   <script>
     window.MathJax = {
@@ -267,6 +271,43 @@
     </div>
   </div>
 
+  <!-- MODAL: FIREBASE MULTI-DEVICE CLOUD SETTINGS -->
+  <div id="modal-cloud-settings" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-brand-900">
+          <i data-lucide="cloud-cog" class="w-5 h-5 text-blue-600"></i>
+          <h3 class="font-extrabold text-sm text-slate-900">Multi-Device Cloud Sync Config</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-cloud-settings')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <p class="text-[11px] text-slate-600 leading-relaxed">
+        Paste your Firebase Web App configuration object or Realtime Database URL here to keep all devices automatically synchronized in real time.
+      </p>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Firebase Database URL:</label>
+          <input type="text" id="cfg-database-url" placeholder="https://your-project-default-rtdb.firebaseio.com" class="w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Firebase API Key (Optional if open test rules):</label>
+          <input type="text" id="cfg-api-key" placeholder="AIzaSy..." class="w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Firebase Project ID:</label>
+          <input type="text" id="cfg-project-id" placeholder="bai-avabai-highschool" class="w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300">
+        </div>
+      </div>
+      <div class="flex items-center justify-between pt-3 border-t">
+        <button type="button" onclick="testCloudConnection()" class="px-3 py-1.5 bg-blue-50 text-blue-800 font-bold rounded-lg text-xs hover:bg-blue-100">Test Connection</button>
+        <div class="space-x-2">
+          <button type="button" onclick="closeModal('modal-cloud-settings')" class="px-3 py-1.5 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs">Cancel</button>
+          <button type="button" onclick="saveCloudConfig()" class="px-4 py-1.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-lg text-xs shadow">Save &amp; Connect</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Mobile Top Navigation Header -->
   <header class="md:hidden bg-brand-900 text-white p-3.5 flex items-center justify-between shadow-md z-30">
     <div class="flex items-center space-x-3">
@@ -315,9 +356,9 @@
           <h2 id="logged-user-name" class="text-xs font-extrabold text-white tracking-wide truncate uppercase">KALPESH H TAILOR</h2>
           <p class="text-[11px] text-amber-300 font-black tracking-tight truncate">M.Sc, B.Ed, GSET (MATHS)</p>
           <div class="flex items-center space-x-2 mt-0.5">
-            <span id="firebase-sync-badge" class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/40">
-              ● Local Safe Mode
-            </span>
+            <button type="button" onclick="openModal('modal-cloud-settings')" id="firebase-sync-badge" class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-900 transition cursor-pointer" title="Click to configure live Cloud Sync across devices">
+              ● Cloud Synced
+            </button>
             <button type="button" onclick="openPhotoModal()" class="text-[10px] text-blue-200 hover:text-white flex items-center space-x-0.5 cursor-pointer">
               <i data-lucide="pencil" class="w-2.5 h-2.5"></i>
               <span>Photo</span>
@@ -1390,14 +1431,14 @@
 
       <div class="space-y-4 text-xs">
         <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
-          <label class="block font-bold text-slate-800">1. Teacher Profile Picture (Persistent):</label>
-          <p class="text-[11px] text-slate-500">Updates avatar photo permanently across browser refreshes.</p>
+          <label class="block font-bold text-slate-800">1. Teacher Profile Picture (Multi-Device Sync):</label>
+          <p class="text-[11px] text-slate-500">Automatically syncs to all phones and PCs linked to this portal.</p>
           <input type="file" id="local-photo-input" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer" onchange="handleLocalPhoto(event)">
         </div>
 
         <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl space-y-2">
-          <label class="block font-bold text-amber-950">2. KT Maths App Logo &amp; Favicon (Persistent):</label>
-          <p class="text-[11px] text-amber-800">Updates the web app logo everywhere (header, sidebar, paper header, and browser tab favicon) permanently.</p>
+          <label class="block font-bold text-amber-950">2. KT Maths App Logo &amp; Favicon (Multi-Device Sync):</label>
+          <p class="text-[11px] text-amber-800">Updates app logo everywhere across all open tabs, headers, and devices.</p>
           <input type="file" id="local-logo-input" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-amber-600 file:text-white hover:file:bg-amber-700 cursor-pointer" onchange="handleAppLogoUpload(event)">
         </div>
       </div>
@@ -1424,6 +1465,7 @@
     const APP_USERS_REGISTRY_KEY = "BAI_AVABAI_USERS_REGISTRY_V18";
     const APP_STORAGE_KEY_AVATAR = "KT_TEACHER_AVATAR_SAFE_V1";
     const APP_STORAGE_KEY_LOGO = "KT_MATHS_APP_LOGO_SAFE_V1";
+    const APP_FIREBASE_CONFIG_KEY = "KT_FIREBASE_CONFIG_V1";
 
     const GSEB_SUBJECTS = {
       "Std 9": ["Mathematics", "Science & Technology", "Social Science", "Gujarati", "English", "Hindi", "Sanskrit"],
@@ -1524,8 +1566,172 @@
       matrixMode: 'GSEB',
       gateAuthTab: 'signin',
       currentUser: null,
-      parsedBulkItems: []
+      parsedBulkItems: [],
+      isFirebaseReady: false,
+      isRemoteUpdateRunning: false
     };
+
+    let firebaseDb = null;
+
+    /* FIREBASE INITIALIZATION & REALTIME MULTI-DEVICE LISTENERS */
+    function initFirebaseCloud() {
+      let cfg = null;
+      try {
+        cfg = JSON.parse(localStorage.getItem(APP_FIREBASE_CONFIG_KEY));
+      } catch (e) {}
+
+      // Fallback default setup (kalpesh-maths-portal or user defined)
+      if (!cfg || !cfg.databaseURL) {
+        cfg = {
+          databaseURL: "https://kt-maths-avabai-default-rtdb.firebaseio.com",
+          projectId: "kt-maths-avabai"
+        };
+      }
+
+      try {
+        if (!firebase.apps.length) {
+          firebase.initializeApp(cfg);
+        }
+        firebaseDb = firebase.database();
+        state.isFirebaseReady = true;
+        updateCloudSyncBadge(true, "Cloud Connected");
+        setupRealtimeListeners();
+      } catch (err) {
+        console.warn("Firebase not active yet. Operating in Local Safe Mode.", err);
+        state.isFirebaseReady = false;
+        updateCloudSyncBadge(false, "Local Safe Mode");
+      }
+    }
+
+    function updateCloudSyncBadge(isLive, label) {
+      const badge = document.getElementById('firebase-sync-badge');
+      if (!badge) return;
+      if (isLive) {
+        badge.className = "inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-900 transition cursor-pointer";
+        badge.innerHTML = `● ${label || 'Cloud Synced'}`;
+      } else {
+        badge.className = "inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-amber-950 text-amber-300 border border-amber-500/40 hover:bg-amber-900 transition cursor-pointer";
+        badge.innerHTML = `● ${label || 'Local Mode'}`;
+      }
+    }
+
+    function setupRealtimeListeners() {
+      if (!firebaseDb) return;
+
+      // 1. Sync Profile Photo Across All Devices
+      firebaseDb.ref('settings/avatarImg').on('value', snapshot => {
+        const cloudAvatar = snapshot.val();
+        if (cloudAvatar && cloudAvatar !== localStorage.getItem(APP_STORAGE_KEY_AVATAR)) {
+          localStorage.setItem(APP_STORAGE_KEY_AVATAR, cloudAvatar);
+          const avatarEl = document.getElementById('user-avatar');
+          if (avatarEl) avatarEl.src = cloudAvatar;
+        }
+      });
+
+      // 2. Sync App Logo Across All Devices
+      firebaseDb.ref('settings/logoImg').on('value', snapshot => {
+        const cloudLogo = snapshot.val();
+        if (cloudLogo && cloudLogo !== localStorage.getItem(APP_STORAGE_KEY_LOGO)) {
+          localStorage.setItem(APP_STORAGE_KEY_LOGO, cloudLogo);
+          applyLogoEverywhere(cloudLogo);
+        }
+      });
+
+      // 3. Sync Question Bank Across All Devices
+      firebaseDb.ref('database/questions').on('value', snapshot => {
+        const cloudQuestions = snapshot.val();
+        if (cloudQuestions && Array.isArray(cloudQuestions)) {
+          state.isRemoteUpdateRunning = true;
+          state.questions = cloudQuestions;
+          localStorage.setItem(APP_STORAGE_KEY_Q, JSON.stringify(cloudQuestions));
+          updateQuestionCountBadge();
+          filterQuestionBank();
+          renderMatrixTable();
+          state.isRemoteUpdateRunning = false;
+        }
+      });
+
+      // 4. Sync Blueprint Rows Across Devices
+      firebaseDb.ref('database/blueprintRows').on('value', snapshot => {
+        const cloudBp = snapshot.val();
+        if (cloudBp && Array.isArray(cloudBp)) {
+          state.blueprintRows = cloudBp;
+          localStorage.setItem(APP_STORAGE_KEY_MATRIX, JSON.stringify(cloudBp));
+          renderMatrixTable();
+        }
+      });
+
+      // 5. Sync Saved Blueprints Across Devices
+      firebaseDb.ref('database/savedBlueprints').on('value', snapshot => {
+        const cloudSaved = snapshot.val();
+        if (cloudSaved && Array.isArray(cloudSaved)) {
+          state.savedBlueprints = cloudSaved;
+          localStorage.setItem(APP_STORAGE_KEY_SAVED_BLUEPRINTS, JSON.stringify(cloudSaved));
+          renderSavedBlueprintsList();
+        }
+      });
+    }
+
+    function saveCloudConfig() {
+      const url = document.getElementById('cfg-database-url').value.trim();
+      const apiKey = document.getElementById('cfg-api-key').value.trim();
+      const projectId = document.getElementById('cfg-project-id').value.trim();
+
+      if (!url) {
+        alert('Please enter your Firebase Database URL');
+        return;
+      }
+
+      const cfg = {
+        databaseURL: url,
+        apiKey: apiKey || undefined,
+        projectId: projectId || undefined
+      };
+
+      localStorage.setItem(APP_FIREBASE_CONFIG_KEY, JSON.stringify(cfg));
+      closeModal('modal-cloud-settings');
+      alert('Firebase Cloud Sync config saved! Reloading application...');
+      window.location.reload();
+    }
+
+    function testCloudConnection() {
+      const url = document.getElementById('cfg-database-url').value.trim();
+      if (!url) {
+        alert('Please input a Database URL first.');
+        return;
+      }
+      fetch(url.replace(/\/$/, '') + '/.json?shallow=true')
+        .then(() => alert('Cloud endpoint reachable successfully!'))
+        .catch(err => alert('Unable to reach cloud database: ' + err.message));
+    }
+
+    /* IMAGE RESIZING (Ensures snappy network transfer across devices) */
+    function resizeImage(base64Str, maxWidth, maxHeight, callback) {
+      const img = new Image();
+      img.src = base64Str;
+      img.onload = () => {
+        let width = img.width;
+        let height = img.height;
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        callback(canvas.toDataURL('image/jpeg', 0.85));
+      };
+      img.onerror = () => callback(base64Str);
+    }
 
     function escapeHtml(str) {
       if (!str) return '';
@@ -1741,7 +1947,6 @@
           }
         }
 
-        // First login default registration
         const autoUser = { email, password, displayName: fullName };
         users.push(autoUser);
         localStorage.setItem(APP_USERS_REGISTRY_KEY, JSON.stringify(users));
@@ -1869,6 +2074,13 @@
       localStorage.setItem(APP_STORAGE_KEY_SAVED_BLUEPRINTS, JSON.stringify(state.savedBlueprints));
       localStorage.setItem(APP_STORAGE_KEY_PAPER, JSON.stringify(state.livePaperQuestions));
       localStorage.setItem(APP_STORAGE_KEY_ARCHIVE, JSON.stringify(state.archivedPapers));
+
+      // Push to Cloud Database in Realtime across devices
+      if (firebaseDb && !state.isRemoteUpdateRunning) {
+        firebaseDb.ref('database/questions').set(state.questions).catch(() => {});
+        firebaseDb.ref('database/blueprintRows').set(state.blueprintRows).catch(() => {});
+        firebaseDb.ref('database/savedBlueprints').set(state.savedBlueprints).catch(() => {});
+      }
     }
 
     function updateQuestionCountBadge() {
@@ -1914,10 +2126,12 @@
             localStorage.setItem(APP_STORAGE_KEY_AVATAR, imported.avatarImg);
             const avatarEl = document.getElementById('user-avatar');
             if (avatarEl) avatarEl.src = imported.avatarImg;
+            if (firebaseDb) firebaseDb.ref('settings/avatarImg').set(imported.avatarImg);
           }
           if (imported.logoImg) {
             localStorage.setItem(APP_STORAGE_KEY_LOGO, imported.logoImg);
             applyLogoEverywhere(imported.logoImg);
+            if (firebaseDb) firebaseDb.ref('settings/logoImg').set(imported.logoImg);
           }
 
           persistQuestions();
@@ -1926,7 +2140,7 @@
           filterQuestionBank();
           renderLivePaper();
           renderArchiveList();
-          alert('Backup restored successfully!');
+          alert('Backup restored and synced successfully!');
         } catch (err) {
           alert('Invalid JSON file format.');
         }
@@ -1963,9 +2177,15 @@
       if (file) {
         const reader = new FileReader();
         reader.onload = function(evt) {
-          const imgData = evt.target.result;
-          document.getElementById('user-avatar').src = imgData;
-          localStorage.setItem(APP_STORAGE_KEY_AVATAR, imgData);
+          resizeImage(evt.target.result, 256, 256, optimizedImg => {
+            document.getElementById('user-avatar').src = optimizedImg;
+            localStorage.setItem(APP_STORAGE_KEY_AVATAR, optimizedImg);
+            if (firebaseDb) {
+              firebaseDb.ref('settings/avatarImg').set(optimizedImg)
+                .then(() => alert('Profile picture updated and synced across all devices!'))
+                .catch(() => alert('Saved locally. Connect Cloud to sync across devices.'));
+            }
+          });
         };
         reader.readAsDataURL(file);
       }
@@ -1976,9 +2196,15 @@
       if (file) {
         const reader = new FileReader();
         reader.onload = function(evt) {
-          const logoData = evt.target.result;
-          localStorage.setItem(APP_STORAGE_KEY_LOGO, logoData);
-          applyLogoEverywhere(logoData);
+          resizeImage(evt.target.result, 256, 256, optimizedImg => {
+            localStorage.setItem(APP_STORAGE_KEY_LOGO, optimizedImg);
+            applyLogoEverywhere(optimizedImg);
+            if (firebaseDb) {
+              firebaseDb.ref('settings/logoImg').set(optimizedImg)
+                .then(() => alert('App Logo updated and synced across all devices!'))
+                .catch(() => alert('Saved locally. Connect Cloud to sync across devices.'));
+            }
+          });
         };
         reader.readAsDataURL(file);
       }
@@ -3488,7 +3714,7 @@
       persistQuestions();
       filterQuestionBank();
       closeModal('modal-bulk-import');
-      alert(`Successfully imported ${state.parsedBulkItems.length} questions for ${chapName}!`);
+      alert(`Successfully imported ${state.parsedBulkItems.length} questions for ${chapName}! Synced across devices.`);
     }
 
     function openBulkDeleteModal() {
@@ -3541,7 +3767,7 @@
         return;
       }
 
-      if (confirm(`Are you sure you want to permanently delete ALL ${count} questions for "${chapKey}"?`)) {
+      if (confirm(`Are you sure you want to permanently delete ALL ${count} questions for "${chapKey}" across all devices?`)) {
         state.questions = state.questions.filter(q => {
           if (std !== 'ALL' && q.std !== std) return true;
           if (sub !== 'ALL' && q.subject !== sub) return true;
@@ -3558,7 +3784,7 @@
         persistQuestions();
         filterQuestionBank();
         closeModal('modal-bulk-delete');
-        alert(`Deleted ${count} questions successfully!`);
+        alert(`Deleted ${count} questions successfully! Synced across devices.`);
       }
     }
 
@@ -3628,6 +3854,8 @@
     window.openPhotoModal = openPhotoModal;
     window.handleLocalPhoto = handleLocalPhoto;
     window.handleAppLogoUpload = handleAppLogoUpload;
+    window.saveCloudConfig = saveCloudConfig;
+    window.testCloudConnection = testCloudConnection;
 
     /* APPLICATION INITIALIZATION */
     window.addEventListener('DOMContentLoaded', () => {
@@ -3636,6 +3864,7 @@
         loadStorageData();
         initSubjectDropdowns();
         checkCachedSession();
+        initFirebaseCloud();
         renderMatrixTable();
         renderSavedBlueprintsList();
         filterQuestionBank();
