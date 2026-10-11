@@ -1,10 +1,10 @@
-const CACHE_NAME = 'kt-maths-suite-v1';
+const CACHE_NAME = 'kt-maths-suite-v2';
 
-// Static CDNs and core libraries to cache for offline usage
-const PRECACHE_URLS = [
+const PRECACHE_ASSETS = [
   './',
   './index.html',
   './manifest.json',
+  './web%206.png',
   'https://cdn.tailwindcss.com',
   'https://unpkg.com/lucide@latest',
   'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
@@ -16,8 +16,8 @@ const PRECACHE_URLS = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(PRECACHE_URLS).catch((err) => {
-        console.warn('Some precache assets could not be cached immediately:', err);
+      return cache.addAll(PRECACHE_ASSETS).catch((err) => {
+        console.warn('Precache partial fallback:', err);
       });
     }).then(() => self.skipWaiting())
   );
@@ -37,11 +37,10 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Cache-First / Stale-While-Revalidate Strategy (Silently serves cache when offline)
 self.addEventListener('fetch', (event) => {
   const req = event.request;
 
-  // Bypass non-GET requests or Firebase RTDB web sockets/endpoints
+  // Let Firebase websocket and database queries pass through
   if (req.method !== 'GET' || req.url.includes('firebaseio.com')) {
     return;
   }
@@ -49,30 +48,30 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(req).then((cachedResponse) => {
       if (cachedResponse) {
-        // Fetch fresh copy in the background without breaking if offline
+        // Silently revalidate in background without throwing error if offline
         fetch(req).then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200) {
             caches.open(CACHE_NAME).then((cache) => cache.put(req, networkResponse));
           }
         }).catch(() => {
-          /* Offline: silently ignore network error and continue serving cache */
+          /* Stay silent when offline: serve cache */
         });
         return cachedResponse;
       }
 
-      // Not in cache: fetch from network and store in cache
       return fetch(req).then((networkResponse) => {
         if (!networkResponse || networkResponse.status !== 200 || networkResponse.type === 'opaque') {
           return networkResponse;
         }
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(req, responseToCache));
+        const toCache = networkResponse.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(req, toCache));
         return networkResponse;
       }).catch(() => {
-        // Fallback for navigation requests (HTML page)
+        // Fallback to cached index rather than showing browser network error screen
         if (req.mode === 'navigate') {
           return caches.match('./') || caches.match('./index.html');
         }
+        return new Response('', { status: 408, headers: { 'Content-Type': 'text/plain' } });
       });
     })
   );
