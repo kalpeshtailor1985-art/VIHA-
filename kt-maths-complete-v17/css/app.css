@@ -1,0 +1,125 @@
+/* === css/app.css === */
+.paper-cambria-font,
+#paperPreview,
+.paper-preview-sheet {
+  font-family: 'Cambria', 'Noto Serif Gujarati', 'Georgia', serif !important;
+}
+
+.paper-canvas {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+  margin: 0 auto;
+  padding: 10mm 12mm;
+  border: 2px solid #0f172a;
+  box-sizing: border-box;
+  font-family: 'Cambria', 'Noto Serif Gujarati', 'Georgia', serif;
+}
+
+.watermark {
+  position: relative;
+}
+
+.watermark::before {
+  content: var(--wm-text, "KT MATHS");
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(var(--wm-angle, -30deg));
+  font-size: calc(var(--wm-pt, 48) * 1pt);
+  font-weight: 800;
+  color: rgba(0, 0, 0, var(--wm-alpha, 0.08));
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Options wrap onto the next line instead of being clipped */
+.mcq-options-inline {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+  align-items: baseline !important;
+  width: 100% !important;
+  margin-top: 4px !important;
+  padding-left: 18px !important;
+  gap: 2px 18px !important;
+}
+
+.mcq-option-col {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* Paper viewport layout */
+.paper-viewport {
+  width: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  max-height: calc(100dvh - 150px);
+  min-height: 320px;
+  background: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 8px;
+  scrollbar-gutter: stable both-edges;
+  -webkit-overflow-scrolling: touch;
+}
+
+.paper-viewport:fullscreen {
+  max-height: none;
+  height: 100vh;
+  border-radius: 0;
+  padding: 12px;
+}
+
+.paper-sizer {
+  position: relative;
+  margin: 0 auto;
+}
+
+.paper-sizer .paper-canvas {
+  margin: 0;
+  transform-origin: 0 0;
+}
+
+.zoom-btn {
+  padding: 2px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e3a8a;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.zoom-btn:hover {
+  background: #eff6ff;
+}
+
+.zoom-btn.active {
+  background: #1e3a8a;
+  color: #fff;
+  border-color: #1e3a8a;
+}
+/* === Running line (login window) === */
+.kt-ticker-track {
+  display: inline-block;
+  width: max-content;
+  white-space: nowrap;
+  padding: 6px 0;
+  animation: ktTicker 30s linear infinite;
+  will-change: transform;
+}
+@keyframes ktTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.kt-ticker-wrap:hover .kt-ticker-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .kt-ticker-track { animation: none; white-space: normal; width: auto; }
+}
