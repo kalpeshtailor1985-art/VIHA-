@@ -1,0 +1,72 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Checks that the WHOLE app is in the repo before publishing.
+      # While you are still uploading files one by one, this step only prints a notice (no red cross)
+      # and the website that is already online stays as it is. The run that has every file publishes.
+      - name: Build site folder (website files only)
+        id: build
+        run: |
+          required="index.html manifest.json sw.js css/app.css css/print-paper.css js/state.js js/app.js js/init.js js/secure-auth.js js/signup-plan.js js/access-migrate.js js/catalog-guest.js js/modules/blueprint-matrix.js js/modules/paper-workspace.js js/modules/gujcet-workspace.js js/utils/media-math.js js/utils/word-question-parser.js"
+          missing=""
+          for f in $required; do
+            [ -f "$f" ] || missing="$missing $f"
+          done
+          if [ -n "$missing" ]; then
+            echo "::notice title=Not published yet::Files still missing from the repo:$missing. Upload them (keep the folder names), then publishing runs again by itself."
+            {
+              echo "### Not published yet"
+              echo "These files are not in the repo yet:"
+              for f in $missing; do echo "- \`$f\`"; done
+              echo
+              echo "Upload them with the same folder names. The next push publishes the site."
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          mkdir -p _site
+          cp index.html manifest.json sw.js _site/
+          for f in web_206.png icon-192.png icon-512.png icon-maskable-512.png check.html upi-qr.png; do
+            if [ -f "$f" ]; then cp "$f" _site/; else echo "::warning::$f not found in the repo (skipped)"; fi
+          done
+          cp -r css js _site/
+          touch _site/.nojekyll
+          echo "Files that will be published:"; find _site -type f | sort
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+      - name: Upload artifact
+        if: steps.build.outputs.ready == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+      - name: Deploy to GitHub Pages
+        if: steps.build.outputs.ready == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
