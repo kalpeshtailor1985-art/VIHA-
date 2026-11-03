@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KT Maths Exam Suite</title>
+
+  <!-- PWA -->
+  <meta name="theme-color" content="#1e3a8a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="application-name" content="KT Maths Exam Suite">
+  <meta name="apple-mobile-web-app-title" content="KT Maths Exam Suite">
+  <meta name="description" content="Official GSEB Examination, GUJCET & Blueprint Suite - Kalpesh Tailor">
+  <link rel="manifest" href="manifest.json">
+  <link id="app-favicon" rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link id="apple-touch-icon" rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+
+  <script>
+    /* KT Maths start-up check: shows a red bar if a file is missing / old on the website or a script crashes */
+    (function () {
+      var failed = [], errors = [], shown = false;
+      window.ktReport = function (err) { try { console.error(err); errors.push(String((err && err.message) || err)); show(true); } catch (e) {} };
+      window.addEventListener('error', function (e) {
+        var t = e.target;
+        if (t && t.tagName === 'SCRIPT' && t.src) {
+          var rel = t.src.replace(location.href.replace(/[^\/]*([?#].*)?$/, ''), '');
+          if (rel.indexOf('http') !== 0 && failed.indexOf(rel) < 0) failed.push(rel);
+          return;
+        }
+        var f = String(e.filename || '');
+        if (e.message && e.message.indexOf('ResizeObserver') === -1 && f.indexOf(location.origin) === 0) errors.push(e.message + ' (' + f.split('/').pop() + ':' + e.lineno + ')');
+      }, true);
+      window.addEventListener('unhandledrejection', function (e) { errors.push('Promise: ' + String((e.reason && e.reason.message) || e.reason)); });
+      var NEED = {
+        'js/state.js': function () { return typeof SUB_CONFIG !== 'undefined'; },
+        'js/modules/blueprint-matrix.js': function () { return typeof renderMatrixTable === 'function'; },
+        'js/modules/paper-workspace.js': function () { return typeof renderLivePaper === 'function'; },
+        'js/modules/gujcet-workspace.js': function () { return typeof filterQuestionBank === 'function'; },
+        'js/app.js': function () { return typeof handleSimpleAuthSubmit === 'function' && typeof completeLoginSuccess === 'function'; },
+        'js/access-migrate.js': function () { return typeof migrateToStdAccess === 'function'; },
+        'js/catalog-guest.js': function () { return typeof startGuestSession === 'function' && typeof loadCatalog === 'function'; },
+        'js/secure-auth.js': function () { return typeof handleCloudAuthSubmit === 'function'; },
+        'js/init.js': function () { return window.__KTM_INIT_DONE === true; }
+      };
+      function show(force) {
+        if (shown && !force) return;
+        var missing = Object.keys(NEED).filter(function (f) { try { return !NEED[f](); } catch (e) { return true; } });
+        failed.forEach(function (f) { if (missing.indexOf(f) < 0) missing.push(f); });
+        if (!missing.length && !errors.length) return;
+        shown = true;
+        if (typeof switchGateTab !== 'function') {
+          window.switchGateTab = function (tab) {
+            var ids = { signin: 'tab-auth-signin-btn', signup: 'tab-auth-signup-btn', staff: 'tab-auth-staff-btn' };
+            Object.keys(ids).forEach(function (k) { var b = document.getElementById(ids[k]); if (b) b.style.cssText = k === tab ? 'background:#1e3a8a;color:#fff' : ''; });
+            var n = document.getElementById('gate-name-container'); if (n) n.style.display = tab === 'signup' ? '' : 'none';
+          };
+          window.showGateAlert = function (m) { var a = document.getElementById('gate-alert-box'); if (a) { a.style.display = 'block'; a.textContent = m; } };
+        }
+        var bar = document.getElementById('ktm-boot-bar');
+        if (!bar) { bar = document.createElement('div'); bar.id = 'ktm-boot-bar'; bar.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#b91c1c;color:#fff;padding:8px 36px 8px 12px;font:12px/1.45 system-ui,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.4)'; document.body.appendChild(bar); }
+        var h = '<b>KT Maths could not start properly.</b> ';
+        if (missing.length > 3) h += '<br><b>This folder does not contain the whole app.</b> Use the COMPLETE app folder (it must contain index.html + the css and js folders + web_206.png), not a folder with only a few changed files. ';
+        if (location.protocol === 'file:') h += '<br>You opened the page as a local file. Sign-in needs a website address: use your GitHub Pages link, or run a local server in the app folder (python -m http.server 8000, then open http://localhost:8000). ';
+        if (missing.length) h += 'Missing or old files on the website: <b>' + missing.join(', ') + '</b>. Upload them to GitHub (same folders), wait for the green tick in Actions, then press Ctrl+Shift+R. ';
+        if (errors.length) h += '<br>Error: ' + errors.slice(0, 2).map(function (m) { return m.replace(/</g, '&lt;'); }).join(' | ');
+        bar.innerHTML = h + '<span style="position:absolute;right:10px;top:6px;cursor:pointer;font-size:16px" onclick="this.parentNode.remove()">&times;</span>';
+      }
+      window.addEventListener('load', function () { setTimeout(function () { show(false); }, 3500); });
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.tailwind = window.tailwind || {};   // keeps the page alive if the Tailwind CDN is blocked / offline
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb',
+              700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#0f172a'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <script src="https://unpkg.com/lucide@0.460.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- MathJax: typesets once it finishes loading (fixes race with async script) -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+      startup: {
+        typeset: false,
+        ready: () => {
+          MathJax.startup.defaultReady();
+          MathJax.startup.promise.then(() => { if (typeof renderMath === 'function') renderMath(); });
+        }
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Fonts, KaTeX & External Modular CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/print-paper.css">
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased h-[100dvh] overflow-hidden flex flex-col md:flex-row relative">
+
+  <!-- AUTHENTICATION GATE -->
+  <div id="auth-gate" class="fixed inset-0 z-50 bg-slate-900/90 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+      <div class="flex items-center space-x-3.5 pb-3 border-b border-slate-100">
+        <div class="flex flex-col items-center">
+          <img src="web_206.png" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-xl object-cover shadow-md border border-amber-300">
+          <span class="text-[9px] font-black tracking-wider text-brand-900 mt-1 uppercase whitespace-nowrap">KALPESH TAILOR</span>
+        </div>
+        <div class="leading-tight">
+          <h2 class="text-base font-black text-slate-900 uppercase tracking-tight">KALPESH TAILOR</h2>
+          <h3 class="font-extrabold text-xs text-brand-900" id="gate-header-title">Teacher Sign In</h3>
+        </div>
+      </div>
+
+      <!-- Running line: filled by renderGateTicker() (js/catalog-guest.js) with the exact Question Bank counts -->
+      <div id="gate-ticker" class="hidden rounded-lg border border-amber-300 bg-amber-50 overflow-hidden" role="status" aria-label="Questions available in the Question Bank">
+        <div class="flex items-center">
+          <span class="shrink-0 px-2 py-1.5 bg-amber-500 text-white text-[10px] font-black uppercase tracking-wide">Question Bank</span>
+          <div class="kt-ticker-wrap flex-1 overflow-hidden">
+            <div id="gate-ticker-track" class="kt-ticker-track text-[11px] font-semibold text-slate-800"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 p-1 bg-slate-100 rounded-xl text-xs font-bold text-center">
+        <button type="button" id="tab-auth-signin-btn" onclick="switchGateTab('signin')" class="py-2 rounded-lg bg-brand-900 text-white shadow transition cursor-pointer">Sign In</button>
+        <button type="button" id="tab-auth-signup-btn" onclick="switchGateTab('signup')" class="py-2 rounded-lg text-slate-600 hover:text-brand-900 transition cursor-pointer">New? Sign Up</button>
+        <button type="button" id="tab-auth-staff-btn" onclick="switchGateTab('staff')" class="py-2 rounded-lg text-slate-600 hover:text-brand-900 transition cursor-pointer">Staff Login</button>
+      </div>
+
+      <div id="gate-alert-box" class="hidden p-2.5 rounded-lg text-xs font-semibold"></div>
+      <div id="gate-staff-hint" class="hidden p-2.5 rounded-lg text-[11px] bg-blue-50 border border-blue-200 text-slate-700 leading-relaxed">
+        School staff login (shared question bank). Accounts are created by the admin. Need to set up the cloud connection first?
+        <button type="button" onclick="openModal('modal-cloud-settings')" class="text-brand-700 font-bold underline cursor-pointer">Cloud settings</button>
+      </div>
+
+      <form id="gate-auth-form" onsubmit="try { handleSimpleAuthSubmit(event); } catch (err) { ktReport(err); } return false;" class="space-y-3 text-xs">
+        <div id="gate-name-container" class="hidden">
+          <label class="block font-bold text-slate-700 mb-1">Teacher Full Name:</label>
+          <input type="text" id="gate-user-name" placeholder="Kalpesh H Tailor" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
+        </div>
+        <!-- Sign-up only: Standard, Medium and one or more Subjects. Price = rupees per subject x number of subjects (js/signup-plan.js) -->
+        <div id="gate-signup-plan" class="hidden space-y-3 p-3 rounded-xl bg-amber-50 border border-amber-200">
+          <p class="font-black text-slate-800 text-[11px] uppercase tracking-wide">Your teaching details</p>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Standard:</label>
+              <select id="gate-signup-std" onchange="renderSignupSubjects()" class="w-full border rounded-lg p-2.5 border-slate-300 bg-white font-semibold"></select>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+              <select id="gate-signup-medium" class="w-full border rounded-lg p-2.5 border-slate-300 bg-white font-semibold"></select>
+            </div>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Subject(s) &mdash; tick one or more:</label>
+            <div id="gate-signup-subjects" class="grid grid-cols-1 gap-1.5"><p class="text-slate-400 italic">Select a Standard first.</p></div>
+          </div>
+          <div id="gate-signup-total" class="rounded-lg bg-white border border-amber-300 p-2.5 font-semibold text-slate-800"></div>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Email Address:</label>
+          <input type="email" id="gate-user-email" value="kalpeshtailor1985@gmail.com" autocomplete="username" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
+        </div>
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="block font-bold text-slate-700">Password (min 6 characters):</label>
+            <button type="button" id="gate-forgot-pass-btn" onclick="openForgotPasswordModal()" class="text-brand-700 hover:underline font-semibold text-[11px] cursor-pointer">Forgot Password?</button>
+          </div>
+          <input type="password" id="gate-user-password" placeholder="••••••••" autocomplete="current-password" class="w-full border rounded-lg p-2.5 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
+        </div>
+        <button type="submit" id="gate-main-submit-btn" class="w-full py-2.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-lg shadow transition cursor-pointer">Sign In to Portal</button>
+      </form>
+
+      <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
+        <button type="button" onclick="try { bypassGuestLogin(); } catch (err) { ktReport(err); }" class="w-full py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg text-[11px] transition cursor-pointer">Continue as Guest (View Chapters 1-2 only)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: FORGOT PASSWORD -->
+  <div id="modal-forgot-password" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-brand-900">
+          <i data-lucide="key-round" class="w-5 h-5 text-amber-500"></i>
+          <h3 class="font-extrabold text-sm text-slate-900">Reset Teacher Password</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-forgot-password')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Your Registered Email:</label>
+          <input type="email" id="forgot-email-input" placeholder="teacher@example.com" class="w-full border rounded-lg p-2 border-slate-300">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Enter New Password:</label>
+          <input type="password" id="forgot-new-password" placeholder="At least 4 characters" class="w-full border rounded-lg p-2 border-slate-300">
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-forgot-password')" class="px-3 py-1.5 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Cancel</button>
+        <button type="button" onclick="handlePasswordReset()" class="px-4 py-1.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-lg text-xs shadow cursor-pointer">Update Password</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: FIREBASE CLOUD SETTINGS -->
+  <div id="modal-cloud-settings" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-slate-200">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-brand-900">
+          <i data-lucide="cloud-cog" class="w-5 h-5 text-blue-600"></i>
+          <h3 class="font-extrabold text-sm text-slate-900">Multi-Device Cloud Sync Config</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-cloud-settings')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <p class="text-[11px] text-slate-600 leading-relaxed">Enter your Firebase Realtime Database details to keep all devices synchronized in real time.</p>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Firebase Database URL:</label>
+          <input type="text" id="cfg-database-url" placeholder="https://kt-exam-suit-default-rtdb.asia-southeast1.firebasedatabase.app" class="w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Firebase Web API Key (required for staff login):</label>
+          <input type="text" id="cfg-api-key" placeholder="AIzaSy..." class="w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Firebase Project ID:</label>
+          <input type="text" id="cfg-project-id" placeholder="kt-exam-suit" class="w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300">
+        </div>
+      </div>
+      <div class="flex items-center justify-between pt-3 border-t">
+        <button type="button" onclick="testCloudConnection()" class="px-3 py-1.5 bg-blue-50 text-blue-800 font-bold rounded-lg text-xs hover:bg-blue-100 cursor-pointer">Test Connection</button>
+        <div class="space-x-2">
+          <button type="button" onclick="closeModal('modal-cloud-settings')" class="px-3 py-1.5 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Cancel</button>
+          <button type="button" onclick="saveCloudConfig()" class="px-4 py-1.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-lg text-xs shadow cursor-pointer">Save &amp; Connect</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Header -->
+  <header class="md:hidden bg-brand-900 text-white p-3.5 flex items-center justify-between shadow-md z-30 shrink-0">
+    <div class="flex items-center space-x-3">
+      <div class="flex flex-col items-center">
+        <img src="web_206.png" alt="KT Maths" class="kt-logo-img w-9 h-9 rounded-lg object-cover shadow border border-amber-300">
+        <span class="text-[8px] font-black tracking-wider text-amber-300 mt-0.5 uppercase whitespace-nowrap">KALPESH TAILOR</span>
+      </div>
+      <div class="leading-tight">
+        <h1 class="text-xs font-black tracking-wide text-white uppercase">KALPESH TAILOR</h1>
+      </div>
+    </div>
+    <div class="flex items-center space-x-2">
+      <button type="button" onclick="triggerPwaInstall()" class="px-2.5 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black rounded-lg text-[11px] flex items-center space-x-1 shadow transition cursor-pointer">
+        <i data-lucide="download" class="w-3.5 h-3.5"></i><span>Install App</span>
+      </button>
+      <button type="button" onclick="toggleSidebar()" class="p-2 text-white hover:bg-brand-800 rounded-lg cursor-pointer">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside id="app-sidebar" class="fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-200 ease-in-out w-72 shrink-0 bg-brand-900 text-white flex flex-col z-40 shadow-xl overflow-y-auto">
+
+    <div class="mx-3 my-2.5 p-4 bg-brand-800/80 rounded-xl border border-brand-700/60 shadow-inner">
+      <div class="flex flex-col items-center text-center">
+        <div class="relative group cursor-pointer" onclick="openPhotoModal()" title="Click to Change Profile Picture">
+          <img id="user-avatar" src="web_206.png" alt="Teacher Profile" class="w-20 h-20 rounded-full object-cover border-2 border-amber-400 shadow-md transition group-hover:opacity-85">
+          <div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-150">
+            <i data-lucide="camera" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="absolute bottom-1 right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-brand-900 rounded-full"></span>
+        </div>
+        <div class="mt-3 flex items-center justify-center space-x-2.5 w-full text-left">
+          <img src="web_206.png" alt="KT Maths" class="kt-logo-img w-10 h-10 rounded-lg object-cover shadow-md border border-amber-300 shrink-0">
+          <div class="min-w-0 leading-tight">
+            <h2 id="logged-user-name" class="text-sm font-extrabold text-white tracking-wide truncate uppercase">KALPESH H TAILOR</h2>
+            <p id="logged-user-title" class="text-[11px] text-amber-300 font-black tracking-tight truncate">M.Sc, B.Ed, GSET (MATHS)</p>
+          </div>
+        </div>
+        <!-- teacher / staff only: their own name, on a separate button (opens My Account) -->
+        <button type="button" id="user-name-btn" onclick="openMyAccountModal()" title="My account" class="hidden mt-2.5 w-full items-center justify-center space-x-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-amber-300/60 text-white text-xs font-extrabold transition cursor-pointer">
+          <i data-lucide="user-round" class="w-4 h-4 text-amber-300 shrink-0"></i><span id="user-name-btn-text" class="truncate"></span>
+        </button>
+        <div class="flex items-center justify-center flex-wrap gap-1.5 mt-2">
+          <button type="button" onclick="openModal('modal-cloud-settings')" id="firebase-sync-badge" class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-amber-950 text-amber-300 border border-amber-500/40 hover:bg-amber-900 transition cursor-pointer" title="Click to configure live Cloud Sync across devices">● Connecting…</button>
+            <span id="sub-status-badge" class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-mono bg-amber-950 text-amber-300 border border-amber-500/40 cursor-pointer" onclick="checkUserSubscription()">★ Checking…</span>
+          <button type="button" onclick="openPhotoModal()" class="text-[10px] text-blue-200 hover:text-white flex items-center space-x-0.5 cursor-pointer">
+              <i data-lucide="pencil" class="w-2.5 h-2.5"></i><span>Photo</span>
+            </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-3 pb-2 space-y-2">
+      <button type="button" id="my-subjects-btn" onclick="openMySubjectsModal()" class="hidden w-full py-2 px-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold rounded-lg text-xs shadow items-center justify-center space-x-2 transition cursor-pointer">
+        <i data-lucide="lock-open" class="w-4 h-4"></i><span>MY SUBJECTS &amp; UNLOCK</span>
+      </button>
+      <button type="button" id="admin-instant-signin-btn" onclick="bypassDemoLogin()" class="hidden w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-lg text-xs shadow items-center justify-center space-x-1.5 transition transform active:scale-95 cursor-pointer">
+        <i data-lucide="zap" class="w-4 h-4 text-slate-950"></i>
+        <span>Instant 1-Click Sign In (Kalpesh Sir - Master Lifetime)</span>
+      </button>
+      <button type="button" id="sidebar-install-btn" onclick="triggerPwaInstall()" class="w-full flex items-center justify-center space-x-2 py-2.5 px-3 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black rounded-lg text-xs shadow-md transition transform active:scale-98 cursor-pointer">
+        <i data-lucide="download" class="w-4 h-4 text-slate-950"></i><span id="install-btn-text">INSTALL KT MATHS APP</span>
+      </button>
+      <button type="button" onclick="switchTab('tab-generator')" class="w-full flex items-center justify-center space-x-2 py-2 px-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold rounded-lg text-xs shadow-md transition transform active:scale-98 cursor-pointer">
+        <i data-lucide="file-plus-2" class="w-4 h-4"></i><span>GENERATE PAPER (GSEB)</span>
+      </button>
+      <button type="button" onclick="openAddChapterModal()" class="w-full flex items-center justify-center space-x-2 py-1.5 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-xs shadow transition cursor-pointer">
+        <i data-lucide="folder-plus" class="w-4 h-4"></i><span>+ ADD CHAPTER TO SUBJECT</span>
+      </button>
+    </div>
+
+    <div id="backup-panel" class="hidden px-3 pb-2">
+      <div class="bg-brand-950/70 p-2.5 rounded-lg border border-brand-800 space-y-1.5">
+        <div class="flex items-center justify-between text-[11px] font-bold text-amber-300">
+          <span class="flex items-center space-x-1"><i data-lucide="database-backup" class="w-3.5 h-3.5"></i><span>Local &amp; File Backup</span></span>
+          <span class="text-[9px] text-emerald-400 font-mono">JSON</span>
+        </div>
+        <div class="grid grid-cols-2 gap-1.5 pt-0.5">
+          <button type="button" onclick="exportFullDataBackup()" class="flex items-center justify-center space-x-1 py-1 px-1.5 bg-blue-700 hover:bg-blue-600 text-white rounded text-[10px] font-bold shadow cursor-pointer">
+            <i data-lucide="upload" class="w-3.5 h-3.5"></i><span>Export Backup</span>
+          </button>
+          <button type="button" onclick="document.getElementById('backup-file-input').click()" class="flex items-center justify-center space-x-1 py-1 px-1.5 bg-slate-700 hover:bg-slate-600 text-white rounded text-[10px] font-bold shadow cursor-pointer">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i><span>Import Backup</span>
+          </button>
+        </div>
+        <input type="file" id="backup-file-input" accept=".json" class="hidden" onchange="importFullDataBackup(event)">
+      </div>
+    </div>
+
+    <nav class="flex-1 px-3 space-y-1">
+      <button type="button" onclick="switchTab('tab-generator')" id="nav-generator" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition bg-blue-600 text-white shadow cursor-pointer">
+        <i data-lucide="file-plus-2" class="w-4 h-4"></i><span>Paper Generator (GSEB)</span>
+      </button>
+      <button type="button" onclick="switchTab('tab-gujcet')" id="nav-gujcet" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition hover:bg-brand-800 hover:text-white text-blue-100 cursor-pointer">
+        <i data-lucide="sparkles" class="w-4 h-4 text-amber-300"></i>
+        <div class="flex items-center justify-between flex-1">
+          <span class="font-bold text-amber-200">GUJCET Exam Builder</span>
+          <span id="badge-gujcet-tag" class="text-[9px] bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded font-black font-mono">MCQ 40M</span>
+        </div>
+      </button>
+      <button type="button" onclick="openPrevYearBank()" id="nav-prevyear" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition hover:bg-brand-800 hover:text-white text-blue-100 cursor-pointer">
+        <i data-lucide="history" class="w-4 h-4 text-emerald-300"></i>
+        <div class="flex items-center justify-between flex-1">
+          <span class="font-bold text-emerald-200">Previous Years Board Qs</span>
+          <span id="badge-prevyear-count" class="text-[10px] bg-emerald-500/30 text-emerald-200 px-1.5 py-0.5 rounded font-mono">0</span>
+        </div>
+      </button>
+      <button type="button" onclick="switchTab('tab-blueprint')" id="nav-blueprint" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition hover:bg-brand-800 hover:text-white text-blue-100 cursor-pointer">
+        <i data-lucide="grid" class="w-4 h-4"></i>
+        <div class="flex items-center justify-between flex-1">
+          <span>Blueprint Matrix</span>
+          <span class="text-[9px] bg-amber-500/25 text-amber-300 border border-amber-500/40 px-1.5 py-0.5 rounded font-mono font-bold">W/O &amp; With Option</span>
+        </div>
+      </button>
+      <button type="button" onclick="switchTab('tab-qbank')" id="nav-qbank" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition hover:bg-brand-800 hover:text-white text-blue-100 cursor-pointer">
+        <i data-lucide="database" class="w-4 h-4"></i>
+        <div class="flex items-center justify-between flex-1">
+          <span>Question Bank</span>
+          <span id="badge-qbank-count" class="text-[10px] bg-blue-500/30 text-blue-200 px-1.5 py-0.5 rounded font-mono">0</span>
+        </div>
+      </button>
+      <button type="button" onclick="switchTab('tab-archive')" id="nav-archive" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition text-blue-100 hover:bg-brand-800 hover:text-white cursor-pointer">
+        <i data-lucide="archive" class="w-4 h-4"></i><span>My Saved Work</span>
+      </button>
+      <button type="button" onclick="switchTab('tab-teachers')" id="nav-teachers" class="nav-btn hidden w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition text-blue-100 hover:bg-brand-800 hover:text-white cursor-pointer">
+        <i data-lucide="users" class="w-4 h-4 text-amber-300"></i><span class="font-bold text-amber-200">Teachers &amp; Access</span>
+      </button>
+      <button type="button" onclick="switchTab('tab-payments')" id="nav-payments" class="nav-btn hidden w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold transition text-blue-100 hover:bg-brand-800 hover:text-white cursor-pointer">
+        <i data-lucide="indian-rupee" class="w-4 h-4 text-amber-300"></i><span class="font-bold text-amber-200">UPI Payments</span>
+        <span id="nav-payments-badge" class="hidden text-[10px] bg-rose-500 text-white px-1.5 py-0.5 rounded-full font-mono font-black">0</span>
+      </button>
+      <div class="pt-1 border-t border-brand-800/80 my-1"></div>
+      <button type="button" onclick="handleSignOutAction()" id="auth-status-btn" class="w-full flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-medium text-rose-300 hover:bg-brand-800 hover:text-white transition cursor-pointer">
+        <i data-lucide="log-out" class="w-4 h-4 text-rose-400"></i><span id="auth-btn-label">Sign Out</span>
+      </button>
+    </nav>
+
+    <div class="p-3 bg-brand-950 text-center text-[10px] text-blue-300/80 border-t border-brand-800">
+      <p class="font-mono text-amber-300 text-[10px] mt-0.5">KALPESH H TAILOR</p>
+      <p class="text-[9px] text-slate-400">M.Sc, B.Ed, GSET (MATHS)</p>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="flex-1 min-h-0 min-w-0 flex flex-col overflow-hidden">
+
+    <div class="bg-white border-b border-slate-200 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 shadow-sm shrink-0">
+      <div class="flex items-center space-x-2">
+        <span id="active-tab-title" class="text-xs font-semibold text-slate-600">Question Paper Workspace</span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-1.5">
+        <button type="button" onclick="exportToWordDoc()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-blue-700 text-white text-xs font-semibold rounded-lg shadow hover:bg-blue-800 transition cursor-pointer" title="Download Word Document (.doc)">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i><span>Save as Word</span>
+        </button>
+        <button type="button" onclick="savePaperAsPdf()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-rose-700 text-white text-xs font-semibold rounded-lg shadow hover:bg-rose-800 transition cursor-pointer" title="Browser Print to PDF">
+          <i data-lucide="file-down" class="w-3.5 h-3.5"></i><span>Save as PDF</span>
+        </button>
+        <button type="button" onclick="printStandardPaper()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-brand-900 text-white text-xs font-semibold rounded-lg shadow hover:bg-brand-800 transition cursor-pointer">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i><span>Print Paper</span>
+        </button>
+        <button type="button" onclick="printPaperWithAnswers()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-emerald-600 text-white text-xs font-semibold rounded-lg shadow hover:bg-emerald-700 transition cursor-pointer">
+          <i data-lucide="check-square" class="w-3.5 h-3.5"></i><span>Print with Answers</span>
+        </button>
+        <button type="button" onclick="openWatermarkModal()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-purple-700 text-white text-xs font-semibold rounded-lg shadow hover:bg-purple-800 transition cursor-pointer" title="Set the watermark printed on every page">
+          <i data-lucide="droplets" class="w-3.5 h-3.5"></i><span>Watermark</span>
+        </button>
+        <button type="button" onclick="document.getElementById('school-logo-input').click()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-amber-600 text-white text-xs font-semibold rounded-lg shadow hover:bg-amber-700 transition cursor-pointer" title="Upload the school logo shown on printed papers">
+          <i data-lucide="image-plus" class="w-3.5 h-3.5"></i><span>School Logo</span>
+        </button>
+        <button type="button" onclick="openOmrModal()" class="inline-flex items-center space-x-1 px-2.5 py-1.5 bg-teal-700 text-white text-xs font-semibold rounded-lg shadow hover:bg-teal-800 transition cursor-pointer" title="Print an OMR answer sheet">
+          <i data-lucide="list-checks" class="w-3.5 h-3.5"></i><span>OMR Sheet</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-4 md:p-6 bg-slate-100">
+
+      <!-- TAB 1: GSEB PAPER GENERATOR -->
+      <section id="tab-generator" class="tab-pane max-w-7xl mx-auto space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-4 space-y-4">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center space-x-2">
+                  <i data-lucide="sliders" class="w-4 h-4 text-brand-700"></i><span>Paper Meta &amp; Header</span>
+                </h3>
+                <span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono font-medium" id="total-marks-badge">Max: 50 M</span>
+              </div>
+
+              <div class="space-y-3 text-xs">
+                <div>
+                  <label class="block text-slate-600 font-semibold mb-1">Institution Name</label>
+                  <input type="text" id="paper-inst-name" value="" placeholder="School / institution name (optional)" class="w-full border rounded-lg p-2 font-bold text-slate-800 bg-slate-50 border-slate-300 uppercase">
+                </div>
+                <div>
+                  <label class="block text-slate-600 font-semibold mb-1">School Logo (printed on the paper)</label>
+                  <div class="flex items-center gap-2">
+                    <img id="school-logo-preview" class="hidden w-10 h-10 object-contain border border-slate-300 rounded bg-white" alt="School logo">
+                    <input type="file" id="school-logo-input" accept="image/*" class="hidden" onchange="handleSchoolLogoUpload(event)">
+                    <button type="button" onclick="document.getElementById('school-logo-input').click()" class="px-3 py-1.5 bg-amber-600 text-white font-bold rounded-lg shadow hover:bg-amber-700 text-xs cursor-pointer">Upload School Logo</button>
+                    <button type="button" id="school-logo-remove" onclick="removeSchoolLogo()" class="hidden px-3 py-1.5 bg-slate-200 text-slate-800 font-bold rounded-lg hover:bg-slate-300 text-xs cursor-pointer">Remove</button>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-slate-600 font-semibold mb-1">Examination Name</label>
+                  <div class="grid grid-cols-3 gap-2">
+                    <select id="paper-exam-type" onchange="onExamChange()" class="col-span-2 border rounded-lg p-2 font-bold border-slate-300">
+                    <option value="UNIT_TEST">UNIT TEST</option>
+                    <option value="FIRST_TERMINAL">FIRST TERMINAL EXAM</option>
+                    <option value="SECOND_TERMINAL">SECOND / PRELIMINARY TERMINAL EXAM</option>
+                    <option value="ANNUAL">ANNUAL EXAM</option>
+                    </select>
+                    <input type="text" id="paper-exam-year" value="2026-27" oninput="onExamChange()" placeholder="2026-27" title="Academic year" class="border rounded-lg p-2 font-semibold border-slate-300">
+                  </div>
+                  <input type="hidden" id="paper-exam-title" value="FIRST TERMINAL EXAM - 2026-27">
+                  <p class="text-[10px] text-slate-500 mt-1">Blueprints and papers you save go into the folder of this exam (see My Saved Work).</p>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">Standard (Std)</label>
+                    <select id="paper-std" onchange="syncSubjectDropdown('paper-std', 'paper-sub')" class="w-full border rounded-lg p-2 border-slate-300 font-semibold">
+                      <option value="Std 9">Std 9</option>
+                      <option value="Std 10" selected>Std 10</option>
+                      <option value="Std 11 Science">Std 11 Science</option>
+                      <option value="Std 11 Commerce">Std 11 Commerce</option>
+                      <option value="Std 11 Arts">Std 11 Arts</option>
+                      <option value="Std 12 Science">Std 12 Science</option>
+                      <option value="Std 12 Commerce">Std 12 Commerce</option>
+                      <option value="Std 12 Arts">Std 12 Arts</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">GSEB Subject</label>
+                    <select id="paper-sub" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></select>
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">Medium</label>
+                    <select id="paper-medium" class="w-full border rounded-lg p-2 border-slate-300">
+                      <option value="Gujarati" selected>Gujarati</option>
+                      <option value="English">English</option>
+                      <option value="Hindi">Hindi</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">Time</label>
+                    <input type="text" id="paper-time" value="2 Hours" class="w-full border rounded-lg p-2 border-slate-300">
+                  </div>
+                  <div>
+                    <label class="block text-slate-600 font-semibold mb-1">Max Marks</label>
+                    <input type="number" id="paper-marks" value="50" class="w-full border rounded-lg p-2 border-slate-300 font-bold text-brand-900">
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-slate-600 font-semibold mb-1">General Instructions</label>
+                  <textarea id="paper-instructions" rows="2" class="w-full border rounded-lg p-2 border-slate-300 text-slate-700">1. All questions are compulsory. 2. Figures to the right indicate full marks. 3. Draw clean diagrams wherever necessary.</textarea>
+                </div>
+              </div>
+
+              <div class="pt-2 flex flex-col gap-2">
+                <button type="button" onclick="renderLivePaper()" class="w-full py-2 bg-brand-700 text-white rounded-lg font-bold hover:bg-brand-800 transition flex items-center justify-center space-x-2 text-xs cursor-pointer">
+                  <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i><span>Sync &amp; Re-Render Paper</span>
+                </button>
+                <button type="button" onclick="savePaperToArchive()" class="w-full py-2 bg-slate-200 text-slate-700 rounded-lg font-semibold hover:bg-slate-300 transition flex items-center justify-center space-x-2 text-xs cursor-pointer">
+                  <i data-lucide="save" class="w-3.5 h-3.5"></i><span>Save to Exam Archive</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-3">
+              <h3 class="font-bold text-slate-800 text-sm flex items-center space-x-2 pb-2 border-b border-slate-100">
+                <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-600"></i><span>Quick Add to Current Paper</span>
+              </h3>
+              <div class="space-y-2 text-xs">
+                <div class="rounded-lg border border-dashed border-purple-300 bg-purple-50 p-2 space-y-2">
+          <label class="block font-bold text-purple-900">Auto-fill from Word (.docx) or pasted text</label>
+          <input type="file" id="quick-q-word" accept=".docx" onchange="wordFillFromFile(event,'quick')" class="w-full text-xs border rounded-lg p-1.5 bg-white">
+          <textarea id="quick-q-paste" rows="3" placeholder="...or paste from Word here:&#10;What is the gcd of 12 and 18?&#10;(A) 2 (B) 6 (C) 12 (D) 36&#10;Ans: B" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-mono text-[11px]"></textarea>
+          <div class="flex gap-2">
+            <button type="button" onclick="wordFillFromPaste('quick')" class="px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white font-bold rounded-lg text-xs cursor-pointer">Parse &amp; Fill</button>
+            <button type="button" onclick="wordFillReset('quick')" class="px-3 py-1.5 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Clear</button>
+          </div>
+          <select id="quick-q-word-pick" onchange="wqPickChanged('quick')" class="hidden w-full border rounded-lg p-1.5 border-slate-300 bg-white text-xs"></select>
+          <p id="quick-q-word-status" class="text-[11px] font-semibold text-blue-800"></p>
+        </div>
+                <select id="quick-section" class="w-full border rounded-lg p-2 border-slate-300 font-semibold">
+                  <option value="SECTION A">SECTION A (Objective / 1 Mark)</option>
+                  <option value="SECTION B">SECTION B (Short Answer / 2 Marks)</option>
+                  <option value="SECTION C">SECTION C (Detailed / 3 Marks)</option>
+                  <option value="SECTION D">SECTION D (Long / Case / 4 Marks)</option>
+                </select>
+                <textarea id="quick-q-text" rows="2" placeholder="Question statement (LaTeX supported)..." class="w-full border rounded-lg p-2 border-slate-300"></textarea>
+                <input type="text" id="quick-q-options" placeholder="MCQ Options: (A) 1  (B) 2  (C) 3  (D) 4" class="w-full border rounded-lg p-2 border-slate-300 text-xs">
+                <textarea id="quick-q-ans" rows="1" placeholder="Answer / Solution key..." class="w-full border rounded-lg p-2 border-emerald-300 bg-emerald-50/50"></textarea>
+                <div class="rounded-lg border border-dashed border-blue-300 bg-blue-50 p-2">
+                  <label class="block font-bold text-blue-900 mb-1">Diagram / Figure (optional)</label>
+                  <input type="file" id="quick-q-diagram" accept="image/png,image/jpeg,image/webp" onchange="loadDiagramFile(event,'quick')" class="w-full text-xs">
+                  <img id="quick-q-diagram-preview" class="hidden mt-2 max-h-32 max-w-full object-contain bg-white border rounded p-1" alt="Diagram preview">
+                  <button type="button" onclick="clearDiagram('quick')" class="text-[10px] text-rose-700 underline mt-1">Remove diagram</button>
+                </div>
+                <div class="flex gap-2">
+                  <input type="number" id="quick-q-marks" value="1" min="1" max="10" class="w-20 border rounded-lg p-2 border-slate-300 text-center font-bold" placeholder="Marks">
+                  <button type="button" onclick="quickAddQuestionToPaper()" class="flex-1 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 text-xs cursor-pointer">Insert Question</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Canvas Preview -->
+          <div class="lg:col-span-8 min-w-0 flex flex-col lg:sticky lg:top-0 lg:self-start">
+            <div class="w-full flex flex-wrap justify-between items-center gap-2 mb-2 px-1">
+              <span class="text-xs font-semibold text-slate-500">Live Paper Preview (Cambria Font • Outer Page Border)</span>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button type="button" onclick="zoomPaper(-0.1)" class="zoom-btn" title="Zoom out">−</button>
+                <span id="paper-zoom-label" class="text-[11px] font-mono font-bold text-slate-600 w-10 text-center">100%</span>
+                <button type="button" onclick="zoomPaper(0.1)" class="zoom-btn" title="Zoom in">+</button>
+                <button type="button" id="paper-fit-btn" onclick="fitPaper()" class="zoom-btn active" title="Show the full paper width without sideways scrolling">Fit</button>
+                <button type="button" onclick="setPaperZoom100()" class="zoom-btn" title="Actual size">100%</button>
+                <button type="button" onclick="togglePaperFullscreen()" class="zoom-btn" title="Full screen">⛶ Full screen</button>
+                <button type="button" onclick="renderLivePaper()" class="text-xs text-brand-700 hover:underline flex items-center space-x-1 cursor-pointer">
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i><span>Refresh</span>
+                </button>
+              </div>
+            </div>
+
+            <div id="paper-viewport" class="paper-viewport">
+             <div id="paper-sizer" class="paper-sizer">
+              <div id="printable-paper" class="paper-canvas watermark paper-cambria-font text-slate-900 leading-normal relative">
+                <div class="border-b-2 border-slate-900 pb-3 mb-4 text-center">
+                  <div class="flex justify-between items-center mb-1">
+                    <div class="flex flex-col items-center">
+                      <img src="web_206.png" alt="KT Maths" class="kt-logo-img w-12 h-12 rounded-lg object-cover border border-amber-300 shadow">
+                      <span class="text-[9px] font-black tracking-wider text-slate-900 mt-0.5 uppercase whitespace-nowrap">KALPESH TAILOR</span>
+                    </div>
+                    <div class="flex-1 px-3 flex items-center justify-center gap-3">
+                      <img id="view-school-logo" class="hidden object-contain" style="height:52px;max-width:100px;" alt="School logo">
+                      <div>
+                        <h2 id="view-school-name" class="font-black text-lg tracking-wide text-slate-900 uppercase hidden"></h2>
+                        <h3 id="view-exam-title" class="font-semibold text-xs tracking-wide text-slate-700 mt-0.5">FIRST TERM EXAMINATION - 2026-27</h3>
+                      </div>
+                    </div>
+                    <div class="text-right text-[11px] font-mono border border-slate-400 p-1 rounded">
+                      <div>ROLL NO:</div>
+                      <div class="w-16 h-4 border-b border-dashed border-slate-400 mt-1"></div>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-4 text-xs font-semibold pt-2 border-t border-slate-300 mt-2 text-left">
+                    <div>STD: <span id="view-std" class="font-bold">10</span></div>
+                    <div>SUBJECT: <span id="view-sub" class="font-bold">Mathematics (Standard - 12)</span></div>
+                    <div>MEDIUM: <span id="view-medium" class="font-bold">Gujarati</span></div>
+                    <div class="text-right">TIME: <span id="view-time" class="font-bold">2 Hours</span> | MARKS: <span id="view-marks" class="font-bold">50</span></div>
+                  </div>
+                </div>
+
+                <div class="mb-4 p-2 bg-slate-50 border border-slate-200 text-xs italic rounded">
+                  <strong>General Instructions: </strong>
+                  <span id="view-instructions">1. All questions are compulsory. 2. Figures to the right indicate full marks. 3. Draw clean diagrams wherever necessary.</span>
+                </div>
+
+                <div id="paper-sections-container" class="space-y-6 text-sm"></div>
+
+                <div class="mt-12 pt-6 border-t border-slate-300 flex justify-between items-end text-xs font-semibold text-slate-700">
+                  <div class="text-center"><div class="w-36 border-b border-slate-400 mb-1"></div><p>Subject Teacher Signature</p></div>
+                  <div class="text-center">
+                    <p class="font-bold text-slate-900 uppercase">KALPESH H TAILOR</p>
+                    <p class="text-[10px] text-brand-900 font-bold">M.Sc, B.Ed, GSET (MATHS)</p>
+                  </div>
+                  <div class="text-center"><div class="w-36 border-b border-slate-400 mb-1"></div><p>Principal / Examiner</p></div>
+                </div>
+              </div>
+             </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: GUJCET -->
+      <section id="tab-gujcet" class="tab-pane max-w-7xl mx-auto space-y-6 hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-5">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+            <div>
+              <div class="flex items-center space-x-2 flex-wrap gap-y-1">
+                <span class="px-2.5 py-0.5 rounded text-xs font-black bg-amber-400 text-brand-950 font-mono">GUJCET SPECIAL</span>
+                <h2 class="text-lg font-black text-slate-800">GUJCET Examination Paper Workspace (40 Marks MCQ)</h2>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">Dedicated 40-question multiple-choice examination builder for GUJCET with Cambria typesetting. Use the toolbar above to print or export.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="autoPopulateGujcet40Paper()" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1.5 cursor-pointer">
+                <i data-lucide="wand-2" class="w-3.5 h-3.5"></i><span>Auto-Generate 40 MCQs from Bank</span>
+              </button>
+              <button type="button" onclick="switchTab('tab-blueprint'); setMatrixMode('GUJCET');" class="px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="grid" class="w-3.5 h-3.5"></i><span>GUJCET Blueprint Matrix</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 bg-amber-50/70 border border-amber-200 rounded-xl text-xs">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">GUJCET Subject:</label>
+              <select id="gujcet-subject" class="w-full border rounded-lg p-2 font-bold bg-white border-slate-300">
+                <option value="Mathematics">Mathematics (40 Marks)</option>
+                <option value="Physics">Physics (40 Marks)</option>
+                <option value="Chemistry">Chemistry (40 Marks)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+              <select id="gujcet-medium" class="w-full border rounded-lg p-2 font-semibold bg-white border-slate-300">
+                <option value="Gujarati">Gujarati Medium</option>
+                <option value="English">English Medium</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Exam Duration:</label>
+              <input type="text" id="gujcet-time" value="60 Minutes" class="w-full border rounded-lg p-2 font-medium bg-white border-slate-300">
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Negative Marking:</label>
+              <input type="text" id="gujcet-negative" value="0.25 Mark per wrong answer" class="w-full border rounded-lg p-2 font-medium bg-white border-slate-300">
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-4 border border-slate-300 rounded-xl space-y-3 text-xs">
+            <h4 class="font-extrabold text-slate-800 flex items-center space-x-1.5">
+              <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-600"></i><span>Add Single MCQ to GUJCET Paper</span>
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+              <div class="md:col-span-2">
+                <input type="text" id="gujcet-quick-text" placeholder="Question statement..." class="w-full border rounded-lg p-2 bg-white border-slate-300">
+              </div>
+              <div>
+                <input type="text" id="gujcet-quick-options" placeholder="(A) ... (B) ... (C) ... (D) ..." class="w-full border rounded-lg p-2 bg-white border-slate-300 font-mono">
+              </div>
+              <div class="flex space-x-2">
+                <input type="text" id="gujcet-quick-ans" placeholder="Correct (e.g. (A))" class="w-24 border rounded-lg p-2 bg-emerald-50 border-emerald-300 font-bold text-center">
+                <button type="button" onclick="addSingleGujcetMcq()" class="flex-1 bg-brand-900 text-white font-bold rounded-lg text-xs hover:bg-brand-800 cursor-pointer">Insert MCQ</button>
+              </div>
+            </div>
+            <div class="rounded-lg border border-dashed border-blue-300 bg-blue-50 p-2 flex flex-wrap items-center gap-2">
+              <label class="font-bold text-blue-900">Figure (optional):</label>
+              <input type="file" id="gujcet-q-diagram" accept="image/*" onchange="loadDiagramFile(event,'gujcet')" class="text-xs">
+              <img id="gujcet-q-diagram-preview" class="hidden max-h-24 max-w-[200px] object-contain bg-white border rounded p-1" alt="Figure preview">
+              <button type="button" onclick="clearDiagram('gujcet')" class="text-[10px] text-rose-700 underline cursor-pointer">Remove</button>
+              <span class="text-[10px] text-slate-500">You can also paste a screenshot (Ctrl+V) in the question box.</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs">
+            <span class="font-bold text-brand-900">Current GUJCET Paper Questions: <span id="gujcet-current-count" class="font-mono text-base text-emerald-700 font-black">0</span> / 40</span>
+            <span class="text-slate-500 italic hidden sm:inline">40 questions form an official GSEB GUJCET subject paper.</span>
+          </div>
+
+          <div id="gujcet-paper-preview" class="border border-slate-300 rounded-xl bg-white p-4 space-y-3 text-xs min-h-[250px] paper-cambria-font"></div>
+        </div>
+      </section>
+
+      <!-- TAB 3: BLUEPRINT MATRIX -->
+      <section id="tab-blueprint" class="tab-pane max-w-7xl mx-auto space-y-6 hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-5">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+            <div>
+              <h2 class="text-lg font-black text-slate-800 flex items-center space-x-2">
+                <i data-lucide="grid" class="w-5 h-5 text-brand-700"></i><span>Chapterwise Allocation Matrix Blueprint (With &amp; Without Option)</span>
+              </h2>
+              <p class="text-xs text-slate-500">Configure questions &amp; marks with dual columns: <strong>Without Option (વિકલ્પ વિના)</strong> and <strong>With Option (વિકલ્પ સાથે)</strong> across 1M, 2M, 3M, 4M, Custom 1, &amp; Custom 2.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="openAddChapterModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="folder-plus" class="w-3.5 h-3.5"></i><span>+ Add Chapter</span>
+              </button>
+              <button type="button" onclick="addBlueprintRow()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300 flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i><span>Add Matrix Row</span>
+              </button>
+              <select id="matrix-exam-type" onchange="setExamFromMatrix(this.value)" title="Exam folder the blueprint is saved in" class="px-2 py-1.5 border border-slate-300 rounded-lg text-xs font-bold bg-white">
+                <option value="UNIT_TEST">UNIT TEST</option>
+                    <option value="FIRST_TERMINAL">FIRST TERMINAL EXAM</option>
+                    <option value="SECOND_TERMINAL">SECOND / PRELIMINARY TERMINAL EXAM</option>
+                    <option value="ANNUAL">ANNUAL EXAM</option>
+              </select>
+              <button type="button" onclick="saveCurrentBlueprint()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer" title="Store this matrix into saved blueprints">
+                <i data-lucide="save" class="w-3.5 h-3.5"></i><span>Save Blueprint</span>
+              </button>
+              <button type="button" onclick="printBlueprintMatrix()" class="px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="printer" class="w-3.5 h-3.5"></i><span>Print Blueprint Matrix</span>
+              </button>
+              <button type="button" onclick="applyBlueprintToPaper()" class="px-4 py-1.5 bg-brand-900 hover:bg-brand-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1.5 cursor-pointer">
+                <i data-lucide="wand-2" class="w-3.5 h-3.5"></i><span>Generate Paper from Matrix</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="p-4 bg-brand-50 border-2 border-brand-200 rounded-xl space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center space-x-2">
+                <span class="text-xs font-bold text-slate-700">Matrix Exam Type:</span>
+                <div class="inline-flex rounded-lg border border-brand-800 p-0.5 bg-white text-xs font-bold">
+                  <button type="button" id="matrix-mode-gseb" onclick="setMatrixMode('GSEB')" class="px-3 py-1 rounded bg-brand-900 text-white cursor-pointer">General GSEB</button>
+                  <button type="button" id="matrix-mode-gujcet" onclick="setMatrixMode('GUJCET')" class="px-3 py-1 rounded text-slate-700 hover:text-brand-900 cursor-pointer">GUJCET Matrix</button>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-2 bg-white px-3 py-1.5 rounded-lg border border-slate-300 text-xs shadow-sm">
+                <span class="font-bold text-brand-900">Custom Marks Weight:</span>
+                <div class="flex items-center space-x-1">
+                  <label class="font-semibold text-slate-600">Custom 1:</label>
+                  <input type="number" id="custom-weight-c1" value="5" min="1" max="25" onchange="renderMatrixTable()" class="w-12 border rounded p-1 text-center font-bold text-purple-900 border-purple-300 bg-purple-50">
+                  <span class="text-slate-500">M</span>
+                </div>
+                <span class="text-slate-300">|</span>
+                <div class="flex items-center space-x-1">
+                  <label class="font-semibold text-slate-600">Custom 2:</label>
+                  <input type="number" id="custom-weight-c2" value="6" min="1" max="25" onchange="renderMatrixTable()" class="w-12 border rounded p-1 text-center font-bold text-indigo-900 border-indigo-300 bg-indigo-50">
+                  <span class="text-slate-500">M</span>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-2">
+                <span id="matrix-active-filter-badge" class="text-[10px] bg-brand-900 text-amber-300 font-bold px-2 py-0.5 rounded font-mono">Std 10 - Mathematics (Standard - 12)</span>
+                <span id="matrix-bank-total-indicator" class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded font-mono border border-emerald-300">Bank Avail: 0 Qs</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Standard (Std):</label>
+                <select id="matrix-filter-std" onchange="syncSubjectDropdown('matrix-filter-std', 'matrix-filter-sub');" class="w-full border border-slate-300 rounded-lg p-2 font-semibold bg-white text-slate-800">
+                  <option value="Std 9">Std 9</option>
+                  <option value="Std 10" selected>Std 10</option>
+                  <option value="Std 11 Science">Std 11 Science</option>
+                  <option value="Std 11 Commerce">Std 11 Commerce</option>
+                  <option value="Std 11 Arts">Std 11 Arts</option>
+                  <option value="Std 12 Science">Std 12 Science</option>
+                  <option value="Std 12 Commerce">Std 12 Commerce</option>
+                  <option value="Std 12 Arts">Std 12 Arts</option>
+                  <option value="GUJCET">GUJCET (Std 11 + 12 Combined)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+                <select id="matrix-filter-sub" class="w-full border border-slate-300 rounded-lg p-2 font-semibold bg-white text-slate-800"></select>
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+                <select id="matrix-filter-med" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white text-slate-800">
+                  <option value="Gujarati">Gujarati Medium</option>
+                  <option value="English">English Medium</option>
+                  <option value="Hindi">Hindi Medium</option>
+                </select>
+              </div>
+              <div class="flex items-end">
+                <button type="button" onclick="applyMatrixSelectorFilter()" class="w-full py-2 bg-brand-900 hover:bg-brand-800 text-white font-extrabold rounded-lg shadow flex items-center justify-center space-x-1.5 transition active:scale-95 cursor-pointer">
+                  <i data-lucide="check-check" class="w-4 h-4 text-amber-400"></i><span>Apply &amp; View Chapters</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto rounded-lg border border-slate-200">
+            <table class="w-full text-xs text-left" id="matrix-table">
+              <thead class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider text-[10px] border-b border-slate-300">
+                <tr>
+                  <th rowspan="2" class="p-2 border-r border-slate-200 w-8 text-center">#</th>
+                  <th rowspan="2" class="p-2 border-r border-slate-200 min-w-[190px]">Chapter Name &amp; Bank Breakdown</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-blue-50/70 text-brand-900">1 Mark</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-sky-50/70 text-sky-900">2 Marks</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-cyan-50/70 text-cyan-900">3 Marks</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-teal-50/70 text-teal-900">4 Marks</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-purple-50 text-purple-900" id="th-custom-1">Custom 1</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-indigo-50 text-indigo-900" id="th-custom-2">Custom 2</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-amber-50 text-amber-950 font-black">Total Questions</th>
+                  <th colspan="2" class="p-1.5 text-center border-r border-slate-200 bg-emerald-50 text-emerald-950 font-black">Total Marks</th>
+                  <th rowspan="2" class="p-2 text-center w-12 no-print">Act</th>
+                </tr>
+                <tr class="text-[9px] font-bold border-t border-slate-200 bg-slate-50 text-slate-600">
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-blue-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-blue-100/50 text-blue-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-sky-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-sky-100/50 text-sky-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-cyan-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-cyan-100/50 text-cyan-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-teal-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-teal-100/50 text-teal-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-purple-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-purple-100/50 text-purple-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-indigo-50/30">W/O</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-11 bg-indigo-100/50 text-indigo-900">With</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-14 bg-amber-50 font-black text-amber-900">W/O Opt</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-14 bg-amber-100/70 font-black text-amber-950">With Opt</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-14 bg-emerald-50 font-black text-emerald-900">W/O Opt</th>
+                  <th class="p-1 text-center border-r border-slate-200 w-14 bg-emerald-100/70 font-black text-emerald-950">With Opt</th>
+                </tr>
+              </thead>
+              <tbody id="matrix-body" class="divide-y divide-slate-200"></tbody>
+              <tfoot class="bg-slate-900 text-white font-bold text-xs">
+                <tr>
+                  <td colspan="2" class="p-2.5 text-right font-black text-[11px]">TOTAL SUMMARY:</td>
+                  <td id="foot-1m-wo" class="p-1 text-center font-mono text-[11px] text-blue-200">0</td>
+                  <td id="foot-1m-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-2m-wo" class="p-1 text-center font-mono text-[11px] text-sky-200">0</td>
+                  <td id="foot-2m-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-3m-wo" class="p-1 text-center font-mono text-[11px] text-cyan-200">0</td>
+                  <td id="foot-3m-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-4m-wo" class="p-1 text-center font-mono text-[11px] text-teal-200">0</td>
+                  <td id="foot-4m-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-c1-wo" class="p-1 text-center font-mono text-[11px] text-purple-200">0</td>
+                  <td id="foot-c1-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-c2-wo" class="p-1 text-center font-mono text-[11px] text-indigo-200">0</td>
+                  <td id="foot-c2-with" class="p-1 text-center font-mono text-[11px] text-amber-300 font-bold border-r border-slate-700">0</td>
+                  <td id="foot-q-no-opt" class="p-1.5 text-center font-mono font-black text-sky-300 bg-slate-950">0 Qs</td>
+                  <td id="foot-q-with-opt" class="p-1.5 text-center font-mono font-black text-amber-400 bg-slate-950 border-r border-slate-700">0 Qs</td>
+                  <td id="foot-m-no-opt" class="p-1.5 text-center font-mono font-black text-emerald-300 bg-slate-950">0 M</td>
+                  <td id="foot-m-with-opt" class="p-1.5 text-center font-mono font-black text-emerald-400 bg-slate-950">0 M</td>
+                  <td class="no-print"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div class="pt-6 border-t border-slate-200 space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="layers" class="w-5 h-5 text-brand-700"></i>
+                <h3 class="font-black text-sm text-slate-800">Saved Blueprints Library</h3>
+                <span id="saved-bp-count-badge" class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">0 Saved</span>
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <select id="bp-exam-filter" onchange="renderSavedBlueprintsList()" class="px-2 py-1 border border-slate-300 rounded-lg text-xs font-bold bg-white">
+                  <option value="ALL">All exams</option>
+                  <option value="UNIT_TEST">UNIT TEST</option>
+                    <option value="FIRST_TERMINAL">FIRST TERMINAL EXAM</option>
+                    <option value="SECOND_TERMINAL">SECOND / PRELIMINARY TERMINAL EXAM</option>
+                    <option value="ANNUAL">ANNUAL EXAM</option>
+                  <option value="UNSORTED">Older items (no exam)</option>
+                </select>
+                <label class="work-show-all-wrap hidden items-center gap-1 text-[11px] font-bold text-slate-700 cursor-pointer"><input type="checkbox" class="work-show-all-cb w-3.5 h-3.5" onchange="setShowAllWork(this.checked)"> Show everyone's work (admin)</label>
+                <p class="text-xs text-slate-500">Only your own blueprints are listed.</p>
+              </div>
+            </div>
+            <div id="saved-blueprints-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: QUESTION BANK -->
+      <section id="tab-qbank" class="tab-pane max-w-7xl mx-auto space-y-6 hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+            <div>
+              <div class="flex items-center flex-wrap gap-2">
+                <h2 class="text-base font-black text-slate-800 flex items-center space-x-2">
+                  <i data-lucide="database" class="w-5 h-5 text-brand-700"></i><span>Question Bank Management</span>
+                </h2>
+                <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-100 text-xs font-bold">
+                  <button type="button" id="bank-toggle-general" onclick="switchBankType('GENERAL')" class="px-3 py-1 rounded bg-brand-900 text-white shadow cursor-pointer">General Question Bank</button>
+                  <button type="button" id="bank-toggle-gujcet" onclick="switchBankType('GUJCET')" class="px-3 py-1 rounded text-slate-700 hover:text-brand-900 cursor-pointer">GUJCET Question Bank<span id="soon-bank-gujcet" class="hidden ml-1 text-[8px] bg-yellow-300 text-slate-900 px-1 py-0.5 rounded font-black align-middle">COMING SOON</span></button>
+                  <button type="button" id="bank-toggle-prevyear" onclick="switchBankType('PREVYEAR')" class="px-3 py-1 rounded text-slate-700 hover:text-brand-900 cursor-pointer">Previous Years Board Qs<span id="soon-bank-prevyear" class="hidden ml-1 text-[8px] bg-yellow-300 text-slate-900 px-1 py-0.5 rounded font-black align-middle">COMING SOON</span></button>
+                </div>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">Manage, bulk import questions, or bulk delete chapters.</p>
+              <p id="qbank-role-note" class="hidden text-[11px] font-bold text-emerald-700 mt-1"></p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="openBulkImportModal()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="file-up" class="w-3.5 h-3.5"></i><span>Bulk Import (CSV / Excel)</span>
+              </button>
+              <button type="button" id="btn-gujcet-pdf-import" onclick="openGujcetPdfModal()" class="hidden px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg shadow items-center space-x-1 cursor-pointer" title="Upload a GUJCET paper PDF - questions are separated subject-wise">
+                <i data-lucide="file-text" class="w-3.5 h-3.5"></i><span>Import PDF (GUJCET)</span>
+              </button>
+              <button type="button" onclick="openBulkDeleteModal()" class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i><span>Delete by Chapter</span>
+              </button>
+              <button type="button" onclick="openAddQuestionModal()" class="px-3 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold rounded-lg shadow flex items-center space-x-1 cursor-pointer">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i><span>Add Question</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-3 text-xs">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Standard / Category:</label>
+              <select id="filter-std" onchange="syncSubjectDropdown('filter-std', 'filter-sub'); filterQuestionBank();" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white">
+                <option value="ALL">All Standards</option>
+                <option value="Std 9">Std 9</option>
+                <option value="Std 10" selected>Std 10</option>
+                <option value="Std 11 Science">Std 11 Science</option>
+                <option value="Std 11 Commerce">Std 11 Commerce</option>
+                <option value="Std 11 Arts">Std 11 Arts</option>
+                <option value="Std 12 Science">Std 12 Science</option>
+                <option value="Std 12 Commerce">Std 12 Commerce</option>
+                <option value="Std 12 Arts">Std 12 Arts</option>
+                <option value="GUJCET">GUJCET Only</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+              <select id="filter-sub" onchange="filterQuestionBank()" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white"></select>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+              <select id="filter-med" onchange="filterQuestionBank()" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white">
+                <option value="ALL">All Mediums</option>
+                <option value="Gujarati">Gujarati Medium</option>
+                <option value="English">English Medium</option>
+                <option value="Hindi">Hindi Medium</option>
+              </select>
+            </div>
+            <div class="relative" id="chap-filter-wrap">
+              <label class="block font-bold text-slate-700 mb-1">Chapter No / Name:</label>
+              <button type="button" id="chap-filter-btn" onclick="toggleChapterFilter(event)" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white flex items-center justify-between gap-2 cursor-pointer hover:border-brand-600">
+                <span id="chap-filter-label" class="truncate">All Chapters</span>
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-500 shrink-0"></i>
+              </button>
+              <div id="chap-filter-panel" class="hidden absolute z-30 mt-1 w-full min-w-[220px] bg-white border border-slate-300 rounded-lg shadow-xl p-2 space-y-2">
+                <input type="text" id="chap-filter-search" onkeyup="renderChapterFilterList()" placeholder="Type chapter no or name..." class="w-full border border-slate-300 rounded-lg p-1.5 text-xs">
+                <div id="chap-filter-list" class="max-h-56 overflow-y-auto divide-y divide-slate-100"></div>
+              </div>
+            </div>
+            <div class="relative" id="marks-filter-wrap">
+              <label class="block font-bold text-slate-700 mb-1">Marks:</label>
+              <button type="button" id="marks-filter-btn" onclick="toggleMarksFilter(event)" class="w-full border border-slate-300 rounded-lg p-2 font-medium bg-white flex items-center justify-between gap-2 cursor-pointer hover:border-brand-600">
+                <span id="marks-filter-label" class="truncate">All Marks</span>
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-500 shrink-0"></i>
+              </button>
+              <div id="marks-filter-panel" class="hidden absolute z-30 mt-1 w-full min-w-[160px] bg-white border border-slate-300 rounded-lg shadow-xl p-2">
+                <div id="marks-filter-list" class="max-h-56 overflow-y-auto divide-y divide-slate-100"></div>
+              </div>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Keyword Search:</label>
+              <input type="text" id="filter-keyword" onkeyup="filterQuestionBank()" placeholder="Search questions..." class="w-full border border-slate-300 rounded-lg p-2 bg-white">
+              <label class="flex items-center gap-1 mt-1 text-[11px] font-semibold text-slate-600 cursor-pointer"><input type="checkbox" id="filter-figure-only" onchange="filterQuestionBank()"> Only figure-based questions</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="px-5 py-3 bg-slate-50 border-b border-slate-200 flex justify-between items-center text-xs">
+            <span class="font-bold text-slate-700" id="qbank-count-indicator">Showing 0 Questions</span>
+            <button type="button" id="qbank-locked-note" onclick="openMySubjectsModal()" class="hidden px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-bold text-[11px] hover:bg-amber-200 cursor-pointer"></button>
+          </div>
+          <div id="qbank-items-container" class="divide-y divide-slate-200"></div>
+        </div>
+      </section>
+
+      <!-- TAB 5: ARCHIVE -->
+      <section id="tab-archive" class="tab-pane hidden max-w-7xl mx-auto space-y-6">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <div>
+              <h2 class="text-base font-black text-slate-800">My Saved Work</h2>
+              <p class="text-xs text-slate-500">Each exam has its own folders: Blueprints and Papers. Only your own work is shown.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="work-show-all-wrap hidden items-center gap-1 text-[11px] font-bold text-slate-700 cursor-pointer"><input type="checkbox" class="work-show-all-cb w-3.5 h-3.5" onchange="setShowAllWork(this.checked)"> Show everyone's work (admin)</label>
+              <button type="button" onclick="clearAllArchivedPapers()" class="text-xs text-rose-600 hover:underline cursor-pointer">Clear My Papers</button>
+            </div>
+          </div>
+          <div id="archive-exam-chips" class="flex flex-wrap gap-2"></div>
+          <div id="archive-list-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+      </section>
+
+      <!-- TAB 6: TEACHERS & ACCESS (admin only) -->
+      <!-- TAB: UPI PAYMENTS (admin only) -->
+      <section id="tab-payments" class="tab-pane max-w-6xl mx-auto space-y-6 hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <h2 class="text-base font-black text-slate-800 flex items-center space-x-2"><i data-lucide="indian-rupee" class="w-5 h-5 text-brand-700"></i><span>UPI Payment Requests</span></h2>
+              <p class="text-xs text-slate-500 mt-1">Open your UPI app, find the payment (UTR / amount / note), then press Approve.</p>
+            </div>
+            <select id="pay-filter" onchange="renderPayRequests()" class="px-2 py-1.5 border border-slate-300 rounded-lg text-xs font-bold bg-white">
+              <option value="PENDING">Waiting for approval</option>
+              <option value="ALL">All requests</option>
+            </select>
+          </div>
+          <div id="pay-requests-list" class="space-y-2"></div>
+          <div class="mt-3 p-3 border border-amber-300 bg-amber-50 rounded-xl text-xs space-y-2">
+            <div class="font-bold text-amber-900">One-time upgrade: Standard + Subject access</div>
+            <p class="text-amber-900">Moves existing questions and teacher access from "subject only" to "Standard + Subject". Run once after updating the app and the database rules. Nobody loses what they paid for.</p>
+            <button type="button" id="migrate-std-btn" onclick="migrateToStdAccess()" class="px-3 py-1.5 bg-amber-700 hover:bg-amber-800 text-white font-bold rounded-lg cursor-pointer">Upgrade old data now</button>
+          </div>
+          <div class="mt-3 p-3 border border-sky-300 bg-sky-50 rounded-xl text-xs space-y-2">
+            <div class="font-bold text-sky-900">Coming Soon list + Guest preview</div>
+            <p class="text-sky-900">Publishes which Standard + Subject have questions (empty ones show a padlock and "Coming Soon") and a public copy of chapters 1-2 for the Guest login. It also runs by itself a few seconds after you change questions.</p>
+            <button type="button" onclick="publishCatalog(true)" class="px-3 py-1.5 bg-sky-700 hover:bg-sky-800 text-white font-bold rounded-lg cursor-pointer">Publish now</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-3">
+          <h3 class="text-sm font-black text-slate-800">Give access manually</h3>
+          <p class="text-xs text-slate-500">For cash or bank payments, or to fix a mistake. No request is needed.</p>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-2 text-xs">
+            <input type="email" id="grant-email" placeholder="teacher@email.com" class="border rounded-lg p-2 border-slate-300 md:col-span-2">
+            <select id="grant-kind" onchange="document.getElementById('grant-subject').classList.toggle('hidden', this.value !== 'subject')" class="border rounded-lg p-2 border-slate-300 font-bold">
+              <option value="plan">1-year subscription</option>
+              <option value="subject">One subject</option>
+            </select>
+            <input type="number" id="grant-days" value="365" min="1" max="3650" class="border rounded-lg p-2 border-slate-300" title="Days">
+            <select id="grant-subject" class="hidden border rounded-lg p-2 border-slate-300 md:col-span-3"></select>
+            <button type="button" onclick="adminManualGrant()" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg cursor-pointer">Give access</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-teachers" class="tab-pane max-w-5xl mx-auto space-y-6 hidden">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-4">
+          <div>
+            <h2 class="text-base font-black text-slate-800 flex items-center space-x-2"><i data-lucide="user-plus" class="w-5 h-5 text-brand-700"></i><span>Add Subject Teacher</span></h2>
+            <p class="text-xs text-slate-500 mt-1">The teacher can add, edit and delete questions only in the subjects you tick, and can see only those subjects (plus any subject they pay for).</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+            <input type="text" id="tch-new-name" placeholder="Teacher name" class="border rounded-lg p-2 border-slate-300">
+            <input type="email" id="tch-new-email" placeholder="teacher@school.edu.in" class="border rounded-lg p-2 border-slate-300">
+            <input type="text" id="tch-new-pass" placeholder="Temporary password (min 6)" class="border rounded-lg p-2 border-slate-300 font-mono">
+            <select id="tch-new-medium" class="border rounded-lg p-2 border-slate-300 bg-white font-semibold"></select>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-slate-700 mb-1.5">Allowed subjects:</p>
+            <div id="tch-new-subjects" class="grid grid-cols-2 md:grid-cols-3 gap-1.5 text-xs"></div>
+          </div>
+          <button type="button" id="tch-create-btn" onclick="createTeacherAccount()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs shadow cursor-pointer">Create Teacher Account</button>
+        </div>
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-black text-slate-800">Teachers <span id="tch-count" class="ml-1 text-[11px] font-bold text-slate-500"></span></h2>
+            <button type="button" onclick="loadTeachersList()" class="text-xs text-brand-700 hover:underline cursor-pointer">Refresh</button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-2 text-xs">
+            <input type="search" id="tch-search" oninput="filterTeachers()" placeholder="Search teacher name, email, Std, medium or subject…" class="md:col-span-2 border rounded-lg p-2 border-slate-300 outline-none focus:ring-2 focus:ring-brand-700">
+            <select id="tch-filter-std" onchange="filterTeachers()" class="border rounded-lg p-2 border-slate-300 bg-white font-semibold"><option value="">All Standards</option></select>
+            <select id="tch-filter-medium" onchange="filterTeachers()" class="border rounded-lg p-2 border-slate-300 bg-white font-semibold"><option value="">All Mediums</option></select>
+          </div>
+          <div id="tch-list" class="space-y-3"></div>
+          <p id="tch-empty" class="hidden text-xs text-slate-400 italic text-center py-4">No teacher matches your search.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- MODAL: ADD CHAPTER -->
+  <div id="modal-add-chapter" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-emerald-700">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center"><i data-lucide="folder-plus" class="w-5 h-5"></i></div>
+          <div>
+            <h3 class="font-extrabold text-base text-slate-900">Add Chapters to Subject</h3>
+            <p class="text-xs text-slate-500">Configure new chapters in blueprint matrix</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('modal-add-chapter')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Standard / Category:</label>
+          <select id="chapter-add-std" onchange="syncSubjectDropdown('chapter-add-std', 'chapter-add-sub')" class="w-full border rounded-lg p-2 border-slate-300 font-semibold bg-white">
+            <option value="Std 9">Std 9</option>
+            <option value="Std 10" selected>Std 10</option>
+            <option value="Std 11 Science">Std 11 Science</option>
+            <option value="Std 11 Commerce">Std 11 Commerce</option>
+            <option value="Std 11 Arts">Std 11 Arts</option>
+            <option value="Std 12 Science">Std 12 Science</option>
+            <option value="Std 12 Commerce">Std 12 Commerce</option>
+            <option value="Std 12 Arts">Std 12 Arts</option>
+            <option value="GUJCET">GUJCET</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+          <select id="chapter-add-sub" class="w-full border rounded-lg p-2 border-slate-300 font-semibold bg-white"></select>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Chapter No:</label>
+            <input type="text" id="chapter-add-no" placeholder="Ch 1" value="Ch 1" class="w-full border rounded-lg p-2 border-slate-300 font-mono font-bold bg-white">
+          </div>
+          <div class="col-span-2">
+            <label class="block font-bold text-slate-700 mb-1">Chapter Name / Title:</label>
+            <input type="text" id="chapter-add-name" placeholder="e.g. Differentiation / Integrals" class="w-full border rounded-lg p-2 border-slate-300 font-medium bg-white">
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-add-chapter')" class="px-3 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Close</button>
+        <button type="button" onclick="saveNewChapter()" class="px-3 py-2 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-lg text-xs shadow cursor-pointer">Save Chapter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: BULK IMPORT -->
+  <div id="modal-bulk-import" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-4xl w-full p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center"><i data-lucide="file-up" class="w-5 h-5"></i></div>
+          <div>
+            <h3 class="font-extrabold text-base text-slate-900">Bulk Import Questions by Chapter</h3>
+            <p class="text-xs text-slate-500">Auto chapter lookup with CSV, Excel (.xlsx) &amp; Sheet pasting</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('modal-bulk-import')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+
+      <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl space-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2.5 text-xs">
+          <div>
+            <label class="block font-bold text-brand-900 mb-1">Target Bank:</label>
+            <select id="bulk-target-bank-type" onchange="onBulkBankTypeChange()" class="w-full border-2 border-brand-700 rounded-lg p-2 font-bold bg-white text-brand-900">
+              <option value="GENERAL">General GSEB Bank</option>
+              <option value="GUJCET">GUJCET Bank</option>
+              <option value="PREVYEAR">Previous Years Board Exam Questions</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Standard (Std):</label>
+            <select id="bulk-target-std" onchange="syncSubjectDropdown('bulk-target-std', 'bulk-target-sub'); autoFetchChapterTitle();" class="w-full border rounded-lg p-2 font-semibold border-slate-300 bg-white">
+              <option value="Std 9">Std 9</option>
+              <option value="Std 10" selected>Std 10</option>
+              <option value="Std 11 Science">Std 11 Science</option>
+              <option value="Std 11 Commerce">Std 11 Commerce</option>
+              <option value="Std 11 Arts">Std 11 Arts</option>
+              <option value="Std 12 Science">Std 12 Science</option>
+              <option value="Std 12 Commerce">Std 12 Commerce</option>
+              <option value="Std 12 Arts">Std 12 Arts</option>
+              <option value="GUJCET">GUJCET</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+            <select id="bulk-target-sub" onchange="autoFetchChapterTitle();" class="w-full border rounded-lg p-2 font-semibold border-slate-300 bg-white"></select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+            <select id="bulk-target-med" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-medium">
+              <option value="Gujarati">Gujarati</option>
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Chapter No:</label>
+            <input type="text" id="bulk-target-chap-no" value="Ch 1" placeholder="Ch 1" onkeyup="autoFetchChapterTitle()" onchange="autoFetchChapterTitle()" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-bold font-mono text-brand-900">
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-1 text-xs">
+            <label class="font-bold text-slate-700">Auto-Fetched Chapter Name:</label>
+            <button type="button" onclick="autoFetchChapterTitle()" class="text-brand-700 hover:underline font-bold text-[11px] flex items-center space-x-1 cursor-pointer">
+              <i data-lucide="sparkles" class="w-3 h-3 text-amber-500"></i><span>Re-Fetch Name</span>
+            </button>
+          </div>
+          <input type="text" id="bulk-target-chap-name" placeholder="Chapter name will auto-fetch from matrix / bank..." class="w-full border-2 border-emerald-300 rounded-lg p-2 text-xs bg-emerald-50/50 font-bold text-slate-800">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="border-2 border-dashed border-slate-300 rounded-xl p-5 text-center hover:border-brand-600 transition bg-slate-50 flex flex-col items-center justify-center">
+          <input type="file" id="bulk-file-input" accept=".csv,.tsv,.xlsx,.xls,.txt" class="hidden" onchange="handleBulkFileSelect(event)">
+          <i data-lucide="upload-cloud" class="w-8 h-8 text-slate-400 mb-2"></i>
+          <p class="font-bold text-slate-700 text-xs">Upload Excel (.xlsx, .xls) / CSV File</p>
+          <p class="text-[10px] text-slate-500 mt-1">Columns: Marks | Question | Options | Answer | Figure (optional file name, e.g. q5.png). In CSV, wrap text containing commas in "quotes".</p>
+          <p class="text-[10px] text-blue-800 mt-1 font-semibold">Excel (.xlsx): insert each picture on the same row as its question - it is attached automatically.</p>
+          <button type="button" onclick="document.getElementById('bulk-file-input').click()" class="mt-3 px-3 py-1.5 bg-brand-900 text-white font-bold rounded-lg shadow hover:bg-brand-800 text-xs cursor-pointer">Browse Device Files</button>
+          <div class="w-full mt-3 pt-3 border-t border-slate-200">
+            <input type="file" id="bulk-image-input" accept="image/*,.zip" multiple class="hidden" onchange="handleBulkImagesSelect(event)">
+            <button type="button" onclick="document.getElementById('bulk-image-input').click()" class="px-3 py-1.5 bg-blue-700 text-white font-bold rounded-lg shadow hover:bg-blue-800 text-xs cursor-pointer">Add Figure Images / ZIP</button>
+            <p id="bulk-image-status" class="text-[10px] text-slate-500 mt-1">Optional: select the figure images (or one ZIP). They are matched by the file name in the Figure column.</p>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <label class="block font-bold text-slate-700 mb-1">Or Copy &amp; Paste Directly from Sheets / TSV:</label>
+          <textarea id="bulk-paste-area" rows="6" placeholder="Marks&#9;Question&#9;Options&#9;Answer&#9;Figure&#10;1&#9;Find gcd of 12 and 18&#9;(A) 2 (B) 6 (C) 12 (D) 36&#9;(B) 6&#9;fig1.png" class="flex-1 w-full border rounded-lg p-2 font-mono text-[11px] border-slate-300 outline-none"></textarea>
+        </div>
+      </div>
+
+      <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5 text-xs">
+        <div class="font-bold text-slate-800">Import from PDF, Word or Image <span class="font-normal text-slate-500">&nbsp;or from a Google Sheet link</span></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 items-end">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Marks if not found in the file:</label>
+            <input type="number" id="bulk-default-marks" min="1" max="20" value="1" class="w-full border rounded-lg p-2 font-semibold border-slate-300 bg-white">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Language of scanned text (OCR):</label>
+            <select id="bulk-ocr-lang" class="w-full border rounded-lg p-2 font-semibold border-slate-300 bg-white">
+              <option value="eng">English</option>
+              <option value="guj+eng">Gujarati + English</option>
+              <option value="hin+eng">Hindi + English</option>
+            </select>
+          </div>
+          <div>
+            <input type="file" id="bulk-smart-input" accept=".pdf,.docx,image/*" multiple class="hidden" onchange="handleBulkFileSelect(event)">
+            <button type="button" onclick="document.getElementById('bulk-smart-input').click()" class="w-full px-3 py-2 bg-purple-700 hover:bg-purple-800 text-white font-bold rounded-lg shadow text-xs cursor-pointer">Choose PDF / Word (.docx) / Image</button>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input type="text" id="bulk-gsheet-url" placeholder="Paste Google Sheet link (sharing: Anyone with the link can view)" class="flex-1 border rounded-lg p-2 border-slate-300 bg-white font-medium">
+          <button type="button" onclick="importGoogleSheetLink()" class="px-3 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg shadow text-xs cursor-pointer">Fetch Google Sheet</button>
+        </div>
+        <p id="bulk-import-status" class="text-[11px] font-semibold text-blue-800"></p>
+        <p class="text-[10px] text-slate-500">PDF / Word / Image: questions must be numbered (1. / Q1) / 2.). Marks are read from headings such as "Section B (2 marks each)" or from "[3]" at the end of a question; otherwise the value above is used. Word tables in the Marks | Question | Options | Answer layout are read as a table. Scanned PDFs and photos use OCR - always check the preview before importing.</p>
+      </div>
+
+      <div id="bulk-preview-zone" class="space-y-2">
+        <div class="font-bold text-slate-800 text-xs flex justify-between items-center">
+          <span>Parsed Table Preview:</span>
+          <span id="bulk-parsed-count" class="text-brand-700 font-mono">0 questions detected</span>
+        </div>
+        <div class="max-h-48 overflow-y-auto border border-slate-200 rounded-lg text-[11px] bg-white">
+          <table class="w-full text-left" id="bulk-parsed-table">
+            <thead class="bg-slate-100 sticky top-0 font-bold border-b border-slate-200 text-slate-700">
+              <tr>
+                <th class="p-2 text-center w-14">Marks</th>
+                <th class="p-2">Question Statement &amp; Options</th>
+                <th class="p-2 text-emerald-800 font-bold text-center w-36">Answer Key</th>
+                <th class="p-2 text-center w-28">Figure</th>
+              </tr>
+            </thead>
+            <tbody id="bulk-parsed-body" class="divide-y divide-slate-100">
+              <tr><td colspan="3" class="p-3 text-center text-slate-400 italic">No questions parsed yet. Upload file or click "Parse Pasted Data".</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex justify-end items-center space-x-2 pt-3 border-t">
+        <label class="mr-auto flex items-center gap-1.5 text-[11px] font-bold text-slate-700 cursor-pointer select-none">
+          <input type="checkbox" id="bulk-skip-dupes" checked onchange="renderBulkParsedTable()" class="w-3.5 h-3.5 accent-emerald-600">
+          <span>Skip questions already in the Question Bank</span>
+        </label>
+        <button type="button" onclick="parsePastedBulkQuestions()" class="px-4 py-2 bg-slate-200 text-slate-800 font-bold rounded-lg text-xs hover:bg-slate-300 cursor-pointer">Parse Pasted Data</button>
+        <button type="button" onclick="commitBulkImport()" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-lg text-xs hover:bg-emerald-700 shadow cursor-pointer">Import Questions to Bank</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: GUJCET PDF IMPORT -->
+  <div id="modal-gujcet-pdf" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-4xl w-full p-6 space-y-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center"><i data-lucide="file-text" class="w-5 h-5"></i></div>
+          <div>
+            <h3 class="font-extrabold text-base text-slate-900">Import GUJCET Questions from PDF</h3>
+            <p class="text-xs text-slate-500">The PDF is read and questions are separated subject-wise (Physics / Chemistry / Mathematics)</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('modal-gujcet-pdf')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+
+      <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl space-y-3 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+            <select id="gpdf-medium" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-medium">
+              <option value="Gujarati">Gujarati</option>
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Chapter / Tag:</label>
+            <input type="text" id="gpdf-chapter" value="GUJCET Practice" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-medium">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">If no subject heading in PDF:</label>
+            <select id="gpdf-split-mode" onchange="gpdfReparse()" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-medium">
+              <option value="all">Put all in one subject</option>
+              <option value="every40">Split: Phy 1-40, Chem 41-80, Maths 81-120</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Default subject:</label>
+            <select id="gpdf-default-sub" onchange="gpdfReparse()" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-semibold">
+              <option value="Mathematics">Mathematics</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <input type="file" id="gpdf-file-input" accept="application/pdf,.pdf" class="hidden" onchange="handleGujcetPdfSelect(event)">
+          <button type="button" onclick="document.getElementById('gpdf-file-input').click()" class="px-3 py-1.5 bg-brand-900 text-white font-bold rounded-lg shadow hover:bg-brand-800 text-xs cursor-pointer">Choose PDF File</button>
+          <span id="gpdf-status" class="text-slate-600 flex-1 min-w-[200px]"></span>
+        </div>
+        <p class="text-[10px] text-slate-500">Subjects are detected from headings such as "PHYSICS", "Section B - Chemistry", "ગણિત". Answers are picked up from an "Answer Key" page or "Ans: B" lines. Formulas and figures in a PDF are not always read correctly - review the list below and fix the subject, answer or remove any row before importing.</p>
+      </div>
+
+      <div class="space-y-2">
+        <div class="font-bold text-slate-800 text-xs flex flex-wrap justify-between items-center gap-2">
+          <span id="gpdf-chips" class="flex flex-wrap gap-1.5"></span>
+          <span id="gpdf-count" class="text-brand-700 font-mono">0 questions detected</span>
+        </div>
+        <div class="max-h-72 overflow-auto border border-slate-200 rounded-lg text-[11px] bg-white">
+          <table class="w-full text-left">
+            <thead class="bg-slate-100 sticky top-0 font-bold border-b border-slate-200 text-slate-700">
+              <tr>
+                <th class="p-2 text-center w-10">#</th>
+                <th class="p-2">Question &amp; Options</th>
+                <th class="p-2 text-center w-14">Ans</th>
+                <th class="p-2 w-32">Subject</th>
+                <th class="p-2 w-8"></th>
+              </tr>
+            </thead>
+            <tbody id="gpdf-body" class="divide-y divide-slate-100"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-gujcet-pdf')" class="px-4 py-2 bg-slate-200 text-slate-800 font-bold rounded-lg text-xs hover:bg-slate-300 cursor-pointer">Cancel</button>
+        <button type="button" onclick="commitGujcetPdfImport()" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-lg text-xs hover:bg-emerald-700 shadow cursor-pointer">Import to GUJCET Bank</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: BULK DELETE -->
+  <div id="modal-bulk-delete" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-rose-600">
+          <div class="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center"><i data-lucide="trash-2" class="w-5 h-5"></i></div>
+          <div>
+            <h3 class="font-extrabold text-base text-slate-900">Delete Questions in Bulk</h3>
+            <p class="text-xs text-slate-500">Target a specific chapter to delete all its questions</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('modal-bulk-delete')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Standard / Category:</label>
+          <select id="del-bulk-std" onchange="syncSubjectDropdown('del-bulk-std', 'del-bulk-sub'); updateBulkDeleteCount();" class="w-full border rounded-lg p-2 border-slate-300 font-semibold">
+            <option value="ALL">All Standards</option>
+            <option value="Std 9">Std 9</option>
+            <option value="Std 10" selected>Std 10</option>
+            <option value="Std 11 Science">Std 11 Science</option>
+            <option value="Std 11 Commerce">Std 11 Commerce</option>
+            <option value="Std 11 Arts">Std 11 Arts</option>
+            <option value="Std 12 Science">Std 12 Science</option>
+            <option value="Std 12 Commerce">Std 12 Commerce</option>
+            <option value="Std 12 Arts">Std 12 Arts</option>
+            <option value="GUJCET">GUJCET</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+          <select id="del-bulk-sub" onchange="updateBulkDeleteCount()" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></select>
+        </div>
+        <div>
+          <label class="block font-bold text-rose-700 mb-1">Target Chapter to Delete:</label>
+          <input type="text" id="del-bulk-chap" value="Ch 1" placeholder="e.g. Ch 1 or Real Numbers" onkeyup="updateBulkDeleteCount()" class="w-full border-2 border-rose-300 rounded-lg p-2 font-bold text-slate-800 bg-rose-50">
+        </div>
+        <div>
+          <label class="block font-bold text-rose-700 mb-1">Marks:</label>
+          <select id="del-bulk-marks" onchange="updateBulkDeleteCount()" class="w-full border-2 border-rose-300 rounded-lg p-2 font-bold text-slate-800 bg-rose-50">
+            <option value="">All Marks</option>
+          </select>
+        </div>
+        <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs font-semibold text-rose-900 flex items-center justify-between">
+          <span>Questions to be permanently removed:</span>
+          <span id="del-affected-count" class="font-mono text-base font-black text-rose-700">0</span>
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-bulk-delete')" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Cancel</button>
+        <button type="button" onclick="confirmBulkDeleteChapter()" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg text-xs shadow flex items-center space-x-1 cursor-pointer">
+          <i data-lucide="trash-2" class="w-3.5 h-3.5"></i><span>Delete Questions</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EDIT QUESTION -->
+  <div id="modal-edit-question" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 backdrop-blur-sm hidden">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 text-brand-900 flex items-center justify-center"><i data-lucide="edit-3" class="w-5 h-5"></i></div>
+          <h3 class="font-extrabold text-base text-slate-900">Edit Question &amp; Solution</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-edit-question')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <input type="hidden" id="edit-q-id">
+      <input type="hidden" id="edit-q-origin">
+      <div class="space-y-3 text-xs">
+        <div class="rounded-lg border border-dashed border-purple-300 bg-purple-50 p-3 space-y-2">
+          <label class="block font-bold text-purple-900">Auto-fill from Word (.docx) or pasted text</label>
+          <input type="file" id="edit-q-word" accept=".docx" onchange="wordFillFromFile(event,'edit')" class="w-full text-xs border rounded-lg p-1.5 bg-white">
+          <textarea id="edit-q-paste" rows="2" placeholder="...or paste from Word here (Question, (A)(B)(C)(D), Ans: B) and click Parse & Fill" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-mono text-[11px]"></textarea>
+          <div class="flex gap-2">
+            <button type="button" onclick="wordFillFromPaste('edit')" class="px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white font-bold rounded-lg text-xs cursor-pointer">Parse &amp; Fill</button>
+            <button type="button" onclick="wordFillReset('edit')" class="px-3 py-1.5 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Clear</button>
+          </div>
+          <select id="edit-q-word-pick" onchange="wqPickChanged('edit')" class="hidden w-full border rounded-lg p-1.5 border-slate-300 bg-white text-xs"></select>
+          <p id="edit-q-word-status" class="text-[11px] font-semibold text-blue-800"></p>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Question Statement:</label>
+          <textarea id="edit-q-text" rows="3" class="w-full border rounded-lg p-2 text-slate-900 border-slate-300"></textarea>
+        </div>
+        <div class="rounded-lg border border-dashed border-blue-300 bg-blue-50 p-3">
+          <label class="block font-bold text-blue-900 mb-1">Diagram / Figure (optional)</label>
+          <input type="file" id="edit-q-diagram" accept="image/png,image/jpeg,image/webp" onchange="loadDiagramFile(event,'edit')" class="w-full border rounded-lg p-2 bg-white">
+          <img id="edit-q-diagram-preview" class="hidden mt-2 max-h-40 max-w-full object-contain bg-white border rounded p-1" alt="Diagram preview">
+          <button type="button" onclick="clearDiagram('edit')" class="text-[10px] text-rose-700 underline mt-1">Remove diagram</button>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Options (For MCQs):</label>
+          <input type="text" id="edit-q-options" placeholder="(A) ... (B) ... (C) ... (D) ..." class="w-full border rounded-lg p-2 border-slate-300">
+        </div>
+        <div>
+          <label class="block font-bold text-emerald-800 mb-1">Answer / Solution Key:</label>
+          <textarea id="edit-q-ans" rows="2" placeholder="Enter full answer or solution steps..." class="w-full border-2 border-emerald-300 rounded-lg p-2 text-emerald-950 bg-emerald-50/40 font-medium"></textarea>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Marks:</label>
+            <input type="number" id="edit-q-marks" min="1" max="20" class="w-full border rounded-lg p-2 border-slate-300 font-bold">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Section Assignment:</label>
+            <select id="edit-q-section" class="w-full border rounded-lg p-2 border-slate-300">
+              <option value="SECTION A">SECTION A</option>
+              <option value="SECTION B">SECTION B</option>
+              <option value="SECTION C">SECTION C</option>
+              <option value="SECTION D">SECTION D</option>
+              <option value="GUJCET MCQ">GUJCET MCQ</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-edit-question')" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Cancel</button>
+        <button type="button" onclick="saveEditedQuestion()" class="px-4 py-2 bg-brand-900 text-white font-bold rounded-lg text-xs hover:bg-brand-800 shadow cursor-pointer">Update Question &amp; Answer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD QUESTION -->
+  <div id="modal-add-question" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2 text-blue-700">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center"><i data-lucide="plus" class="w-5 h-5"></i></div>
+          <h3 class="font-extrabold text-base text-slate-900">Add New Question (GSEB / GUJCET)</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-add-question')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div class="rounded-lg border border-dashed border-purple-300 bg-purple-50 p-3 space-y-2">
+          <label class="block font-bold text-purple-900">Auto-fill from Word (.docx) or pasted text</label>
+          <input type="file" id="add-q-word" accept=".docx" onchange="wordFillFromFile(event,'add')" class="w-full text-xs border rounded-lg p-1.5 bg-white">
+          <textarea id="add-q-paste" rows="3" placeholder="...or paste from Word here:&#10;What is the gcd of 12 and 18?&#10;(A) 2 (B) 6 (C) 12 (D) 36&#10;Ans: B" class="w-full border rounded-lg p-2 border-slate-300 bg-white font-mono text-[11px]"></textarea>
+          <div class="flex gap-2">
+            <button type="button" onclick="wordFillFromPaste('add')" class="px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white font-bold rounded-lg text-xs cursor-pointer">Parse &amp; Fill</button>
+            <button type="button" onclick="wordFillReset('add')" class="px-3 py-1.5 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Clear</button>
+          </div>
+          <select id="add-q-word-pick" onchange="wqPickChanged('add')" class="hidden w-full border rounded-lg p-1.5 border-slate-300 bg-white text-xs"></select>
+          <p id="add-q-word-status" class="text-[11px] font-semibold text-blue-800"></p>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Standard / Category:</label>
+            <select id="add-q-std" onchange="syncSubjectDropdown('add-q-std', 'add-q-sub')" class="w-full border rounded-lg p-2 border-slate-300">
+              <option value="Std 9">Std 9</option>
+              <option value="Std 10" selected>Std 10</option>
+              <option value="Std 11 Science">Std 11 Science</option>
+              <option value="Std 11 Commerce">Std 11 Commerce</option>
+              <option value="Std 11 Arts">Std 11 Arts</option>
+              <option value="Std 12 Science">Std 12 Science</option>
+              <option value="Std 12 Commerce">Std 12 Commerce</option>
+              <option value="Std 12 Arts">Std 12 Arts</option>
+              <option value="GUJCET">GUJCET</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Subject:</label>
+            <select id="add-q-sub" class="w-full border rounded-lg p-2 border-slate-300"></select>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Chapter No / Title:</label>
+            <input type="text" id="add-q-chap" placeholder="Ch 1" value="Ch 1" class="w-full border rounded-lg p-2 border-slate-300">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Medium:</label>
+            <select id="add-q-med" class="w-full border rounded-lg p-2 border-slate-300">
+              <option value="Gujarati">Gujarati</option>
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Marks:</label>
+            <input type="number" id="add-q-marks" value="1" min="1" max="10" class="w-full border rounded-lg p-2 border-slate-300 font-bold">
+          </div>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Question Statement:</label>
+          <textarea id="add-q-text" rows="3" placeholder="Enter question (Cambria font / LaTeX)..." class="w-full border rounded-lg p-2 border-slate-300"></textarea>
+        </div>
+        <div class="rounded-lg border border-dashed border-blue-300 bg-blue-50 p-3">
+          <label class="block font-bold text-blue-900 mb-1">Diagram / Figure (optional)</label>
+          <input type="file" id="add-q-diagram" accept="image/png,image/jpeg,image/webp" onchange="loadDiagramFile(event,'add')" class="w-full border rounded-lg p-2 bg-white">
+          <p class="text-[10px] text-slate-600 mt-1">Upload a JPG/PNG/WebP figure, or click in the question box and press Ctrl+V to paste a screenshot. It appears in the paper, PDF and Word output.</p>
+          <img id="add-q-diagram-preview" class="hidden mt-2 max-h-40 max-w-full object-contain bg-white border rounded p-1" alt="Diagram preview">
+          <button type="button" onclick="clearDiagram('add')" class="text-[10px] text-rose-700 underline mt-1">Remove diagram</button>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Options (For MCQ):</label>
+          <input type="text" id="add-q-options" placeholder="(A) ... (B) ... (C) ... (D) ..." class="w-full border rounded-lg p-2 border-slate-300">
+        </div>
+        <div>
+          <label class="block font-bold text-emerald-800 mb-1">Answer / Solution Key:</label>
+          <textarea id="add-q-ans" rows="2" placeholder="Enter answer or solution..." class="w-full border-2 border-emerald-300 rounded-lg p-2 bg-emerald-50/50"></textarea>
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-add-question')" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-lg text-xs cursor-pointer">Cancel</button>
+        <button type="button" onclick="submitNewQuestion()" class="px-4 py-2 bg-emerald-600 text-white font-bold rounded-lg text-xs hover:bg-emerald-700 shadow cursor-pointer">Save Question</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PAY BY UPI -->
+  <div id="modal-upi-pay" class="fixed inset-0 z-[70] bg-black/70 backdrop-blur-sm items-center justify-center p-4 hidden overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-md w-full p-5 space-y-3 shadow-2xl text-slate-800">
+      <div class="flex items-start justify-between gap-3 border-b pb-3">
+        <div>
+          <h3 id="upi-title" class="font-extrabold text-base text-slate-900">Pay by UPI</h3>
+          <p class="text-[11px] text-slate-500">Step 1: pay.  Step 2: enter the reference number.</p>
+        </div>
+        <button type="button" onclick="closeModal('modal-upi-pay')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer leading-none">×</button>
+      </div>
+
+      <div id="upi-not-configured" class="hidden p-3 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-800 font-semibold">UPI payment is not set up yet. Please contact the administrator on WhatsApp.</div>
+
+      <div id="upi-pay-body" class="space-y-3">
+        <div class="flex items-center justify-between bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+          <span class="text-xs font-bold text-amber-900">Amount to pay</span>
+          <span id="upi-amount" class="text-lg font-black text-amber-900 font-mono">₹150</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <div id="upi-qr-box" class="bg-white p-2 border border-slate-200 rounded-lg min-h-[120px] flex items-center justify-center"></div>
+          <p class="text-[11px] text-slate-500">Scan with GPay, PhonePe, Paytm or any UPI app</p>
+        </div>
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-1.5 text-xs">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-slate-500 font-semibold">UPI ID</span>
+            <span class="flex items-center gap-2"><b id="upi-id-text" class="font-mono text-slate-900 break-all"></b>
+              <button type="button" onclick="copyUpiText('upi-id-text')" class="px-2 py-0.5 rounded bg-slate-200 hover:bg-slate-300 font-bold text-[10px] cursor-pointer">Copy</button></span>
+          </div>
+          <div class="flex items-center justify-between gap-2"><span class="text-slate-500 font-semibold">Name</span><b id="upi-payee-text" class="text-slate-900"></b></div>
+          <div class="flex items-center justify-between gap-2"><span class="text-slate-500 font-semibold">Note to type</span><b id="upi-code-text" class="font-mono text-brand-900"></b></div>
+        </div>
+        <a id="upi-open-link" href="#" class="block text-center w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs shadow">Open my UPI app (on a phone)</a>
+
+        <div class="pt-2 border-t border-slate-200 space-y-2">
+          <label class="block text-xs font-bold text-slate-700">After paying: UPI reference number (UTR)</label>
+          <input type="text" id="upi-utr" inputmode="numeric" maxlength="30" placeholder="12-digit number shown in your payment app" class="w-full border-2 border-slate-300 rounded-lg p-2 font-mono text-sm tracking-wider">
+          <button type="button" id="upi-submit-btn" onclick="submitUpiPayment()" class="w-full py-2.5 bg-brand-900 hover:bg-brand-800 text-white font-extrabold rounded-lg text-xs shadow cursor-pointer">Submit for approval</button>
+          <p class="text-[10px] text-slate-500">Each reference number can be used only once. Wrong or made-up numbers are rejected by the administrator.</p>
+        </div>
+      </div>
+      <div id="upi-pending-box" class="hidden p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-900 font-semibold space-y-1"></div>
+      <div id="upi-notice-box" class="hidden p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-[11px] text-rose-800 font-semibold"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: MY SUBJECTS / UNLOCK -->
+  <div id="modal-my-subjects" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-3 shadow-2xl max-h-[92vh] flex flex-col">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="font-extrabold text-base text-slate-900">My Subjects</h3>
+        <button type="button" onclick="closeModal('modal-my-subjects')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <p id="my-subjects-intro" class="text-xs text-slate-700"></p>
+      <div id="my-subjects-list" class="space-y-1.5 overflow-y-auto pr-1"></div>
+      <p class="text-[10px] text-slate-500">A subject unlocks for 1 year from the day you pay. The same subject name (for example Physics (054)) is shared by every standard that uses it, and Mathematics (050), Physics (054) and Chemistry (052) also unlock the matching GUJCET subject. Payments are checked by the administrator before a subject unlocks.</p>
+    </div>
+  </div>
+
+  <!-- MODAL: OMR ANSWER SHEET -->
+  <div id="modal-omr" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="font-extrabold text-base text-slate-900">OMR Answer Sheet</h3>
+        <button type="button" onclick="closeModal('modal-omr')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">School / Institution:</label>
+          <input type="text" id="omr-school" class="w-full border rounded-lg p-2 border-slate-300 font-bold uppercase">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Examination:</label>
+          <input type="text" id="omr-title" class="w-full border rounded-lg p-2 border-slate-300 font-medium">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="block font-bold text-slate-700 mb-1">Std:</label><input type="text" id="omr-std" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></div>
+          <div><label class="block font-bold text-slate-700 mb-1">Subject:</label><input type="text" id="omr-sub" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></div>
+          <div><label class="block font-bold text-slate-700 mb-1">Medium:</label><input type="text" id="omr-med" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></div>
+          <div><label class="block font-bold text-slate-700 mb-1">Date:</label><input type="date" id="omr-date" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></div>
+          <div><label class="block font-bold text-slate-700 mb-1">Total Marks:</label><input type="text" id="omr-marks" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></div>
+          <div><label class="block font-bold text-slate-700 mb-1">Time:</label><input type="text" id="omr-time" class="w-full border rounded-lg p-2 border-slate-300 font-semibold"></div>
+          <div><label class="block font-bold text-slate-700 mb-1">Number of Questions:</label><input type="number" id="omr-qcount" min="1" max="100" class="w-full border rounded-lg p-2 border-slate-300 font-bold"></div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Options per Question:</label>
+            <select id="omr-opts" class="w-full border rounded-lg p-2 border-slate-300 font-bold">
+              <option value="2">2 (A, B)</option>
+              <option value="3">3 (A, B, C)</option>
+              <option value="4" selected>4 (A, B, C, D)</option>
+              <option value="5">5 (A, B, C, D, E)</option>
+            </select>
+          </div>
+        </div>
+        <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
+          <input type="checkbox" id="omr-roll" checked class="w-4 h-4 accent-teal-700"> Include Roll Number bubbles
+        </label>
+        <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
+          <input type="checkbox" id="omr-scan" checked class="w-4 h-4 accent-teal-700"> Add scanner marks (corner squares + side timing marks)
+        </label>
+        <p class="text-[10px] text-slate-500">Details are filled from the open paper - change anything here before printing. The school logo is added if you uploaded one. The sheet has no watermark so it stays clean. For scanning, print on A4 at 100% (Actual size, no "fit to page"). Every sheet has an "Office use" box for manual checking; the Answer Key copy prints the correct bubbles filled, using the answers saved with the questions.</p>
+      </div>
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-omr')" class="px-4 py-2 bg-slate-200 text-slate-800 font-bold rounded-lg text-xs hover:bg-slate-300 cursor-pointer">Cancel</button>
+        <button type="button" onclick="printOmrSheet(true)" class="px-3 py-2 bg-amber-600 text-white font-bold rounded-lg text-xs hover:bg-amber-700 shadow cursor-pointer" title="Teacher copy with the correct bubbles filled - for manual checking">Print Answer Key</button>
+        <button type="button" onclick="printOmrSheet()" class="px-4 py-2 bg-teal-700 text-white font-bold rounded-lg text-xs hover:bg-teal-800 shadow cursor-pointer">Print OMR Sheet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: WATERMARK -->
+  <div id="modal-watermark" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="font-extrabold text-base text-slate-900">Print Watermark</h3>
+        <button type="button" onclick="closeModal('modal-watermark')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
+          <input type="checkbox" id="wm-on" onchange="onWatermarkChange()" class="w-4 h-4 accent-purple-700"> Show watermark on every printed page
+        </label>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Watermark text:</label>
+          <input type="text" id="wm-text" oninput="onWatermarkChange()" placeholder="Leave blank to use the institution name" class="w-full border rounded-lg p-2 border-slate-300 font-semibold">
+          <div class="flex flex-wrap gap-1.5 mt-1.5">
+            <button type="button" onclick="setWatermarkPreset('DRAFT')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 font-bold cursor-pointer">DRAFT</button>
+            <button type="button" onclick="setWatermarkPreset('CONFIDENTIAL')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 font-bold cursor-pointer">CONFIDENTIAL</button>
+            <button type="button" onclick="setWatermarkPreset('SAMPLE PAPER')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 font-bold cursor-pointer">SAMPLE PAPER</button>
+            <button type="button" onclick="setWatermarkPreset('')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 font-bold cursor-pointer">School name</button>
+          </div>
+        </div>
+        <div>
+          <label class="flex justify-between font-bold text-slate-700 mb-1"><span>Size</span><span id="wm-size-val" class="font-mono text-slate-500"></span></label>
+          <input type="range" id="wm-size" min="20" max="120" step="2" oninput="onWatermarkChange()" class="w-full accent-purple-700">
+        </div>
+        <div>
+          <label class="flex justify-between font-bold text-slate-700 mb-1"><span>Darkness</span><span id="wm-opacity-val" class="font-mono text-slate-500"></span></label>
+          <input type="range" id="wm-opacity" min="3" max="40" step="1" oninput="onWatermarkChange()" class="w-full accent-purple-700">
+        </div>
+        <div>
+          <label class="flex justify-between font-bold text-slate-700 mb-1"><span>Angle</span><span id="wm-angle-val" class="font-mono text-slate-500"></span></label>
+          <input type="range" id="wm-angle" min="-90" max="90" step="5" oninput="onWatermarkChange()" class="w-full accent-purple-700">
+        </div>
+        <p class="text-[10px] text-slate-500">The watermark shows faintly on the paper preview and is printed in the centre of every page. It is saved on this device.</p>
+      </div>
+      <div class="flex justify-between pt-3 border-t">
+        <button type="button" onclick="resetWatermark()" class="px-3 py-2 bg-slate-200 text-slate-800 font-bold rounded-lg text-xs hover:bg-slate-300 cursor-pointer">Reset</button>
+        <button type="button" onclick="closeModal('modal-watermark')" class="px-4 py-2 bg-purple-700 text-white font-bold rounded-lg text-xs hover:bg-purple-800 shadow cursor-pointer">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PHOTO / LOGO -->
+  <div id="modal-photo" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-900 flex items-center justify-center"><i data-lucide="camera" class="w-5 h-5"></i></div>
+          <h3 class="font-extrabold text-base text-slate-900">Manage Picture &amp; App Logo</h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-photo')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <div class="space-y-4 text-xs">
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+          <label class="block font-bold text-slate-800">1. Teacher Profile Picture (Multi-Device Sync):</label>
+          <p class="text-[11px] text-slate-500">Automatically syncs to all phones and PCs linked to this portal.</p>
+          <input type="file" id="local-photo-input" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer" onchange="handleLocalPhoto(event)">
+        </div>
+        <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl space-y-2">
+          <label class="block font-bold text-amber-950">2. KT Maths App Logo &amp; Favicon (Multi-Device Sync):</label>
+          <p class="text-[11px] text-amber-800">Updates app logo everywhere across all open tabs, headers, and devices.</p>
+          <input type="file" id="local-logo-input" accept="image/*" class="w-full text-xs text-slate-600 file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-amber-600 file:text-white hover:file:bg-amber-700 cursor-pointer" onchange="handleAppLogoUpload(event)">
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2 pt-3 border-t">
+        <button type="button" onclick="closeModal('modal-photo')" class="px-4 py-2 bg-brand-900 text-white font-bold rounded-lg text-xs shadow hover:bg-brand-800 cursor-pointer">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SUBSCRIPTION PAYWALL -->
+  <!-- MODAL: MY ACCOUNT (teacher / staff) -->
+  <div id="modal-my-account" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4 hidden backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-slate-200 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="font-extrabold text-base text-slate-900 flex items-center space-x-2"><i data-lucide="user-round" class="w-5 h-5 text-brand-700"></i><span>My Account</span></h3>
+        <button type="button" onclick="closeModal('modal-my-account')" class="text-slate-400 hover:text-slate-600 text-2xl font-bold cursor-pointer">×</button>
+      </div>
+      <div id="my-account-body" class="text-xs text-slate-700 space-y-2"></div>
+      <div class="flex gap-2 flex-wrap pt-1">
+        <button type="button" onclick="closeModal('modal-my-account'); openMySubjectsModal()" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs cursor-pointer">My Subjects &amp; Unlock</button>
+        <button type="button" id="my-account-reset-btn" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold rounded-lg text-xs cursor-pointer">Send password reset email</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-subscription-paywall" class="fixed inset-0 z-[60] bg-slate-950/90 backdrop-blur-md items-center justify-center p-4 hidden overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl border-2 border-brand-800 text-slate-800">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-400 text-brand-950 flex items-center justify-center font-black shadow text-lg">★</div>
+          <div>
+            <h2 class="text-base font-black text-brand-950 uppercase">1-Year Premium Access</h2>
+            <p class="text-[11px] text-slate-500 font-semibold">KT Maths Exam Suite</p>
+          </div>
+        </div>
+        <span class="text-xs font-black bg-amber-100 text-amber-900 px-3 py-1 rounded-full font-mono">₹150 / Year</span>
+      </div>
+
+      <div class="bg-blue-50/70 p-3.5 rounded-xl border border-blue-200 space-y-1.5 text-xs text-slate-700">
+        <p class="font-bold text-brand-900">Signed In Account: <span id="paywall-user-email" class="font-mono text-blue-700 break-all"></span></p>
+        <p class="text-[11px] leading-relaxed">This account requires an active 1-year annual subscription to access GSEB Exam Paper Generation, GUJCET 40M MCQ Builder, and Chapterwise Blueprint Matrices.</p>
+      </div>
+
+      <div class="space-y-3">
+        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-black text-slate-800">Pay by UPI (scan QR or UPI ID)</span>
+            <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded">GPay / PhonePe / Paytm / BHIM</span>
+          </div>
+          <div id="paywall-bundle-box" class="hidden p-3 rounded-lg bg-emerald-50 border border-emerald-300 space-y-1.5 text-xs text-slate-800">
+            <p class="font-black text-emerald-900">Your sign-up choice</p>
+            <p id="paywall-bundle-list" class="font-semibold leading-relaxed"></p>
+            <p id="paywall-bundle-meta" class="font-black text-emerald-800"></p>
+            <button type="button" onclick="openBundlePay()" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold rounded-lg text-xs shadow transition cursor-pointer"><span id="paywall-bundle-btn-text">Pay by UPI</span></button>
+          </div>
+          <button type="button" id="paywall-plan-btn" onclick="openUpiPay('plan')" class="w-full py-2.5 bg-brand-900 hover:bg-brand-800 text-white font-extrabold rounded-lg text-xs shadow transition flex items-center justify-center space-x-1.5 cursor-pointer">
+            <span>Pay ₹150 by UPI &amp; send for approval (1 Year)</span>
+          </button>
+          <p class="text-[10px] text-slate-500">After paying, enter the UPI reference number. The administrator checks the payment and switches your access on.</p>
+          <div id="paywall-pending" class="hidden p-2 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-900 font-semibold"></div>
+          <div id="paywall-notice" class="hidden p-2 rounded-lg bg-rose-50 border border-rose-200 text-[11px] text-rose-800 font-semibold"></div>
+        </div>
+
+        <div id="paywall-license-key-box" class="hidden p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-black text-slate-800">Activate with License Key</span>
+            <span class="text-[10px] text-slate-500 font-mono">Offline Direct UPI</span>
+          </div>
+          <div class="flex gap-2">
+            <input type="text" id="input-license-key" placeholder="e.g. KTM-YEAR-XXXX-YYYY" class="flex-1 min-w-0 border rounded-lg p-2 font-mono text-xs uppercase bg-white border-slate-300">
+            <button type="button" onclick="activateLicenseKeyInput()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs cursor-pointer shadow">Apply Key</button>
+          </div>
+        </div>
+
+        <div class="pt-2 flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-100 gap-2 flex-wrap">
+          <span>Need help with a payment?</span>
+          <a href="https://wa.me/919033146883?text=Hello%20Kalpesh%20Sir,%20I%20want%20to%20activate%201-Year%20Subscription%20for%20KT%20Maths%20Exam%20Suite" target="_blank" rel="noopener" class="font-bold text-emerald-700 hover:underline">Contact on WhatsApp &rarr;</a>
+        </div>
+        <div class="text-center">
+          <button type="button" onclick="handleSignOutAction()" class="text-[11px] font-bold text-rose-600 hover:underline cursor-pointer">Sign out / switch account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="print-zone" class="hidden"></div>
+
+ <!-- Modular Application Scripts (Loaded in Dependency Order) -->
+  <script defer src="js/state.js"></script>
+  <script defer src="js/utils/media-math.js"></script>
+  <script defer src="js/utils/word-question-parser.js"></script>
+  <script defer src="js/modules/blueprint-matrix.js"></script>
+  <script defer src="js/modules/paper-workspace.js"></script>
+  <script defer src="js/modules/gujcet-workspace.js"></script>
+  <script defer src="js/app.js"></script>
+  <script defer src="js/access-migrate.js"></script>
+  <script defer src="js/catalog-guest.js"></script>
+  <script defer src="js/secure-auth.js"></script>
+  <script defer src="js/signup-plan.js"></script>
+  <script defer src="js/init.js"></script>
+</body>
+</html>

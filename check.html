@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KT Maths - Site Check</title>
+<style>
+  body{font:14px/1.5 system-ui,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:16px}
+  .box{max-width:760px;margin:0 auto}
+  h1{font-size:18px;margin:0 0 4px} p.sub{margin:0 0 14px;color:#94a3b8;font-size:12px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#fbbf24;margin:18px 0 6px}
+  .row{display:flex;gap:8px;padding:6px 8px;border-radius:8px;background:#1e293b;margin-bottom:4px;align-items:flex-start}
+  .row b{flex:0 0 22px} .row span{flex:1;word-break:break-word} .row small{display:block;color:#94a3b8}
+  .ok b{color:#34d399} .warn b{color:#fbbf24} .bad{background:#450a0a} .bad b{color:#f87171}
+  button{background:#f59e0b;border:0;color:#111;font-weight:700;padding:8px 14px;border-radius:8px;cursor:pointer;margin:6px 6px 0 0}
+  #summary{padding:12px;border-radius:10px;margin:12px 0;font-weight:700}
+  .good{background:#064e3b}.problem{background:#7f1d1d}
+  pre{white-space:pre-wrap;background:#020617;padding:10px;border-radius:8px;font-size:11px;max-height:240px;overflow:auto}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>KT Maths - Site Check</h1>
+  <p class="sub">Open this page on the SAME website address where login does not work. It tests every file and the Firebase connection and tells you what to fix.</p>
+  <button onclick="run()">Run check again</button><button onclick="copyReport()">Copy report</button>
+  <div id="summary"></div>
+  <div id="out"></div>
+  <h2>Report text (send this to your helper)</h2>
+  <pre id="report"></pre>
+</div>
+<script>
+var lines = [];
+var out = document.getElementById('out');
+function section(t) { out.insertAdjacentHTML('beforeend', '<h2>' + t + '</h2>'); lines.push('', '## ' + t); }
+function add(level, text, hint) {
+  var icon = level === 'ok' ? '✅' : level === 'warn' ? '⚠️' : '❌';
+  out.insertAdjacentHTML('beforeend', '<div class="row ' + (level === 'bad' ? 'bad' : level) + '"><b>' + icon + '</b><span>' + esc(text) + (hint ? '<small>' + esc(hint) + '</small>' : '') + '</span></div>');
+  lines.push(icon + ' ' + text + (hint ? '  -> ' + hint : ''));
+  counts[level]++;
+}
+var counts = { ok: 0, warn: 0, bad: 0 };
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+function base() { return location.href.replace(/[^\/]*([?#].*)?$/, ''); }
+function get(url) {
+  return fetch(url + (url.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.text().then(function (t) { return { status: r.status, text: t }; }); });
+}
+function loadScript(src, ms) {
+  return new Promise(function (resolve) {
+    var s = document.createElement('script'), done = false;
+    var t = setTimeout(function () { if (!done) { done = true; resolve(false); } }, ms || 9000);
+    s.onload = function () { if (!done) { done = true; clearTimeout(t); resolve(true); } };
+    s.onerror = function () { if (!done) { done = true; clearTimeout(t); resolve(false); } };
+    s.src = src; document.head.appendChild(s);
+  });
+}
+
+/* what each file must contain to be the NEWEST version */
+var FILES = [
+  ['js/state.js', ['allowLocalAccounts']],
+  ['js/utils/media-math.js', []],
+  ['js/modules/blueprint-matrix.js', ['isGuestChapterLocked']],
+  ['js/modules/paper-workspace.js', ['schoolEl']],
+  ['js/modules/gujcet-workspace.js', ['appendGuestLockedChapters', 'decorateStdOptions']],
+  ['js/app.js', ['ACCESS_ITEMS', 'guestLoginPrompt', 'handleCloudAuthSubmit']],
+  ['js/access-migrate.js', ['migrateToStdAccess']],
+  ['js/catalog-guest.js', ['startGuestSessionInner', 'renderGateTicker']],
+  ['js/secure-auth.js', ['withTimeout', 'createCloudAccount']],
+  ['js/signup-plan.js', ['getSignupChoice', 'openMyAccountModal']],
+  ['js/init.js', ['__KTM_INIT_DONE']]
+];
+
+async function run() {
+  out.innerHTML = ''; lines = []; counts = { ok: 0, warn: 0, bad: 0 };
+  var sum = document.getElementById('summary'); sum.className = ''; sum.textContent = 'Checking...';
+  var texts = {};
+
+  section('1. This page');
+  add('ok', 'Address: ' + location.href);
+  add(navigator.onLine ? 'ok' : 'bad', navigator.onLine ? 'Browser says you are online' : 'Browser says you are OFFLINE');
+  add(location.protocol === 'file:' ? 'bad' : 'ok', location.protocol === 'file:' ? 'Opened as a local file (file://). Login cannot work this way. Open the GitHub Pages address instead.' : 'Opened over ' + location.protocol.replace(':', ''));
+  add('ok', 'Browser: ' + navigator.userAgent.slice(0, 110));
+  try { var sw = await navigator.serviceWorker.getRegistrations(); add(sw.length ? 'warn' : 'ok', 'Service workers registered: ' + sw.length, sw.length ? 'If something looks old: DevTools > Application > Service workers > Unregister, then Ctrl+Shift+R' : ''); } catch (e) {}
+
+  section('2. Website files (must all exist and be the newest version)');
+  var html = await get(base() + 'index.html').catch(function (e) { return { status: 0, text: '', err: e }; });
+  if (html.status !== 200) add('bad', 'index.html not found (HTTP ' + html.status + ')', 'Files are not at the top level of the repo, or Pages is not deployed.');
+  else {
+    add('ok', 'index.html found (' + Math.round(html.text.length / 1024) + ' KB)');
+    var heads = (html.text.match(/<\/head>/gi) || []).length;
+    add(heads === 1 ? 'ok' : 'warn', 'index.html has ' + heads + ' closing head tag(s)', heads === 1 ? '' : 'Old copy of index.html? Upload the newest one.');
+    add(html.text.indexOf('ktm-boot-bar') > -1 ? 'ok' : 'bad', html.text.indexOf('ktm-boot-bar') > -1 ? 'index.html is the newest version (start-up check present)' : 'index.html is an OLD version', 'Upload the newest index.html.');
+    ['access-migrate', 'catalog-guest', 'secure-auth', 'init'].forEach(function (n) {
+      if (html.text.indexOf('js/' + n + '.js') < 0) add('bad', 'index.html does not load js/' + n + '.js', 'index.html is an old version.');
+    });
+  }
+  for (var i = 0; i < FILES.length; i++) {
+    var f = FILES[i][0], need = FILES[i][1];
+    var r = await get(base() + f).catch(function () { return { status: 0, text: '' }; });
+    if (r.status !== 200) { add('bad', f + ' - NOT FOUND (HTTP ' + r.status + ')', 'Upload this file to the repo (same folder), wait for the green tick in Actions.'); continue; }
+    texts[f] = r.text;
+    var parseErr = '';
+    try { new Function(r.text); } catch (e) { parseErr = e.message; }
+    var missing = need.filter(function (m) { return r.text.indexOf(m) < 0; });
+    if (parseErr) add('bad', f + ' - has a SYNTAX ERROR: ' + parseErr, 'The file is damaged or half-uploaded. Upload it again from the zip.');
+    else if (missing.length) add('bad', f + ' - OLD version (missing: ' + missing.join(', ') + ')', 'Upload the newest copy of this file.');
+    else add('ok', f + ' - OK');
+  }
+  var swr = await get(base() + 'sw.js').catch(function () { return { status: 0, text: '' }; });
+  if (swr.status === 200) { var v = (swr.text.match(/CACHE_VERSION\s*=\s*'([^']+)'/) || [])[1]; add('ok', 'sw.js found, cache version: ' + v); } else add('warn', 'sw.js not found');
+  var mf = await get(base() + 'manifest.json').catch(function () { return { status: 0 }; });
+  add(mf.status === 200 ? 'ok' : 'warn', 'manifest.json ' + (mf.status === 200 ? 'found' : 'missing'));
+  var png = await get(base() + 'web_206.png').catch(function () { return { status: 0 }; });
+  add(png.status === 200 ? 'ok' : 'warn', 'web_206.png ' + (png.status === 200 ? 'found' : 'missing (logo)'));
+
+  section('3. Online libraries (blocked ones break the page)');
+  var libs = [
+    ['Tailwind (page design)', 'https://cdn.tailwindcss.com'],
+    ['Firebase core', 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js'],
+    ['Firebase database', 'https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js'],
+    ['Firebase sign-in', 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js'],
+    ['Icons (lucide)', 'https://unpkg.com/lucide@latest'],
+    ['Maths (KaTeX)', 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js']
+  ];
+  for (var j = 0; j < libs.length; j++) {
+    var ok = await loadScript(libs[j][1]);
+    add(ok ? 'ok' : 'bad', libs[j][0] + (ok ? ' loaded' : ' did NOT load'), ok ? '' : 'Blocked by an ad-blocker, firewall, school/office network or no internet. Try another network or switch the blocker off for this site.');
+  }
+
+  section('4. Firebase connection');
+  var cfg = {}; try { cfg = JSON.parse(localStorage.getItem('KT_FIREBASE_CONFIG_V1') || '{}') || {}; } catch (e) {}
+  var key = (texts['js/state.js'] || '').match(/DEFAULT_FIREBASE_API_KEY\s*=\s*"([^"]*)"/);
+  var dbm = (texts['js/app.js'] || '').match(/databaseURL:\s*"([^"]+)"/);
+  var apiKey = cfg.apiKey || (key && key[1]) || '', dbUrl = (cfg.databaseURL || (dbm && dbm[1]) || '').replace(/\/$/, '');
+  if (cfg.apiKey || cfg.databaseURL) add('warn', 'This browser has saved Firebase settings that override the code', 'If they are wrong: open the app as admin > Cloud settings, or clear site data.');
+  add(apiKey ? 'ok' : 'bad', apiKey ? 'API key found: ' + apiKey.slice(0, 8) + '...' : 'No API key set', 'Set DEFAULT_FIREBASE_API_KEY in js/state.js');
+  add(dbUrl ? 'ok' : 'bad', dbUrl ? 'Database address: ' + dbUrl : 'No database address');
+  if (apiKey) {
+    try {
+      var ar = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + encodeURIComponent(apiKey), {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: 'site-check@example.com', password: 'not-a-real-password', returnSecureToken: true })
+      });
+      var aj = await ar.json().catch(function () { return {}; });
+      var msg = (aj.error && (aj.error.message || '')) + ' ' + JSON.stringify((aj.error && aj.error.details) || '');
+      if (/EMAIL_NOT_FOUND|INVALID_PASSWORD|INVALID_LOGIN_CREDENTIALS|USER_DISABLED/.test(msg)) add('ok', 'Firebase sign-in works (API key accepted, Email/Password is enabled)');
+      else if (/TOO_MANY_ATTEMPTS/.test(msg)) add('warn', 'Firebase answered "too many attempts" - sign-in is reachable, wait a few minutes');
+      else if (/OPERATION_NOT_ALLOWED/.test(msg)) add('bad', 'Email/Password sign-in is NOT enabled', 'Firebase > Authentication > Sign-in method > Email/Password > Enable.');
+      else if (/CONFIGURATION_NOT_FOUND/.test(msg)) add('bad', 'Firebase Authentication is not set up', 'Firebase > Authentication > Get started.');
+      else if (/referer|REFERRER/i.test(msg)) add('bad', 'The API key is restricted and does NOT allow this website', 'Google Cloud Console > APIs & Services > Credentials > Browser key > Website restrictions: add ' + location.origin + '/*  (wait 5 minutes).');
+      else if (/API key not valid|API_KEY_INVALID|API key expired/i.test(msg)) add('bad', 'The API key is wrong', 'Copy the Web API key again from Firebase > Project settings > General.');
+      else if (/API_KEY_SERVICE_BLOCKED|blocked/i.test(msg)) add('bad', 'The API key is restricted to other APIs', 'Add "Identity Toolkit API" and "Token Service API" to the key\'s API restrictions.');
+      else add('warn', 'Firebase answered: ' + (aj.error ? aj.error.message : ar.status));
+    } catch (e) { add('bad', 'Could not reach Firebase sign-in (' + e.message + ')', 'Network, ad-blocker or firewall is blocking googleapis.com.'); }
+  }
+  if (dbUrl) {
+    try {
+      var dr = await fetch(dbUrl + '/catalog/_published.json?t=' + Date.now());
+      var dt = await dr.text();
+      if (dr.status === 200) {
+        add('ok', 'Database is reachable and the public rules work');
+        add(dt === 'null' ? 'warn' : 'ok', dt === 'null' ? 'Catalog not published yet' : 'Catalog is published', dt === 'null' ? 'Admin: sign in > UPI Payments > Publish now (needed for the running line and the guest preview).' : '');
+        var gr = await fetch(dbUrl + '/guestdemo/q.json?shallow=true&t=' + Date.now()); var gt = await gr.text();
+        add(gt === 'null' ? 'warn' : 'ok', gt === 'null' ? 'Guest preview has no data yet' : 'Guest preview data present', gt === 'null' ? 'Admin: UPI Payments > Publish now.' : '');
+      } else if (dr.status === 401 || /permission/i.test(dt)) add('bad', 'Database rules block public data (Permission denied)', 'Publish the newest database.rules.json in Firebase > Realtime Database > Rules.');
+      else if (dr.status === 404) add('bad', 'Database address is wrong or the database does not exist', 'Check the address in js/app.js / Cloud settings.');
+      else add('warn', 'Database answered HTTP ' + dr.status + ': ' + dt.slice(0, 80));
+    } catch (e) { add('bad', 'Could not reach the database (' + e.message + ')', 'Network, ad-blocker or firewall.'); }
+  }
+
+  var bad = counts.bad, warn = counts.warn;
+  sum.className = bad ? 'problem' : 'good';
+  sum.textContent = bad ? ('❌ ' + bad + ' problem(s) found - fix the red lines above, top to bottom.') : (warn ? '✅ No blocking problem. ' + warn + ' note(s) above.' : '✅ Everything looks fine.');
+  document.getElementById('report').textContent = 'KT Maths site check - ' + new Date().toISOString() + '\n' + lines.join('\n');
+}
+function copyReport() { var t = document.getElementById('report').textContent; if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () { alert('Report copied.'); }); else alert('Select and copy the report text below.'); }
+run();
+</script>
+</body>
+</html>
